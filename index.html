@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-<title>התחש</title>
+<title>המבוך</title>
 <style>
 :root{--ground:#ffd3c4;--wall:#e8735f;--floor:#ffc2ae;--ink:#963b23;--soft:#b14a37;--shade:#efb4a2;color-scheme:light}
 html,body{margin:0;height:100%;overflow:hidden;background:var(--ground);font-family:'Rubik','Heebo','Arial Hebrew',Arial,system-ui,sans-serif;
@@ -35,10 +35,10 @@ button{font:inherit}
 .logo{position:relative;width:220px;height:170px;margin-bottom:8px}
 .pit{position:absolute;inset:0;border-radius:6px;background:var(--floor);
   box-shadow:inset 0 14px 0 var(--wall),inset 10px 0 0 var(--wall),inset -10px 0 0 var(--wall),inset 0 -6px 0 var(--wall),0 0 0 8px var(--ground),0 0 0 13px #fff,0 18px 30px rgba(140,50,25,.18)}
-.body{position:absolute;background:#f6ac1e;box-shadow:0 6px 0 #c9790c}
+.body{position:absolute;background:var(--abody,#f6ac1e);box-shadow:0 6px 0 var(--ashade,#c9790c)}
 .b1{left:40px;top:96px;width:150px;height:46px}
 .b2{left:144px;top:34px;width:46px;height:108px}
-.headc{position:absolute;left:24px;top:84px;width:62px;height:62px;background:#f5a81c;box-shadow:0 7px 0 #c9790c;animation:bob 2.4s ease-in-out infinite}
+.headc{position:absolute;left:24px;top:84px;width:62px;height:62px;background:var(--ahead,#f5a81c);box-shadow:0 7px 0 var(--ashade,#c9790c);animation:bob 2.4s ease-in-out infinite}
 .headc img{width:100%;height:100%;display:block}
 @keyframes bob{50%{transform:translateY(-6px)}}
 h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink);letter-spacing:-1px;
@@ -52,7 +52,7 @@ h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink)
 .maphead .ttl{text-align:center;flex:1}
 .wname{font-size:26px;font-weight:900;color:var(--ink)}
 .wsub{font-size:14px;font-weight:600;color:var(--soft);margin-top:2px}
-.spacer{width:48px}
+.maphead .coins{transform:scale(.85)}
 .wprog{width:min(72vw,300px);margin:6px 0 16px}
 .levels{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
 .levels .wbtn{width:min(62vw,230px)}
@@ -82,6 +82,33 @@ h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink)
 .steps{text-align:right;margin:4px 0 18px;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
 .steps li{display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.45;color:#7a3418}
 .steps b{flex:none;width:28px;height:28px;border-radius:50%;background:#f5a626;color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px}
+.coins{display:inline-flex;align-items:center;gap:6px;direction:ltr;background:linear-gradient(#fff3d8,#ffd7a4);border:1.5px solid #c88058;box-shadow:0 3px 0 #a2482c;border-radius:999px;padding:4px 12px 4px 5px;font-weight:900;font-size:17px;color:var(--ink)}
+.coins svg{width:24px;height:24px;display:block}
+.coins.bump{animation:cbump .5s ease}
+@keyframes cbump{40%{transform:scale(1.18)}}
+.corner-l{position:absolute;top:max(22px,env(safe-area-inset-top));left:16px}
+.hudrow{display:flex;align-items:center;gap:10px}
+.coins.mini{font-size:14px;padding:2px 9px 2px 3px;box-shadow:0 2px 0 #a2482c}
+.coins.mini svg{width:19px;height:19px}
+#shop{justify-content:flex-start;overflow-y:auto;touch-action:pan-y;padding:max(18px,env(safe-area-inset-top)) 16px 30px;box-sizing:border-box}
+.shopsub{font-size:15px;font-weight:600;color:var(--soft);margin:2px 0 16px;text-align:center}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;width:100%;max-width:400px}
+.acard{background:linear-gradient(#fff6e6,#ffe6c6);border-radius:22px;padding:16px 10px 12px;text-align:center;box-shadow:0 0 0 2px #fff6e6 inset,0 5px 0 #d9a07a,0 10px 18px rgba(120,45,20,.15)}
+.acard.sel{box-shadow:0 0 0 3px #f5a626 inset,0 5px 0 #d9a07a,0 10px 18px rgba(120,45,20,.15)}
+.prev{width:84px;height:84px;margin:0 auto 12px;border-radius:4px}
+.prev img{width:100%;height:100%;display:block}
+.aname{font-size:18px;font-weight:900;color:var(--ink);margin-bottom:8px}
+.abtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:112px;height:40px;border-radius:14px;border:1.5px solid #c38159;font-weight:800;font-size:16px;color:#963b23;cursor:pointer;
+  background:linear-gradient(#fff3d8,#ffd7a4);box-shadow:0 4px 0 #a34c2d;transition:transform .1s}
+.abtn.buy{background:linear-gradient(#ffdc72,#f5a626)}
+.abtn.on{background:#f8e7cf;box-shadow:0 2px 0 #c9a17f;cursor:default}
+.abtn.poor{opacity:.55}
+.abtn:active{transform:translateY(3px);box-shadow:0 1px 0 #a34c2d}
+.abtn svg{width:20px;height:20px}
+.earn{display:inline-flex;align-items:center;gap:6px;direction:ltr;font-size:22px;font-weight:900;color:#c26a12;margin:-6px 0 16px}
+.earn svg{width:26px;height:26px}
+.cprev{width:96px;height:96px;margin:4px auto 14px}
+.cprev img{width:100%;height:100%;display:block}
 @media (prefers-reduced-motion: reduce){.ibtn.pulse,.headc{animation:none}#fill{transition:none}}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
@@ -91,7 +118,7 @@ h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink)
 
 <!-- game HUD -->
 <div id="gameUI" class="hidden">
-  <div class="top"><svg class="kbar" viewBox="0 0 320 36" role="progressbar" aria-label="כיסוי המסלול"><defs><linearGradient id="pgold" x2="0%" y2="100%"><stop stop-color="#ffdc72"/><stop offset="1" stop-color="#f5a626"/></linearGradient></defs><rect x="2" y="2" width="316" height="30" rx="15" fill="#a8593e" stroke="#ffebc8" stroke-width="3"/><rect id="fill" x="313" y="7" width="0" height="20" rx="10" fill="url(#pgold)"/></svg><div class="lvl" id="title"></div></div>
+  <div class="top"><svg class="kbar" viewBox="0 0 320 36" role="progressbar" aria-label="כיסוי המסלול"><defs><linearGradient id="pgold" x2="0%" y2="100%"><stop stop-color="#ffdc72"/><stop offset="1" stop-color="#f5a626"/></linearGradient></defs><rect x="2" y="2" width="316" height="30" rx="15" fill="#a8593e" stroke="#ffebc8" stroke-width="3"/><rect id="fill" x="313" y="7" width="0" height="20" rx="10" fill="url(#pgold)"/></svg><div class="hudrow"><div class="lvl" id="title"></div><div class="coins mini"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="10" fill="#c27a0c"/><circle cx="12" cy="11.5" r="10" fill="#ffd34d"/><circle cx="12" cy="11.5" r="7" fill="#f5b21f"/><path d="M12 7.2l1.3 2.7 3 .4-2.2 2.1.5 3-2.6-1.4-2.6 1.4.5-3-2.2-2.1 3-.4z" fill="#fff3c4"/></svg><span class="cval">0</span></div></div></div>
   <button class="ibtn small pausebtn" id="pause" aria-label="השהיה"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NiIgdmlld0JveD0iMCAwIDY0IDY2IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IteU16nXlNeZ15QiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxjaXJjbGUgY3g9IjMyIiBjeT0iMzUiIHI9IjI4IiBmaWxsPSIjYTI0ODJjIi8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjgiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjODgwNTgiIHN0cm9rZS13aWR0aD0iMS41Ii8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjQuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmMmRiIi8+PGcgc3Ryb2tlPSIjOTYzYjIzIiBzdHJva2Utd2lkdGg9IjMuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIj48cGF0aCBkPSJNMjYgMjF2MjNtMTItMjN2MjMiLz48L2c+PC9zdmc+" alt=""></button>
   <div class="hintline" id="hint"></div>
   <div class="bottom">
@@ -103,13 +130,15 @@ h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink)
 
 <!-- home -->
 <section class="screen" id="home">
+  <div class="coins corner-l" aria-label="נקודות"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="10" fill="#c27a0c"/><circle cx="12" cy="11.5" r="10" fill="#ffd34d"/><circle cx="12" cy="11.5" r="7" fill="#f5b21f"/><path d="M12 7.2l1.3 2.7 3 .4-2.2 2.1.5 3-2.6-1.4-2.6 1.4.5-3-2.2-2.1 3-.4z" fill="#fff3c4"/></svg><span class="cval">0</span></div>
   <button class="ibtn small corner" id="openSettings" aria-label="הגדרות"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NiIgdmlld0JveD0iMCAwIDY0IDY2IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IteU15LXk9eo15XXqiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PGNpcmNsZSBjeD0iMzIiIGN5PSIzNSIgcj0iMjgiIGZpbGw9IiNhMjQ4MmMiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMxIiByPSIyOCIgZmlsbD0idXJsKCNjcmVhbSkiIHN0cm9rZT0iI2M4ODA1OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMxIiByPSIyNC41IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYyZGIiLz48dGV4dCB4PSIzMiIgeT0iNDMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMzEiIGZpbGw9IiM5NjNiMjMiPuKamTwvdGV4dD48L3N2Zz4=" alt=""></button>
   <div class="logo" aria-hidden="true"><div class="pit"></div><div class="body b2"></div><div class="body b1"></div><div class="headc"><img id="logoFace" alt=""></div></div>
-  <h1>התחש</h1>
-  <div class="tag">כלב אחד ארוך. מבוך אחד מלא.</div>
+  <h1>המבוך</h1>
+  <div class="tag">חיה אחת ארוכה. מבוך אחד מלא.</div>
   <div class="stack">
     <button class="wbtn" id="homeStart" aria-label="משחק חדש"><img id="homeStartImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i157XqdeX16cg15fXk9epIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjZ29sZCkiIHN0cm9rZT0iI2MzODE1OSIvPjxyZWN0IHg9IjciIHk9IjciIHdpZHRoPSIyMDYiIGhlaWdodD0iMzciIHJ4PSIxMiIgc3Ryb2tlPSIjZmZmMGQ2IiBmaWxsPSJub25lIi8+PHRleHQgeD0iMTEwIiB5PSIzMiIgZGlyZWN0aW9uPSJydGwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzk2M2IyMyI+157XqdeX16cg15fXk9epPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5NjNiMjMiPuKWtjwvdGV4dD48L3N2Zz4=" alt=""></button>
     <button class="wbtn" id="homeLevels" aria-label="בחירת שלב"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15HXl9eZ16jXqiDXqdec15EiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjMiIHk9IjciIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0iI2EzNGMyZCIvPjxyZWN0IHg9IjMiIHk9IjMiIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0idXJsKCNnb2xkKSIgc3Ryb2tlPSIjYzM4MTU5Ii8+PHJlY3QgeD0iNyIgeT0iNyIgd2lkdGg9IjIwNiIgaGVpZ2h0PSIzNyIgcng9IjEyIiBzdHJva2U9IiNmZmYwZDYiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIxMTAiIHk9IjMyIiBkaXJlY3Rpb249InJ0bCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjOTYzYjIzIj7XkdeX15nXqNeqINep15zXkTwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjOTYzYjIzIj7ilqY8L3RleHQ+PC9zdmc+" alt=""></button>
+    <button class="wbtn" id="homeShop" aria-label="חנות החיות"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15fXoNeV16og15TXl9eZ15XXqiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMyIgeT0iNyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSIjYTM0YzJkIi8+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSJ1cmwoI2dvbGQpIiBzdHJva2U9IiNjMzgxNTkiLz48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMjA2IiBoZWlnaHQ9IjM3IiByeD0iMTIiIHN0cm9rZT0iI2ZmZjBkNiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjExMCIgeT0iMzIiIGRpcmVjdGlvbj0icnRsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM5NjNiMjMiPteX16DXldeqINeU15fXmdeV16o8L3RleHQ+PHRleHQgeD0iMjQiIHk9IjMyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzk2M2IyMyI+4piFPC90ZXh0Pjwvc3ZnPg==" alt=""></button>
     <button class="wbtn" id="homeTutorial" aria-label="איך משחקים"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15DXmdeaINee16nXl9en15nXnSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMyIgeT0iNyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSIjYTM0YzJkIi8+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSJ1cmwoI2NyZWFtKSIgc3Ryb2tlPSIjYzM4MTU5Ii8+PHJlY3QgeD0iNyIgeT0iNyIgd2lkdGg9IjIwNiIgaGVpZ2h0PSIzNyIgcng9IjEyIiBzdHJva2U9IiNmZmYwZDYiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIxMTAiIHk9IjMyIiBkaXJlY3Rpb249InJ0bCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjOTYzYjIzIj7XkNeZ15og157XqdeX16fXmdedPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5NjNiMjMiPj88L3RleHQ+PC9zdmc+" alt=""></button>
   </div>
 </section>
@@ -119,7 +148,7 @@ h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink)
   <div class="maphead">
     <button class="ibtn small" id="mapHome" aria-label="בית"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NiIgdmlld0JveD0iMCAwIDY0IDY2IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IteR15nXqiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PGNpcmNsZSBjeD0iMzIiIGN5PSIzNSIgcj0iMjgiIGZpbGw9IiNhMjQ4MmMiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMxIiByPSIyOCIgZmlsbD0idXJsKCNjcmVhbSkiIHN0cm9rZT0iI2M4ODA1OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMxIiByPSIyNC41IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYyZGIiLz48ZyBzdHJva2U9IiM5NjNiMjMiIHN0cm9rZS13aWR0aD0iMy43IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik0xNiAzMmwxNi0xNCAxNiAxNE0yMCAyOXYxN2gyNFYyOW0tMTcgMTdWMzVoMTB2MTEiLz48L2c+PC9zdmc+" alt=""></button>
     <div class="ttl"><div class="wname" id="worldName"></div><div class="wsub" id="worldSub"></div></div>
-    <div class="spacer"></div>
+    <div class="coins"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="10" fill="#c27a0c"/><circle cx="12" cy="11.5" r="10" fill="#ffd34d"/><circle cx="12" cy="11.5" r="7" fill="#f5b21f"/><path d="M12 7.2l1.3 2.7 3 .4-2.2 2.1.5 3-2.6-1.4-2.6 1.4.5-3-2.2-2.1 3-.4z" fill="#fff3c4"/></svg><span class="cval">0</span></div>
   </div>
   <img class="wprog" id="worldProg" alt="">
   <div class="levels" id="levelList"></div>
@@ -129,14 +158,30 @@ h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink)
   </div>
 </section>
 
+<!-- animal shop -->
+<section class="screen hidden" id="shop">
+  <div class="maphead">
+    <button class="ibtn small" id="shopHome" aria-label="בית"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NiIgdmlld0JveD0iMCAwIDY0IDY2IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IteR15nXqiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PGNpcmNsZSBjeD0iMzIiIGN5PSIzNSIgcj0iMjgiIGZpbGw9IiNhMjQ4MmMiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMxIiByPSIyOCIgZmlsbD0idXJsKCNjcmVhbSkiIHN0cm9rZT0iI2M4ODA1OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMxIiByPSIyNC41IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYyZGIiLz48ZyBzdHJva2U9IiM5NjNiMjMiIHN0cm9rZS13aWR0aD0iMy43IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik0xNiAzMmwxNi0xNCAxNiAxNE0yMCAyOXYxN2gyNFYyOW0tMTcgMTdWMzVoMTB2MTEiLz48L2c+PC9zdmc+" alt=""></button>
+    <div class="ttl"><div class="wname">חנות החיות</div></div>
+    <div class="coins"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="10" fill="#c27a0c"/><circle cx="12" cy="11.5" r="10" fill="#ffd34d"/><circle cx="12" cy="11.5" r="7" fill="#f5b21f"/><path d="M12 7.2l1.3 2.7 3 .4-2.2 2.1.5 3-2.6-1.4-2.6 1.4.5-3-2.2-2.1 3-.4z" fill="#fff3c4"/></svg><span class="cval">0</span></div>
+  </div>
+  <div class="shopsub">אוספים נקודות בשלבים ומחליפים אותן בחיות חדשות</div>
+  <div class="grid" id="animalGrid"></div>
+</section>
+
 <!-- dialogs -->
-<div class="overlay hidden" id="paused"><div class="card"><h2>הפסקה</h2><p>הכלב מחכה לך במבוך</p><div class="stack">
+<div class="overlay hidden" id="buyDlg"><div class="card"><h2 id="buyTitle"></h2><div class="cprev"><img id="buyImg" alt=""></div><p id="buyText"></p><div class="stack">
+  <button class="wbtn" id="buyYes" aria-label="אישור"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15DXmdep15XXqCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMyIgeT0iNyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSIjYTM0YzJkIi8+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSJ1cmwoI2dvbGQpIiBzdHJva2U9IiNjMzgxNTkiLz48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMjA2IiBoZWlnaHQ9IjM3IiByeD0iMTIiIHN0cm9rZT0iI2ZmZjBkNiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjExMCIgeT0iMzIiIGRpcmVjdGlvbj0icnRsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM5NjNiMjMiPteQ15nXqdeV16g8L3RleHQ+PHRleHQgeD0iMjQiIHk9IjMyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzk2M2IyMyI+4pyTPC90ZXh0Pjwvc3ZnPg==" alt=""></button>
+  <button class="wbtn" id="buyNo" aria-label="ביטול"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15HXmdeY15XXnCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMyIgeT0iNyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSIjYTM0YzJkIi8+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSJ1cmwoI2NyZWFtKSIgc3Ryb2tlPSIjYzM4MTU5Ii8+PHJlY3QgeD0iNyIgeT0iNyIgd2lkdGg9IjIwNiIgaGVpZ2h0PSIzNyIgcng9IjEyIiBzdHJva2U9IiNmZmYwZDYiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIxMTAiIHk9IjMyIiBkaXJlY3Rpb249InJ0bCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjOTYzYjIzIj7XkdeZ15jXldecPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5NjNiMjMiPsOXPC90ZXh0Pjwvc3ZnPg==" alt=""></button>
+</div></div></div>
+
+<div class="overlay hidden" id="paused"><div class="card"><h2>הפסקה</h2><p>המבוך מחכה לכם</p><div class="stack">
   <button class="wbtn" id="resume" aria-label="המשך משחק"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15TXntep15og157XqdeX16ciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjMiIHk9IjciIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0iI2EzNGMyZCIvPjxyZWN0IHg9IjMiIHk9IjMiIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0idXJsKCNnb2xkKSIgc3Ryb2tlPSIjYzM4MTU5Ii8+PHJlY3QgeD0iNyIgeT0iNyIgd2lkdGg9IjIwNiIgaGVpZ2h0PSIzNyIgcng9IjEyIiBzdHJva2U9IiNmZmYwZDYiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIxMTAiIHk9IjMyIiBkaXJlY3Rpb249InJ0bCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjOTYzYjIzIj7XlNee16nXmiDXntep15fXpzwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjOTYzYjIzIj7ilrY8L3RleHQ+PC9zdmc+" alt=""></button>
   <button class="wbtn" id="replay2" aria-label="משחק חוזר"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i157XqdeX16cg15fXldeW16giPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjMiIHk9IjciIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0iI2EzNGMyZCIvPjxyZWN0IHg9IjMiIHk9IjMiIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0idXJsKCNjcmVhbSkiIHN0cm9rZT0iI2MzODE1OSIvPjxyZWN0IHg9IjciIHk9IjciIHdpZHRoPSIyMDYiIGhlaWdodD0iMzciIHJ4PSIxMiIgc3Ryb2tlPSIjZmZmMGQ2IiBmaWxsPSJub25lIi8+PHRleHQgeD0iMTEwIiB5PSIzMiIgZGlyZWN0aW9uPSJydGwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzk2M2IyMyI+157XqdeX16cg15fXldeW16g8L3RleHQ+PHRleHQgeD0iMjQiIHk9IjMyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzk2M2IyMyI+4oa7PC90ZXh0Pjwvc3ZnPg==" alt=""></button>
   <button class="wbtn" id="toMap1" aria-label="למפת השלבים"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15zXntek16og15TXqdec15HXmdedIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjMzgxNTkiLz48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMjA2IiBoZWlnaHQ9IjM3IiByeD0iMTIiIHN0cm9rZT0iI2ZmZjBkNiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjExMCIgeT0iMzIiIGRpcmVjdGlvbj0icnRsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM5NjNiMjMiPtec157XpNeqINeU16nXnNeR15nXnTwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjOTYzYjIzIj7ilqY8L3RleHQ+PC9zdmc+" alt=""></button>
 </div></div></div>
 
-<div class="overlay hidden" id="win"><div class="card"><h2 id="winTitle">כל הכבוד!</h2><p id="winText"></p><div class="stack">
+<div class="overlay hidden" id="win"><div class="card"><h2 id="winTitle">כל הכבוד!</h2><p id="winText"></p><div class="earn hidden" id="winEarn"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="10" fill="#c27a0c"/><circle cx="12" cy="11.5" r="10" fill="#ffd34d"/><circle cx="12" cy="11.5" r="7" fill="#f5b21f"/><path d="M12 7.2l1.3 2.7 3 .4-2.2 2.1.5 3-2.6-1.4-2.6 1.4.5-3-2.2-2.1 3-.4z" fill="#fff3c4"/></svg><span id="winEarnVal"></span></div><div class="stack">
   <button class="wbtn" id="next" aria-label="לשלב הבא"><img id="nextImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15zXqdec15Eg15TXkdeQIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjZ29sZCkiIHN0cm9rZT0iI2MzODE1OSIvPjxyZWN0IHg9IjciIHk9IjciIHdpZHRoPSIyMDYiIGhlaWdodD0iMzciIHJ4PSIxMiIgc3Ryb2tlPSIjZmZmMGQ2IiBmaWxsPSJub25lIi8+PHRleHQgeD0iMTEwIiB5PSIzMiIgZGlyZWN0aW9uPSJydGwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzk2M2IyMyI+15zXqdec15Eg15TXkdeQPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5NjNiMjMiPuKAujwvdGV4dD48L3N2Zz4=" alt=""></button>
   <button class="wbtn" id="toMap2" aria-label="למפת השלבים"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15zXntek16og15TXqdec15HXmdedIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjMzgxNTkiLz48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMjA2IiBoZWlnaHQ9IjM3IiByeD0iMTIiIHN0cm9rZT0iI2ZmZjBkNiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjExMCIgeT0iMzIiIGRpcmVjdGlvbj0icnRsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM5NjNiMjMiPtec157XpNeqINeU16nXnNeR15nXnTwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjOTYzYjIzIj7ilqY8L3RleHQ+PC9zdmc+" alt=""></button>
 </div></div></div>
@@ -154,9 +199,10 @@ h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink)
   <button class="ibtn small x" id="closeTutorial" aria-label="סגירה"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NiIgdmlld0JveD0iMCAwIDY0IDY2IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Iteh15LXmdeo15QiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxjaXJjbGUgY3g9IjMyIiBjeT0iMzUiIHI9IjI4IiBmaWxsPSIjYTI0ODJjIi8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjgiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjODgwNTgiIHN0cm9rZS13aWR0aD0iMS41Ii8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjQuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmMmRiIi8+PGcgc3Ryb2tlPSIjOTYzYjIzIiBzdHJva2Utd2lkdGg9IjMuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIj48cGF0aCBkPSJNMjIgMjJsMjAgMjBtMC0yMC0yMCAyMCIvPjwvZz48L3N2Zz4=" alt=""></button>
   <h2>איך משחקים</h2>
   <ol class="steps">
-    <li><b>1</b><span>מחליקים את האצבע לכיוון שרוצים, והכלב רץ עד שהוא נתקע בקיר.</span></li>
-    <li><b>2</b><span>הגוף של הכלב מתארך מאחוריו, ואי אפשר לעבור דרכו.</span></li>
+    <li><b>1</b><span>מחליקים את האצבע לכיוון שרוצים, והחיה רצה עד שהיא נתקעת בקיר.</span></li>
+    <li><b>2</b><span>הגוף מתארך מאחוריה, ואי אפשר לעבור דרכו.</span></li>
     <li><b>3</b><span>המטרה: למלא את כל המבוך. נתקעתם? ביטול מהלך, או רמז.</span></li>
+    <li><b>4</b><span>כל שלב שפותרים נותן נקודות. בלי רמזים ובלי ביטולים מקבלים בונוס, ובחנות קונים חיות חדשות.</span></li>
   </ol>
   <button class="wbtn" id="tutorialGo" aria-label="קדימה למשחק"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i16fXk9eZ157XlCDXnNee16nXl9enIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjZ29sZCkiIHN0cm9rZT0iI2MzODE1OSIvPjxyZWN0IHg9IjciIHk9IjciIHdpZHRoPSIyMDYiIGhlaWdodD0iMzciIHJ4PSIxMiIgc3Ryb2tlPSIjZmZmMGQ2IiBmaWxsPSJub25lIi8+PHRleHQgeD0iMTEwIiB5PSIzMiIgZGlyZWN0aW9uPSJydGwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzk2M2IyMyI+16fXk9eZ157XlCDXnNee16nXl9enPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5NjNiMjMiPuKWtjwvdGV4dD48L3N2Zz4=" alt=""></button>
 </div></div>
@@ -166,6 +212,16 @@ import * as THREE from 'three';
 const KIT={sound_on:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NiIgdmlld0JveD0iMCAwIDY0IDY2IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IteU16TXotec16og16bXnNeZ15wiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxjaXJjbGUgY3g9IjMyIiBjeT0iMzUiIHI9IjI4IiBmaWxsPSIjYTI0ODJjIi8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjgiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjODgwNTgiIHN0cm9rZS13aWR0aD0iMS41Ii8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjQuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmMmRiIi8+PGcgc3Ryb2tlPSIjOTYzYjIzIiBzdHJva2Utd2lkdGg9IjMuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIj48cGF0aCBkPSJNMTggMjdoOGw5LTd2MjVsLTktN2gtOHpNNDIgMjVxOSA3IDAgMTUiLz48L2c+PC9zdmc+',sound_off:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NiIgdmlld0JveD0iMCAwIDY0IDY2IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IteU16nXqten15QiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxjaXJjbGUgY3g9IjMyIiBjeT0iMzUiIHI9IjI4IiBmaWxsPSIjYTI0ODJjIi8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjgiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjODgwNTgiIHN0cm9rZS13aWR0aD0iMS41Ii8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjQuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmMmRiIi8+PGcgc3Ryb2tlPSIjOTYzYjIzIiBzdHJva2Utd2lkdGg9IjMuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIj48cGF0aCBkPSJNMTcgMjdoOGw5LTd2MjVsLTktN2gtOHpNNDIgMjhsOSAxMG0wLTEwLTkgMTAiLz48L2c+PC9zdmc+',next_level:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15zXqdec15Eg15TXkdeQIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjZ29sZCkiIHN0cm9rZT0iI2MzODE1OSIvPjxyZWN0IHg9IjciIHk9IjciIHdpZHRoPSIyMDYiIGhlaWdodD0iMzciIHJ4PSIxMiIgc3Ryb2tlPSIjZmZmMGQ2IiBmaWxsPSJub25lIi8+PHRleHQgeD0iMTEwIiB5PSIzMiIgZGlyZWN0aW9uPSJydGwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzk2M2IyMyI+15zXqdec15Eg15TXkdeQPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5NjNiMjMiPuKAujwvdGV4dD48L3N2Zz4=',next_world:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i16LXldec150g15TXkdeQIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjMzgxNTkiLz48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMjA2IiBoZWlnaHQ9IjM3IiByeD0iMTIiIHN0cm9rZT0iI2ZmZjBkNiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjExMCIgeT0iMzIiIGRpcmVjdGlvbj0icnRsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM5NjNiMjMiPtei15XXnNedINeU15HXkDwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjOTYzYjIzIj7igLo8L3RleHQ+PC9zdmc+',level_map:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15zXntek16og15TXqdec15HXmdedIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjMzgxNTkiLz48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMjA2IiBoZWlnaHQ9IjM3IiByeD0iMTIiIHN0cm9rZT0iI2ZmZjBkNiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjExMCIgeT0iMzIiIGRpcmVjdGlvbj0icnRsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM5NjNiMjMiPtec157XpNeqINeU16nXnNeR15nXnTwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjOTYzYjIzIj7ilqY8L3RleHQ+PC9zdmc+',start:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i157XqdeX16cg15fXk9epIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjZ29sZCkiIHN0cm9rZT0iI2MzODE1OSIvPjxyZWN0IHg9IjciIHk9IjciIHdpZHRoPSIyMDYiIGhlaWdodD0iMzciIHJ4PSIxMiIgc3Ryb2tlPSIjZmZmMGQ2IiBmaWxsPSJub25lIi8+PHRleHQgeD0iMTEwIiB5PSIzMiIgZGlyZWN0aW9uPSJydGwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzk2M2IyMyI+157XqdeX16cg15fXk9epPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5NjNiMjMiPuKWtjwvdGV4dD48L3N2Zz4=',resume:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15TXntep15og157XqdeX16ciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjMiIHk9IjciIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0iI2EzNGMyZCIvPjxyZWN0IHg9IjMiIHk9IjMiIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0idXJsKCNnb2xkKSIgc3Ryb2tlPSIjYzM4MTU5Ii8+PHJlY3QgeD0iNyIgeT0iNyIgd2lkdGg9IjIwNiIgaGVpZ2h0PSIzNyIgcng9IjEyIiBzdHJva2U9IiNmZmYwZDYiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIxMTAiIHk9IjMyIiBkaXJlY3Rpb249InJ0bCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjOTYzYjIzIj7XlNee16nXmiDXntep15fXpzwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjOTYzYjIzIj7ilrY8L3RleHQ+PC9zdmc+'};
 const PILL={done:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"220\" height=\"56\" viewBox=\"0 0 220 56\" role=\"img\" aria-label=\"\u05e9\u05dc\u05d1 3\"><defs><linearGradient id=\"cream\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#fff3d8\"/><stop offset=\"1\" stop-color=\"#ffd7a4\"/></linearGradient><linearGradient id=\"gold\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#ffdc72\"/><stop offset=\"1\" stop-color=\"#f5a626\"/></linearGradient></defs><rect x=\"3\" y=\"7\" width=\"214\" height=\"45\" rx=\"16\" fill=\"#a34c2d\"/><rect x=\"3\" y=\"3\" width=\"214\" height=\"45\" rx=\"16\" fill=\"url(#cream)\" stroke=\"#c38159\"/><rect x=\"7\" y=\"7\" width=\"206\" height=\"37\" rx=\"12\" stroke=\"#fff0d6\" fill=\"none\"/><text x=\"110\" y=\"32\" direction=\"rtl\" text-anchor=\"middle\" font-family=\"Arial, sans-serif\" font-size=\"18\" font-weight=\"700\" fill=\"#963b23\">\u05e9\u05dc\u05d1 3</text><text x=\"24\" y=\"32\" text-anchor=\"middle\" font-family=\"Arial,sans-serif\" font-size=\"20\" fill=\"#963b23\">\u2713</text></svg>",cur:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"220\" height=\"56\" viewBox=\"0 0 220 56\" role=\"img\" aria-label=\"\u05e9\u05dc\u05d1 4\"><defs><linearGradient id=\"cream\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#fff3d8\"/><stop offset=\"1\" stop-color=\"#ffd7a4\"/></linearGradient><linearGradient id=\"gold\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#ffdc72\"/><stop offset=\"1\" stop-color=\"#f5a626\"/></linearGradient></defs><rect x=\"3\" y=\"7\" width=\"214\" height=\"45\" rx=\"16\" fill=\"#a34c2d\"/><rect x=\"3\" y=\"3\" width=\"214\" height=\"45\" rx=\"16\" fill=\"url(#gold)\" stroke=\"#c38159\"/><rect x=\"7\" y=\"7\" width=\"206\" height=\"37\" rx=\"12\" stroke=\"#fff0d6\" fill=\"none\"/><text x=\"110\" y=\"32\" direction=\"rtl\" text-anchor=\"middle\" font-family=\"Arial, sans-serif\" font-size=\"18\" font-weight=\"700\" fill=\"#963b23\">\u05e9\u05dc\u05d1 4</text><text x=\"24\" y=\"32\" text-anchor=\"middle\" font-family=\"Arial,sans-serif\" font-size=\"20\" fill=\"#963b23\">\u25b6</text></svg>",lock:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"220\" height=\"56\" viewBox=\"0 0 220 56\" role=\"img\" aria-label=\"\u05e9\u05dc\u05d1 5\"><defs><linearGradient id=\"cream\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#fff3d8\"/><stop offset=\"1\" stop-color=\"#ffd7a4\"/></linearGradient><linearGradient id=\"gold\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#ffdc72\"/><stop offset=\"1\" stop-color=\"#f5a626\"/></linearGradient></defs><rect x=\"3\" y=\"7\" width=\"214\" height=\"45\" rx=\"16\" fill=\"#a34c2d\"/><rect x=\"3\" y=\"3\" width=\"214\" height=\"45\" rx=\"16\" fill=\"#e3c5ad\" stroke=\"#c38159\"/><rect x=\"7\" y=\"7\" width=\"206\" height=\"37\" rx=\"12\" stroke=\"#fff0d6\" fill=\"none\"/><text x=\"110\" y=\"32\" direction=\"rtl\" text-anchor=\"middle\" font-family=\"Arial, sans-serif\" font-size=\"18\" font-weight=\"700\" fill=\"#746256\">\u05e9\u05dc\u05d1 5</text><text x=\"24\" y=\"32\" text-anchor=\"middle\" font-family=\"Arial,sans-serif\" font-size=\"20\" fill=\"#746256\">\u00d7</text></svg>"};
 const LEVELS=[["#..","...",".S."],["...#",".S..","..##"],["###.","....",".S..","...."],["....",".S..","....","#..."],["#....","...S.",".....","###.."],[".....",".....","...S.","##..."],["..###","....#","....#",".#S..","....."],["#...#","#.#..",".....",".S.#.",".....","..###"],["#...#","#.#.#","..#..",".....",".S..#","....#"],["..##.#",".....#","...S..","....#.","###...","####.."],["......",".####.",".##...",".#..S.",".#....","....##"],["####.#",".....#",".S....","....#.","#...#.","#.###.","#....."],["###...","..#.#.","....#.",".S....","...###","......","....##"],["##....","#..##.","#.S...","#.....","......",".##...","......"],["......#",".#....#",".###...","...S.#.",".....#.","......."],["......#",".##.S.#",".##.#.#","..#.#.#","#...#.#","#.....#","#.##...","#......"],["##.....","##.###.",".S...#.",".....#.","..#....","###.#..","#...##.","#......"],["........","..S##...","######..","#####...","#####.#.","..###.#.","......#.","........"],["........",".######.",".##...#.","....#.#.","##......","##.#.#..","##...#..","##.....S"],["......##",".#..#.##","....#.##",".##.#.##","....#.S#","##..#...","##..#.#.","##....#.","##......"],["........",".....#..",".###.#.#","..S..#.#","#...##.#","#...##.#","#...##.#","#...##.#","#......#"],[".........",".#######.",".........","###...#..","###.#....",".......S.","........."],["####...#","#..S.#.#","#....#.#","#......#","#...#..#","#...#..#","....#..#",".#......","........"],["........#",".....##..",".....###.","...#####.","....###..",".##.....#",".....S..#","####....#","######..#","######..#"]];
+const ANIMALS=[
+  {id:'dog',name:'כלב',price:0,body:'#f6ac1e',head:'#f5a81c',shade:'#c9790c',collar:'#2fb3a4'},
+  {id:'cat',name:'חתול',price:60,body:'#a9b2bd',head:'#aeb7c2',shade:'#6f7985',collar:'#ff6f91'},
+  {id:'fox',name:'שועל',price:120,body:'#f07f32',head:'#f2843a',shade:'#b4521a',collar:'#2fb3a4'},
+  {id:'bunny',name:'ארנב',price:180,body:'#f3ece4',head:'#f6f0ea',shade:'#c7b9aa',collar:'#ff8fab'},
+  {id:'panda',name:'פנדה',price:260,body:'#f4f3ef',head:'#f8f7f3',shade:'#b9b6ad',collar:'#7ac74f'},
+  {id:'frog',name:'צפרדע',price:340,body:'#7cc35a',head:'#83c961',shade:'#4c8a33',collar:'#ffcf3f'},
+  {id:'bear',name:'דב',price:420,body:'#a8754a',head:'#ae7b50',shade:'#6d4627',collar:'#5aa9e6'},
+  {id:'tiger',name:'נמר',price:520,body:'#f39a2b',head:'#f5a033',shade:'#b4650c',collar:'#e63946'},
+];
 const WORLD_SIZE=8,WORLDS=['החצר','הגינה','הפארק'];
 const P={ground:'#ffd3c4',wall:'#e8735f',floor0:'#ffc2ae',floor1:'#f9ad97',ao:'#7a2412',sky:'#fff8f4',bounce:'#f39a84',collar:'#2fb3a4'};
 
@@ -178,9 +234,9 @@ const svgUri=s=>'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(s);
 
 /* ---------- saved progress ---------- */
 const SAVE_KEY='tachash-save-v1';
-let save={done:[],music:true,fx:true};
+let save={done:[],music:true,fx:true,coins:0,owned:['dog'],sel:'dog'};
 function readLocal(){try{const v=localStorage.getItem(SAVE_KEY);if(v)save=Object.assign(save,JSON.parse(v));}catch(e){}}
-async function readCloud(){try{const r=await window.storage.get(SAVE_KEY,false);if(r&&r.value){save=Object.assign(save,JSON.parse(r.value));refreshHome();}}catch(e){}}
+async function readCloud(){try{const r=await window.storage.get(SAVE_KEY,false);if(r&&r.value){save=Object.assign(save,JSON.parse(r.value));refreshHome();applyAnimal();}}catch(e){}}
 function persist(){const v=JSON.stringify(save);try{localStorage.setItem(SAVE_KEY,v);}catch(e){}try{window.storage&&window.storage.set(SAVE_KEY,v,false);}catch(e){}}
 const isDone=i=>save.done.includes(i);
 const firstOpen=()=>{for(let i=0;i<LEVELS.length;i++)if(!isDone(i))return i;return LEVELS.length-1;};
@@ -200,6 +256,7 @@ function sfx(k){if(!save.fx||!audio())return;
   if(k==='bump')tone(150,0.12,{vol:0.12,to:90});
   if(k==='stuck')[392,330,262].forEach((f,i)=>tone(f,0.18,{type:'triangle',vol:0.07,at:i*0.12}));
   if(k==='hint')[660,880].forEach((f,i)=>tone(f,0.12,{type:'sine',vol:0.07,at:i*0.08}));
+  if(k==='coin')[988,1319].forEach((f,i)=>tone(f,0.16,{type:'square',vol:0.03,at:i*0.07}));
   if(k==='win')[523,659,784,1047].forEach((f,i)=>tone(f,0.28,{type:'triangle',vol:0.09,at:i*0.11}));}
 const SCALE=[392,440,523,587,659,784,880];
 function musicTick(){if(!ac||!save.music||document.hidden)return;
@@ -212,9 +269,10 @@ document.addEventListener('click',e=>{if(e.target.closest('button'))sfx('click')
 /* ---------- screens ---------- */
 let screen='home';
 function show(name){screen=name;
-  $('home').classList.toggle('hidden',name!=='home');$('map').classList.toggle('hidden',name!=='map');$('gameUI').classList.toggle('hidden',name!=='game');
+  $('home').classList.toggle('hidden',name!=='home');$('map').classList.toggle('hidden',name!=='map');$('shop').classList.toggle('hidden',name!=='shop');syncCoins();$('gameUI').classList.toggle('hidden',name!=='game');
   ['paused','win'].forEach(id=>$(id).classList.add('hidden'));
   if(name==='game'){fit();}}
+function syncCoins(){document.querySelectorAll('.cval').forEach(e=>e.textContent=save.coins);}
 function refreshHome(){const started=save.done.length>0;
   $('homeStartImg').src=started?KIT.resume:KIT.start;$('homeStart').setAttribute('aria-label',started?'המשך משחק':'משחק חדש');}
 let mapWorld=0;
@@ -240,6 +298,8 @@ function startLevel(i){show('game');load(i);}
 
 $('homeStart').onclick=()=>{if(save.done.length)startLevel(firstOpen());else{pendingStart=true;$('tutorial').classList.remove('hidden');}};
 $('homeLevels').onclick=()=>openMap();
+$('homeShop').onclick=()=>openShop();
+$('shopHome').onclick=()=>{refreshHome();show('home');};
 let pendingStart=false;
 $('homeTutorial').onclick=()=>{pendingStart=false;$('tutorial').classList.remove('hidden');};
 $('tutorialGo').onclick=()=>{$('tutorial').classList.add('hidden');startLevel(pendingStart?0:firstOpen());pendingStart=false;};
@@ -253,6 +313,89 @@ $('openSettings').onclick=()=>{syncToggles();$('settings').classList.remove('hid
 $('closeSettings').onclick=()=>$('settings').classList.add('hidden');
 $('tMusic').onclick=()=>{save.music=!save.music;persist();syncToggles();audio();syncMusic();};
 $('tFx').onclick=()=>{save.fx=!save.fx;persist();syncToggles();};
+
+/* ---------- animals ---------- */
+let A=ANIMALS[0];
+function drawEyes(g,mood,y,{gap=40,r=12,col='#2e1306',ring=false}={}){
+  g.lineCap='round';
+  for(const s of [-1,1]){const ex=128+s*gap;
+    if(ring&&mood!=='happy'&&mood!=='blink'){g.fillStyle='#fff';g.beginPath();g.arc(ex,y,r+5,0,Math.PI*2);g.fill();}
+    g.fillStyle=col;g.strokeStyle=col;g.lineWidth=9;
+    if(mood==='happy'){if(ring){g.strokeStyle='#fff';}g.beginPath();g.arc(ex,y+6,14,Math.PI*1.1,Math.PI*1.9);g.stroke();}
+    else if(mood==='blink'){if(ring){g.strokeStyle='#fff';}g.beginPath();g.moveTo(ex-11,y);g.lineTo(ex+11,y);g.stroke();}
+    else{g.beginPath();g.arc(ex,y,r,0,Math.PI*2);g.fill();g.fillStyle='#fff';g.beginPath();g.arc(ex-4,y-4,r/3,0,Math.PI*2);g.fill();}}}
+function drawMouth(g,y,col='#2e1306',w=20){g.strokeStyle=col;g.lineWidth=6;g.lineCap='round';g.beginPath();g.moveTo(128,y-12);g.lineTo(128,y);
+  g.moveTo(128-w,y+2);g.quadraticCurveTo(128-w/2,y+14,128,y);g.quadraticCurveTo(128+w/2,y+14,128+w,y+2);g.stroke();}
+function tongue(g,y){g.fillStyle='#ff7b8f';g.beginPath();g.ellipse(128,y,10,13,0,0,Math.PI*2);g.fill();}
+function ell(g,c,x,y,rx,ry,rot=0){g.fillStyle=c;g.beginPath();g.ellipse(x,y,rx,ry,rot,0,Math.PI*2);g.fill();}
+function tri(g,c,pts){g.fillStyle=c;g.beginPath();g.moveTo(...pts[0]);g.lineTo(...pts[1]);g.lineTo(...pts[2]);g.closePath();g.fill();}
+function faceCanvas(a,mood){
+  const c=document.createElement('canvas');c.width=c.height=256;const g=c.getContext('2d'),happy=mood==='happy';
+  const both=f=>{f(1);g.save();g.translate(256,0);g.scale(-1,1);f(-1);g.restore();};
+  switch(a.id){
+  case 'dog':
+    for(const s of [-1,1]){g.save();g.translate(128+s*86,70);g.rotate(s*0.12);ell(g,'#5d2a12',0,40,26,62);g.restore();}
+    ell(g,'#fbc773',128,160,50,38);drawEyes(g,mood,108);ell(g,'#2e1306',128,146,16,11);drawMouth(g,170);if(happy)tongue(g,186);break;
+  case 'cat':
+    both(()=>{tri(g,'#6f7985',[[10,4],[96,8],[12,92]]);tri(g,'#ffb3c7',[[22,18],[74,20],[24,70]]);});
+    ell(g,'#e9edf2',128,165,52,36);drawEyes(g,mood,110,{col:'#25303b'});
+    tri(g,'#ff8fab',[[114,140],[142,140],[128,154]]);drawMouth(g,166,'#25303b',18);
+    g.strokeStyle='#5b6470';g.lineWidth=4;both(()=>{g.beginPath();g.moveTo(70,158);g.lineTo(22,150);g.moveTo(70,170);g.lineTo(24,178);g.stroke();});
+    if(happy)tongue(g,182);break;
+  case 'fox':
+    both(()=>{tri(g,'#4a2410',[[8,4],[92,6],[10,90]]);tri(g,'#fff1e2',[[24,22],[66,22],[24,64]]);});
+    g.fillStyle='#fff4ea';g.beginPath();g.moveTo(10,128);g.quadraticCurveTo(70,120,128,226);g.quadraticCurveTo(186,120,246,128);g.lineTo(246,226);g.lineTo(10,226);g.fill();
+    drawEyes(g,mood,110,{col:'#2b1407'});ell(g,'#2b1407',128,160,16,11);drawMouth(g,180,'#2b1407',16);if(happy)tongue(g,196);break;
+  case 'bunny':
+    both(()=>{g.save();g.translate(84,44);g.rotate(-0.25);ell(g,'#e3d6c9',0,0,24,52);ell(g,'#ffb7c8',0,4,12,38);g.restore();});
+    ell(g,'#ffd0dc',62,160,20,13);ell(g,'#ffd0dc',194,160,20,13);
+    drawEyes(g,mood,118,{col:'#3a2a20'});ell(g,'#ff8fab',128,150,13,9);drawMouth(g,170,'#3a2a20',16);
+    g.fillStyle='#fff';g.strokeStyle='#d7c8ba';g.lineWidth=2;g.fillRect(120,178,16,16);g.strokeRect(120,178,16,16);break;
+  case 'panda':
+    ell(g,'#1f1f22',36,34,32,32);ell(g,'#1f1f22',220,34,32,32);
+    ell(g,'#1f1f22',86,116,30,24,-0.5);ell(g,'#1f1f22',170,116,30,24,0.5);
+    drawEyes(g,mood,114,{gap:42,r:8,col:'#1f1f22',ring:true});ell(g,'#1f1f22',128,154,15,10);drawMouth(g,174,'#1f1f22',16);if(happy)tongue(g,190);break;
+  case 'frog':
+    for(const s of [-1,1]){ell(g,'#6ab34a',128+s*48,62,40,36);ell(g,'#fff',128+s*48,60,30,28);}
+    if(mood==='blink'){g.strokeStyle='#1d3a12';g.lineWidth=9;g.lineCap='round';for(const s of [-1,1]){g.beginPath();g.moveTo(128+s*48-14,62);g.lineTo(128+s*48+14,62);g.stroke();}}
+    else if(happy){g.strokeStyle='#1d3a12';g.lineWidth=9;g.lineCap='round';for(const s of [-1,1]){g.beginPath();g.arc(128+s*48,70,14,Math.PI*1.1,Math.PI*1.9);g.stroke();}}
+    else for(const s of [-1,1]){ell(g,'#1d3a12',128+s*48,64,13,15);ell(g,'#fff',128+s*48-4,58,4,4);}
+    ell(g,'#ff9fb4',58,150,20,12);ell(g,'#ff9fb4',198,150,20,12);
+    g.strokeStyle='#1d3a12';g.lineWidth=7;g.lineCap='round';g.beginPath();g.moveTo(76,156);g.quadraticCurveTo(128,200,180,156);g.stroke();
+    ell(g,'#1d3a12',114,120,4,3);ell(g,'#1d3a12',142,120,4,3);if(happy)tongue(g,184);break;
+  case 'bear':
+    ell(g,'#6d4627',38,38,32,32);ell(g,'#6d4627',218,38,32,32);ell(g,'#d8a777',38,38,16,16);ell(g,'#d8a777',218,38,16,16);
+    ell(g,'#e4bd92',128,160,48,38);drawEyes(g,mood,110,{col:'#2a170a'});ell(g,'#2a170a',128,146,17,12);drawMouth(g,170,'#2a170a',18);if(happy)tongue(g,186);break;
+  case 'tiger':
+    ell(g,'#2a1a10',36,34,28,28);ell(g,'#2a1a10',220,34,28,28);ell(g,'#fff4e6',36,36,14,14);ell(g,'#fff4e6',220,36,14,14);
+    g.fillStyle='#2a1a10';
+    tri(g,'#2a1a10',[[112,0],[144,0],[128,46]]);tri(g,'#2a1a10',[[96,0],[110,0],[104,30]]);tri(g,'#2a1a10',[[146,0],[160,0],[152,30]]);
+    both(()=>{tri(g,'#2a1a10',[[0,112],[0,134],[44,124]]);tri(g,'#2a1a10',[[0,150],[0,170],[38,162]]);});
+    ell(g,'#fff4e6',104,166,30,24);ell(g,'#fff4e6',152,166,30,24);
+    drawEyes(g,mood,108,{col:'#2a1a10'});tri(g,'#e2687a',[[112,144],[144,144],[128,160]]);drawMouth(g,172,'#2a1a10',16);if(happy)tongue(g,188);break;
+  }
+  g.fillStyle=a.collar;g.fillRect(0,226,256,30);g.fillStyle='rgba(255,255,255,.35)';g.fillRect(0,226,256,6);
+  return c;}
+const faceUri=a=>{const c=faceCanvas(a,'normal'),o=document.createElement('canvas');o.width=o.height=256;const g=o.getContext('2d');g.fillStyle=a.head;g.fillRect(0,0,256,256);g.drawImage(c,0,0);return o.toDataURL();};
+const COIN_SVG=document.querySelector('.coins svg').outerHTML;
+function openShop(){renderShop();show('shop');}
+function renderShop(){const grid=$('animalGrid');grid.innerHTML='';
+  for(const a of ANIMALS){const owned=save.owned.includes(a.id),sel=save.sel===a.id,el=document.createElement('div');
+    el.className='acard'+(sel?' sel':'');
+    el.innerHTML=`<div class="prev" style="box-shadow:0 7px 0 ${a.shade}"><img src="${faceUri(a)}" alt=""></div><div class="aname">${a.name}</div>`;
+    const b=document.createElement('button');b.className='abtn';
+    if(sel){b.classList.add('on');b.textContent='נבחר ✓';b.setAttribute('aria-pressed','true');}
+    else if(owned){b.textContent='בחירה';b.onclick=()=>{save.sel=a.id;persist();applyAnimal();renderShop();};}
+    else{b.classList.add('buy');if(save.coins<a.price)b.classList.add('poor');b.innerHTML=COIN_SVG+`<span>${a.price}</span>`;b.setAttribute('aria-label',`קנייה של ${a.name} ב-${a.price} נקודות`);
+      b.onclick=()=>{if(save.coins<a.price){sfx('bump');$('shop').querySelector('.maphead .coins').animate([{transform:'scale(.85)'},{transform:'scale(1)'},{transform:'scale(.85)'}],{duration:300});
+        b.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:240});
+        b.querySelector('span').textContent=`חסרות ${a.price-save.coins}`;setTimeout(()=>b.querySelector('span')&&(b.querySelector('span').textContent=a.price),1600);return;}
+        buying=a;$('buyTitle').textContent=`לקנות ${a.name}?`;$('buyImg').src=faceUri(a);$('buyText').textContent=`זה יעלה ${a.price} נקודות. יישארו לכם ${save.coins-a.price}.`;$('buyDlg').classList.remove('hidden');};}
+    el.appendChild(b);grid.appendChild(el);}}
+let buying=null;
+$('buyNo').onclick=()=>{$('buyDlg').classList.add('hidden');buying=null;};
+$('buyYes').onclick=()=>{const a=buying;$('buyDlg').classList.add('hidden');buying=null;if(!a||save.coins<a.price)return;
+  save.coins-=a.price;save.owned.push(a.id);save.sel=a.id;persist();sfx('win');applyAnimal();syncCoins();renderShop();};
 
 /* ---------- renderer ---------- */
 const cv=$('c'),fx=$('fx'),fctx=fx.getContext('2d');
@@ -270,7 +413,7 @@ const M={top:new THREE.MeshStandardMaterial({color:P.ground,roughness:0.95}),wal
   body:new THREE.MeshStandardMaterial({color:'#f6ac1e',roughness:0.55}),head:new THREE.MeshStandardMaterial({color:'#f5a81c',roughness:0.5})};
 const wallMats=[M.wall,M.wall,M.top,M.wall,M.wall,M.wall];
 
-let lvl=0,G,cells,holes,total,path,pathSet,hist,anim=null,queue=null,won=false,bump=null,cols=4,rows=4;
+let usedHint=false,usedUndo=false,lvl=0,G,cells,holes,total,path,pathSet,hist,anim=null,queue=null,won=false,bump=null,cols=4,rows=4;
 const level=new THREE.Group();scene.add(level);
 const dog=new THREE.Group();scene.add(dog);
 const toWorld=(x,y)=>[x-cols/2+0.5,y-rows/2+0.5];
@@ -321,30 +464,20 @@ function buildLevel(){
 const segGeo=new THREE.BoxGeometry(1,1,1);
 const segPool=[],jointPool=[];
 function poolMesh(pool,i){if(!pool[i]){const m=new THREE.Mesh(segGeo,M.body);m.castShadow=true;m.receiveShadow=true;dog.add(m);pool[i]=m;}pool[i].visible=true;return pool[i];}
-function faceCanvas(happy,blink){
-  const c=document.createElement('canvas');c.width=c.height=256;const g=c.getContext('2d');
-  g.fillStyle='#5d2a12';
-  for(const s of [-1,1]){g.save();g.translate(128+s*86,70);g.rotate(s*0.12);g.beginPath();g.ellipse(0,40,26,62,0,0,Math.PI*2);g.fill();g.restore();}
-  g.fillStyle='#fbc773';g.beginPath();g.ellipse(128,160,50,38,0,0,Math.PI*2);g.fill();
-  g.fillStyle='#2e1306';g.strokeStyle='#2e1306';g.lineCap='round';g.lineWidth=9;
-  for(const s of [-1,1]){const ex=128+s*40,ey=108;
-    if(happy){g.beginPath();g.arc(ex,ey+6,14,Math.PI*1.1,Math.PI*1.9);g.stroke();}
-    else if(blink){g.beginPath();g.moveTo(ex-11,ey);g.lineTo(ex+11,ey);g.stroke();}
-    else{g.beginPath();g.arc(ex,ey,12,0,Math.PI*2);g.fill();g.fillStyle='#fff';g.beginPath();g.arc(ex-4,ey-4,4,0,Math.PI*2);g.fill();g.fillStyle='#2e1306';}}
-  g.beginPath();g.ellipse(128,146,16,11,0,0,Math.PI*2);g.fill();
-  g.lineWidth=6;g.beginPath();g.moveTo(128,156);g.lineTo(128,168);g.moveTo(108,170);g.quadraticCurveTo(118,182,128,168);g.quadraticCurveTo(138,182,148,170);g.stroke();
-  if(happy){g.fillStyle='#ff7b8f';g.beginPath();g.ellipse(128,186,10,13,0,0,Math.PI*2);g.fill();}
-  g.fillStyle=P.collar;g.fillRect(0,226,256,30);g.fillStyle='rgba(255,255,255,.35)';g.fillRect(0,226,256,6);
-  return c;}
 const tex=c=>{const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;return t;};
-const normalFace=faceCanvas(false,false);
-const faces={normal:tex(normalFace),blink:tex(faceCanvas(false,true)),happy:tex(faceCanvas(true,false))};
-$('logoFace').src=normalFace.toDataURL();
+let faces={};
 const headBox=new THREE.Mesh(new THREE.BoxGeometry(0.9,0.86,0.9),M.head);headBox.castShadow=true;headBox.receiveShadow=true;
-const faceMat=new THREE.MeshStandardMaterial({map:faces.normal,alphaTest:0.5,roughness:0.5,polygonOffset:true,polygonOffsetFactor:-4,polygonOffsetUnits:-4});
+const faceMat=new THREE.MeshStandardMaterial({alphaTest:0.5,roughness:0.5,polygonOffset:true,polygonOffsetFactor:-4,polygonOffsetUnits:-4});
 const facePlane=new THREE.Mesh(new THREE.PlaneGeometry(0.9,0.9),faceMat);facePlane.rotation.x=-Math.PI/2;facePlane.position.y=0.432;
-const collar=new THREE.Mesh(new THREE.BoxGeometry(0.905,0.12,0.905),new THREE.MeshStandardMaterial({color:P.collar,roughness:0.5}));collar.position.y=-0.12;
+const collarMat=new THREE.MeshStandardMaterial({color:P.collar,roughness:0.5});const collar=new THREE.Mesh(new THREE.BoxGeometry(0.905,0.12,0.905),collarMat);collar.position.y=-0.12;
 const headG=new THREE.Group();headG.add(headBox,facePlane,collar);dog.add(headG);
+function applyAnimal(){A=ANIMALS.find(a=>a.id===save.sel)||ANIMALS[0];
+  Object.values(faces).forEach(t=>t.dispose());
+  faces={normal:tex(faceCanvas(A,'normal')),blink:tex(faceCanvas(A,'blink')),happy:tex(faceCanvas(A,'happy'))};faceMat.map=faces.normal;faceMat.needsUpdate=true;
+  M.body.color.set(A.body);M.head.color.set(A.head);collarMat.color.set(A.collar);
+  const r=document.documentElement.style;r.setProperty('--abody',A.body);r.setProperty('--ahead',A.head);r.setProperty('--ashade',A.shade);
+  $('logoFace').src=faceUri(A);}
+applyAnimal();
 function seg(i,a,b){const m=poolMesh(segPool,i);const [ax,az]=a,[bx,bz]=b;
   m.position.set((ax+bx)/2,-DEPTH+BODY_H/2,(az+bz)/2);m.scale.set(Math.abs(bx-ax)||BODY_W,BODY_H,Math.abs(bz-az)||BODY_W);}
 function joint(i,p){const m=poolMesh(jointPool,i);m.position.set(p[0],-DEPTH+BODY_H/2,p[1]);m.scale.set(BODY_W,BODY_H,BODY_W);}
@@ -375,8 +508,8 @@ const levelName=i=>`עולם ${Math.floor(i/WORLD_SIZE)+1} · שלב ${i%WORLD_S
 function load(i){
   lvl=i;G=LEVELS[i];cols=G[0].length;rows=G.length;cells=new Set();let s;
   G.forEach((row,y)=>[...row].forEach((ch,x)=>{if(ch!=='#')cells.add(K(x,y));if(ch==='S')s=[x,y];}));
-  holes=enclosedHoles();total=cells.size;path=[s];pathSet=new Set([K(...s)]);hist=[];anim=null;queue=null;won=false;bits=[];hintInfo=null;
-  $('title').textContent=levelName(i);$('hint').textContent=i===0?'החליקו את האצבע כדי שהכלב ירוץ':'';
+  holes=enclosedHoles();total=cells.size;path=[s];pathSet=new Set([K(...s)]);hist=[];anim=null;queue=null;won=false;bits=[];hintInfo=null;usedHint=false;usedUndo=false;
+  $('title').textContent=levelName(i);$('hint').textContent=i===0?'החליקו את האצבע כדי לרוץ במבוך':'';
   $('undo').classList.remove('pulse');buildLevel();fit();progress();}
 function progress(){const f=path.length/total,w=f>0?Math.max(20,306*f):0,el=$('fill');el.setAttribute('width',w);el.setAttribute('x',313-w);}
 const head=()=>path[path.length-1];
@@ -388,21 +521,25 @@ function move(d){if(won||blocked())return;if(anim){queue=d;return;}
   $('undo').classList.remove('pulse');if(lvl===0)$('hint').textContent='';}
 function finishMove(){anim=null;buzz(12);
   if(path.length===total){won=true;celebrate();return;}
-  if(D.every((_,d)=>!slideCells(d).length)){$('hint').textContent='הכלב נתקע! בטלו מהלך או התחילו מחדש';$('undo').classList.add('pulse');sfx('stuck');}
+  if(D.every((_,d)=>!slideCells(d).length)){$('hint').textContent='נתקעתם! בטלו מהלך או התחילו מחדש';$('undo').classList.add('pulse');sfx('stuck');}
   if(queue!==null){const q=queue;queue=null;move(q);}}
-function undo(){if(anim||!hist.length||won)return;path=path.slice(0,hist.pop());pathSet=new Set(path.map(p=>K(...p)));progress();$('undo').classList.remove('pulse');$('hint').textContent='';}
+function undo(){if(anim||!hist.length||won)return;usedUndo=true;path=path.slice(0,hist.pop());pathSet=new Set(path.map(p=>K(...p)));progress();$('undo').classList.remove('pulse');$('hint').textContent='';}
 let bits=[];
 function celebrate(){buzz([30,40,30]);sfx('win');const w=innerWidth,h=innerHeight;
   for(let i=0;i<70;i++)bits.push({x:w/2,y:h*0.45,vx:(Math.random()-0.5)*9,vy:-Math.random()*11-3,s:6+Math.random()*7,c:['#f6ac1e','#ffffff','#2fb3a4','#e0694c','#ffc744'][i%5],r:Math.random()*6,t:T()});
-  if(!isDone(lvl)){save.done.push(lvl);persist();}
+  const first=!isDone(lvl),earned=first?10+(usedHint?0:5)+(usedUndo?0:5):2;
+  if(first)save.done.push(lvl);save.coins+=earned;persist();
+  const why=!first?'על שלב שכבר נפתר מקבלים 2 נקודות.':(!usedHint&&!usedUndo)?'כולל בונוס על משחק בלי רמזים ובלי ביטולים.':!usedHint?'כולל בונוס על משחק בלי רמזים.':!usedUndo?'כולל בונוס על משחק בלי ביטולים.':'';
   const last=lvl===LEVELS.length-1,worldEnd=(lvl+1)%WORLD_SIZE===0;
   setTimeout(()=>{
-    if(last){$('winTitle').textContent='סיימתם הכול!';$('winText').textContent='הכלב מילא את כל המבוכים בכל העולמות.';$('next').classList.add('hidden');}
+    if(last){$('winTitle').textContent='סיימתם הכול!';$('winText').textContent='מילאתם את כל המבוכים בכל העולמות.';$('next').classList.add('hidden');}
     else if(worldEnd){const w=Math.floor(lvl/WORLD_SIZE);$('winTitle').textContent=`עולם ${w+1} הושלם!`;$('winText').textContent=`עולם ${w+2} · ${WORLDS[w+1]} נפתח בשבילכם.`;
       $('nextImg').src=KIT.next_world;$('next').setAttribute('aria-label','עולם הבא');$('next').classList.remove('hidden');}
     else{$('winTitle').textContent='כל הכבוד!';$('winText').textContent=`${levelName(lvl)} הושלם ב-${hist.length} מהלכים`;
       $('nextImg').src=KIT.next_level;$('next').setAttribute('aria-label','לשלב הבא');$('next').classList.remove('hidden');}
-    $('win').classList.remove('hidden');},900);}
+    $('winEarnVal').textContent=`+${earned}`;$('winEarn').classList.remove('hidden');$('winEarn').title=why;
+    if(why)$('winText').textContent+='. '+why;
+    $('win').classList.remove('hidden');sfx('coin');syncCoins();document.querySelectorAll('.coins').forEach(c=>{c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump');});},900);}
 function buzz(p){try{navigator.vibrate&&navigator.vibrate(p);}catch(e){}}
 
 let sw=null;
@@ -431,7 +568,7 @@ function solveFrom(){
 function showHint(){
   if(anim||won)return;const sol=solveFrom();
   if(!sol){$('hint').textContent='מכאן אין פתרון. בטלו מהלך או התחילו מחדש';$('undo').classList.add('pulse');buzz([20,40,20]);sfx('stuck');return;}
-  hintInfo={d:sol[0],t:T()};$('hint').textContent='';buzz(10);sfx('hint');}
+  usedHint=true;hintInfo={d:sol[0],t:T()};$('hint').textContent='';buzz(10);sfx('hint');}
 function drawHint(t){
   if(!hintInfo)return;const a=t-hintInfo.t;if(a>2.2||anim){hintInfo=null;return;}
   const v=headG.position.clone().project(camera),v2=headG.position.clone().add(new THREE.Vector3(1,0,0)).project(camera);
@@ -455,7 +592,7 @@ function loop(){
   updateDog(anim?path:path.slice(0,-1),hx,hy,t);
   renderer.render(scene,camera);drawBits(t);drawHint(t);}
 
-readLocal();refreshHome();readCloud();loop();
+readLocal();applyAnimal();refreshHome();syncCoins();readCloud();loop();
 </script>
 </body>
 </html>
