@@ -109,7 +109,54 @@ h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink)
 .earn svg{width:26px;height:26px}
 .cprev{width:96px;height:96px;margin:4px auto 14px}
 .cprev img{width:100%;height:100%;display:block}
-@media (prefers-reduced-motion: reduce){.ibtn.pulse,.headc{animation:none}#fill{transition:none}}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px 8px;width:min(92vw,360px);margin-top:16px}
+.tile{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;border:0;background:none;padding:0;cursor:pointer;font-size:13px;font-weight:800;color:var(--ink)}
+.tile img{width:56px;height:58px;display:block;filter:drop-shadow(0 5px 6px rgba(120,55,30,.22));transition:transform .1s}
+.tile:active img{transform:translateY(3px) scale(.95)}
+.tile .dot{position:absolute;top:2px;right:calc(50% - 30px);width:14px;height:14px;border-radius:50%;background:#e63946;border:2px solid #fff3d8}
+#home{overflow-y:auto;touch-action:pan-y;justify-content:flex-start;padding-top:max(70px,calc(env(safe-area-inset-top) + 56px));padding-bottom:24px;box-sizing:border-box}
+#home .logo{transform:scale(.8);margin:-14px 0 -20px}
+#home h1{font-size:56px;margin-top:10px}
+#home .tag{margin-bottom:14px}
+#home .stack{gap:10px}
+.tabs{display:flex;gap:6px;background:rgba(255,255,255,.5);padding:5px;border-radius:999px;margin:4px 0 8px}
+.tabs button{border:0;border-radius:999px;padding:8px 16px;font-weight:800;font-size:15px;color:var(--soft);background:none;cursor:pointer}
+.tabs button[aria-selected="true"]{background:linear-gradient(#ffdc72,#f5a626);color:#963b23;box-shadow:0 3px 0 #a34c2d}
+.period{font-size:14px;font-weight:600;color:var(--soft);margin-bottom:10px;text-align:center}
+.board{width:100%;max-width:400px;display:flex;flex-direction:column;gap:8px}
+.brow{display:flex;align-items:center;gap:10px;background:rgba(255,246,230,.85);border-radius:16px;padding:8px 12px;box-shadow:0 3px 0 #e2b08e}
+.brow.me{background:linear-gradient(#fff3d8,#ffe0b0);box-shadow:0 0 0 2px #f5a626 inset,0 3px 0 #d39a6a}
+.brow .rk{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;color:#963b23;background:#f8e2c8;flex:none}
+.brow .rk.g1{background:#ffd34d}.brow .rk.g2{background:#e3e3e8}.brow .rk.g3{background:#f2b48a}
+.brow img{width:34px;height:34px;flex:none;border-radius:3px}
+.brow .nm{flex:1;font-weight:800;font-size:16px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.brow .val{font-weight:900;font-size:16px;color:#c26a12;direction:ltr}
+.empty{text-align:center;color:var(--soft);font-weight:600;font-size:16px;padding:24px 10px;line-height:1.6}
+.field{width:100%;box-sizing:border-box;font:inherit;font-size:20px;font-weight:800;text-align:center;color:var(--ink);background:#fffaf2;border:2px solid #e2b08e;border-radius:16px;padding:12px;margin:0 0 16px;outline:none}
+.field:focus{border-color:#f5a626;box-shadow:0 0 0 3px rgba(245,166,38,.25)}
+.bigcode{direction:ltr;font-size:44px;font-weight:900;letter-spacing:8px;color:#963b23;background:#fffaf2;border:2px dashed #e2b08e;border-radius:18px;padding:8px 0;margin:4px 0 14px}
+.days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin:4px 0 18px;direction:rtl}
+.day{border-radius:10px;padding:6px 0 4px;background:#f8e2c8;font-size:11px;font-weight:800;color:#a0603e;display:flex;flex-direction:column;align-items:center;gap:2px}
+.day b{font-size:14px;color:#963b23}
+.day.got{background:#e6d3bb;opacity:.6}
+.day.today{background:linear-gradient(#ffdc72,#f5a626);box-shadow:0 0 0 2px #fff inset,0 3px 0 #a34c2d}
+.duelbox{width:100%;max-width:360px;text-align:center}
+.duelbox p{color:var(--soft);font-weight:600;font-size:16px;line-height:1.55;margin:4px 0 18px}
+.or{margin:16px 0 10px;font-weight:800;color:var(--soft)}
+.waiting{font-size:17px;font-weight:800;color:var(--ink);margin:6px 0 16px}
+.waiting span{display:inline-block;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.2}}
+.opp{display:flex;align-items:center;gap:8px;direction:rtl}
+.opp img{width:22px;height:22px;border-radius:2px}
+.opp .kbar{width:min(calc(100vw - 210px),240px)}
+.opp .on{font-size:13px;font-weight:800;color:var(--soft);max-width:80px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.count{position:fixed;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;pointer-events:none;font-size:120px;font-weight:900;color:#963b23;text-shadow:0 6px 0 #fff3d8,0 12px 0 var(--shade)}
+.count.pop{animation:pop .9s ease-out}
+@keyframes pop{0%{transform:scale(.4);opacity:0}30%{transform:scale(1.1);opacity:1}100%{transform:scale(1);opacity:.9}}
+.toast{position:fixed;left:50%;bottom:calc(max(28px,env(safe-area-inset-bottom)) + 96px);transform:translateX(-50%);z-index:9;background:#963b23;color:#fff3d8;font-weight:800;font-size:15px;padding:10px 18px;border-radius:999px;box-shadow:0 6px 16px rgba(80,30,10,.3);max-width:86vw;text-align:center;transition:opacity .3s}
+.toast.hide{opacity:0;pointer-events:none}
+.note{font-size:13px;color:#a0603e;margin-top:10px}
+@media (prefers-reduced-motion: reduce){.count.pop,.waiting span{animation:none}.ibtn.pulse,.headc{animation:none}#fill{transition:none}}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
 </head>
@@ -118,7 +165,7 @@ h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink)
 
 <!-- game HUD -->
 <div id="gameUI" class="hidden">
-  <div class="top"><svg class="kbar" viewBox="0 0 320 36" role="progressbar" aria-label="כיסוי המסלול"><defs><linearGradient id="pgold" x2="0%" y2="100%"><stop stop-color="#ffdc72"/><stop offset="1" stop-color="#f5a626"/></linearGradient></defs><rect x="2" y="2" width="316" height="30" rx="15" fill="#a8593e" stroke="#ffebc8" stroke-width="3"/><rect id="fill" x="313" y="7" width="0" height="20" rx="10" fill="url(#pgold)"/></svg><div class="hudrow"><div class="lvl" id="title"></div><div class="coins mini"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="10" fill="#c27a0c"/><circle cx="12" cy="11.5" r="10" fill="#ffd34d"/><circle cx="12" cy="11.5" r="7" fill="#f5b21f"/><path d="M12 7.2l1.3 2.7 3 .4-2.2 2.1.5 3-2.6-1.4-2.6 1.4.5-3-2.2-2.1 3-.4z" fill="#fff3c4"/></svg><span class="cval">0</span></div></div></div>
+  <div class="top"><svg class="kbar" viewBox="0 0 320 36" role="progressbar" aria-label="כיסוי המסלול"><defs><linearGradient id="pgold" x2="0%" y2="100%"><stop stop-color="#ffdc72"/><stop offset="1" stop-color="#f5a626"/></linearGradient></defs><rect x="2" y="2" width="316" height="30" rx="15" fill="#a8593e" stroke="#ffebc8" stroke-width="3"/><rect id="fill" x="313" y="7" width="0" height="20" rx="10" fill="url(#pgold)"/></svg><div class="opp hidden" id="oppRow"><img id="oppFace" alt=""><span class="on" id="oppName"></span><svg class="kbar" viewBox="0 0 320 36" aria-label="ההתקדמות של היריב"><rect x="2" y="2" width="316" height="30" rx="15" fill="#c98a6e" stroke="#ffebc8" stroke-width="3"/><rect id="oppFill" x="313" y="7" width="0" height="20" rx="10" fill="#fff3d8"/></svg></div><div class="hudrow"><div class="lvl" id="title"></div><div class="coins mini"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="10" fill="#c27a0c"/><circle cx="12" cy="11.5" r="10" fill="#ffd34d"/><circle cx="12" cy="11.5" r="7" fill="#f5b21f"/><path d="M12 7.2l1.3 2.7 3 .4-2.2 2.1.5 3-2.6-1.4-2.6 1.4.5-3-2.2-2.1 3-.4z" fill="#fff3c4"/></svg><span class="cval">0</span></div></div></div>
   <button class="ibtn small pausebtn" id="pause" aria-label="השהיה"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NiIgdmlld0JveD0iMCAwIDY0IDY2IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IteU16nXlNeZ15QiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxjaXJjbGUgY3g9IjMyIiBjeT0iMzUiIHI9IjI4IiBmaWxsPSIjYTI0ODJjIi8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjgiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjODgwNTgiIHN0cm9rZS13aWR0aD0iMS41Ii8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjQuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmMmRiIi8+PGcgc3Ryb2tlPSIjOTYzYjIzIiBzdHJva2Utd2lkdGg9IjMuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIj48cGF0aCBkPSJNMjYgMjF2MjNtMTItMjN2MjMiLz48L2c+PC9zdmc+" alt=""></button>
   <div class="hintline" id="hint"></div>
   <div class="bottom">
@@ -138,8 +185,15 @@ h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink)
   <div class="stack">
     <button class="wbtn" id="homeStart" aria-label="משחק חדש"><img id="homeStartImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i157XqdeX16cg15fXk9epIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjZ29sZCkiIHN0cm9rZT0iI2MzODE1OSIvPjxyZWN0IHg9IjciIHk9IjciIHdpZHRoPSIyMDYiIGhlaWdodD0iMzciIHJ4PSIxMiIgc3Ryb2tlPSIjZmZmMGQ2IiBmaWxsPSJub25lIi8+PHRleHQgeD0iMTEwIiB5PSIzMiIgZGlyZWN0aW9uPSJydGwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzk2M2IyMyI+157XqdeX16cg15fXk9epPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5NjNiMjMiPuKWtjwvdGV4dD48L3N2Zz4=" alt=""></button>
     <button class="wbtn" id="homeLevels" aria-label="בחירת שלב"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15HXl9eZ16jXqiDXqdec15EiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjMiIHk9IjciIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0iI2EzNGMyZCIvPjxyZWN0IHg9IjMiIHk9IjMiIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0idXJsKCNnb2xkKSIgc3Ryb2tlPSIjYzM4MTU5Ii8+PHJlY3QgeD0iNyIgeT0iNyIgd2lkdGg9IjIwNiIgaGVpZ2h0PSIzNyIgcng9IjEyIiBzdHJva2U9IiNmZmYwZDYiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIxMTAiIHk9IjMyIiBkaXJlY3Rpb249InJ0bCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjOTYzYjIzIj7XkdeX15nXqNeqINep15zXkTwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjOTYzYjIzIj7ilqY8L3RleHQ+PC9zdmc+" alt=""></button>
-    <button class="wbtn" id="homeShop" aria-label="חנות החיות"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15fXoNeV16og15TXl9eZ15XXqiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMyIgeT0iNyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSIjYTM0YzJkIi8+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSJ1cmwoI2dvbGQpIiBzdHJva2U9IiNjMzgxNTkiLz48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMjA2IiBoZWlnaHQ9IjM3IiByeD0iMTIiIHN0cm9rZT0iI2ZmZjBkNiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjExMCIgeT0iMzIiIGRpcmVjdGlvbj0icnRsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM5NjNiMjMiPteX16DXldeqINeU15fXmdeV16o8L3RleHQ+PHRleHQgeD0iMjQiIHk9IjMyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzk2M2IyMyI+4piFPC90ZXh0Pjwvc3ZnPg==" alt=""></button>
-    <button class="wbtn" id="homeTutorial" aria-label="איך משחקים"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15DXmdeaINee16nXl9en15nXnSI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMyIgeT0iNyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSIjYTM0YzJkIi8+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSJ1cmwoI2NyZWFtKSIgc3Ryb2tlPSIjYzM4MTU5Ii8+PHJlY3QgeD0iNyIgeT0iNyIgd2lkdGg9IjIwNiIgaGVpZ2h0PSIzNyIgcng9IjEyIiBzdHJva2U9IiNmZmYwZDYiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIxMTAiIHk9IjMyIiBkaXJlY3Rpb249InJ0bCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjOTYzYjIzIj7XkNeZ15og157XqdeX16fXmdedPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5NjNiMjMiPj88L3RleHQ+PC9zdmc+" alt=""></button>
+    <button class="wbtn" id="homeDuel" aria-label="דו-קרב"><img id="homeDuelImg" alt=""></button>
+  </div>
+  <div class="tiles">
+    <button class="tile" id="tDaily"><img id="icDaily" alt=""><span>אתגר יומי</span><i class="dot hidden" id="dotDaily"></i></button>
+    <button class="tile" id="tWeekly"><img id="icWeekly" alt=""><span>אתגר שבועי</span><i class="dot hidden" id="dotWeekly"></i></button>
+    <button class="tile" id="tBoard"><img id="icBoard" alt=""><span>טבלת מובילים</span></button>
+    <button class="tile" id="tShop"><img id="icShop" alt=""><span>חנות החיות</span></button>
+    <button class="tile" id="tInvite"><img id="icInvite" alt=""><span>הזמנת חברים</span></button>
+    <button class="tile" id="tHow"><img id="icHow" alt=""><span>איך משחקים</span></button>
   </div>
 </section>
 
@@ -169,7 +223,72 @@ h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink)
   <div class="grid" id="animalGrid"></div>
 </section>
 
+<!-- leaderboard -->
+<section class="screen hidden" id="board">
+  <div class="maphead">
+    <button class="ibtn small" id="boardHome" aria-label="בית"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NiIgdmlld0JveD0iMCAwIDY0IDY2IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IteR15nXqiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PGNpcmNsZSBjeD0iMzIiIGN5PSIzNSIgcj0iMjgiIGZpbGw9IiNhMjQ4MmMiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMxIiByPSIyOCIgZmlsbD0idXJsKCNjcmVhbSkiIHN0cm9rZT0iI2M4ODA1OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMxIiByPSIyNC41IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYyZGIiLz48ZyBzdHJva2U9IiM5NjNiMjMiIHN0cm9rZS13aWR0aD0iMy43IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik0xNiAzMmwxNi0xNCAxNiAxNE0yMCAyOXYxN2gyNFYyOW0tMTcgMTdWMzVoMTB2MTEiLz48L2c+PC9zdmc+" alt=""></button>
+    <div class="ttl"><div class="wname">טבלת מובילים</div></div>
+    <div class="coins"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="10" fill="#c27a0c"/><circle cx="12" cy="11.5" r="10" fill="#ffd34d"/><circle cx="12" cy="11.5" r="7" fill="#f5b21f"/><path d="M12 7.2l1.3 2.7 3 .4-2.2 2.1.5 3-2.6-1.4-2.6 1.4.5-3-2.2-2.1 3-.4z" fill="#fff3c4"/></svg><span class="cval">0</span></div>
+  </div>
+  <div class="tabs" role="tablist">
+    <button role="tab" data-k="daily">יומי</button><button role="tab" data-k="weekly">שבועי</button><button role="tab" data-k="all">כללי</button>
+  </div>
+  <div class="period" id="boardPeriod"></div>
+  <div class="board" id="boardList"></div>
+  <div style="height:16px"></div>
+  <button class="wbtn hidden" id="boardPlay"><img id="boardPlayImg" alt=""></button>
+</section>
+
+<!-- duel lobby -->
+<section class="screen hidden" id="duel">
+  <div class="maphead">
+    <button class="ibtn small" id="duelHome" aria-label="בית"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NiIgdmlld0JveD0iMCAwIDY0IDY2IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IteR15nXqiI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PGNpcmNsZSBjeD0iMzIiIGN5PSIzNSIgcj0iMjgiIGZpbGw9IiNhMjQ4MmMiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMxIiByPSIyOCIgZmlsbD0idXJsKCNjcmVhbSkiIHN0cm9rZT0iI2M4ODA1OCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz48Y2lyY2xlIGN4PSIzMiIgY3k9IjMxIiByPSIyNC41IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYyZGIiLz48ZyBzdHJva2U9IiM5NjNiMjMiIHN0cm9rZS13aWR0aD0iMy43IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik0xNiAzMmwxNi0xNCAxNiAxNE0yMCAyOXYxN2gyNFYyOW0tMTcgMTdWMzVoMTB2MTEiLz48L2c+PC9zdmc+" alt=""></button>
+    <div class="ttl"><div class="wname">דו-קרב</div></div>
+    <div class="coins"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="10" fill="#c27a0c"/><circle cx="12" cy="11.5" r="10" fill="#ffd34d"/><circle cx="12" cy="11.5" r="7" fill="#f5b21f"/><path d="M12 7.2l1.3 2.7 3 .4-2.2 2.1.5 3-2.6-1.4-2.6 1.4.5-3-2.2-2.1 3-.4z" fill="#fff3c4"/></svg><span class="cval">0</span></div>
+  </div>
+  <div class="duelbox" id="duelMenu">
+    <p>שניכם מקבלים את אותו מבוך באותו רגע. מי שממלא אותו ראשון מנצח ומקבל 25 נקודות.</p>
+    <button class="wbtn" id="duelCreate"><img id="duelCreateImg" alt=""></button>
+    <div class="or">או הצטרפות לחדר של חבר</div>
+    <input class="field" id="duelCode" maxlength="4" placeholder="קוד חדר" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="קוד חדר">
+    <button class="wbtn" id="duelJoin"><img id="duelJoinImg" alt=""></button>
+  </div>
+  <div class="duelbox hidden" id="duelWait">
+    <p>שלחו לחבר את הקוד או את ההזמנה. הדו-קרב יתחיל ברגע שהוא יצטרף.</p>
+    <div class="bigcode" id="duelShowCode"></div>
+    <div class="waiting">מחכים ליריב<span>…</span></div>
+    <div class="stack">
+      <button class="wbtn" id="duelShare"><img id="duelShareImg" alt=""></button>
+      <button class="wbtn" id="duelCancel" aria-label="ביטול"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15HXmdeY15XXnCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMyIgeT0iNyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSIjYTM0YzJkIi8+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSJ1cmwoI2NyZWFtKSIgc3Ryb2tlPSIjYzM4MTU5Ii8+PHJlY3QgeD0iNyIgeT0iNyIgd2lkdGg9IjIwNiIgaGVpZ2h0PSIzNyIgcng9IjEyIiBzdHJva2U9IiNmZmYwZDYiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIxMTAiIHk9IjMyIiBkaXJlY3Rpb249InJ0bCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjOTYzYjIzIj7XkdeZ15jXldecPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5NjNiMjMiPsOXPC90ZXh0Pjwvc3ZnPg==" alt=""></button>
+    </div>
+  </div>
+</section>
+
 <!-- dialogs -->
+<div class="overlay hidden" id="nameDlg" style="z-index:7"><div class="card">
+  <h2>איך קוראים לכם?</h2><p>השם יופיע בטבלת המובילים ובדו-קרב</p>
+  <input class="field" id="nameInput" maxlength="16" placeholder="השם שלכם" autocomplete="nickname" aria-label="השם שלכם">
+  <div class="stack"><button class="wbtn" id="nameOk" aria-label="אישור"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15DXmdep15XXqCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMyIgeT0iNyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSIjYTM0YzJkIi8+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSJ1cmwoI2dvbGQpIiBzdHJva2U9IiNjMzgxNTkiLz48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMjA2IiBoZWlnaHQ9IjM3IiByeD0iMTIiIHN0cm9rZT0iI2ZmZjBkNiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjExMCIgeT0iMzIiIGRpcmVjdGlvbj0icnRsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM5NjNiMjMiPteQ15nXqdeV16g8L3RleHQ+PHRleHQgeD0iMjQiIHk9IjMyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzk2M2IyMyI+4pyTPC90ZXh0Pjwvc3ZnPg==" alt=""></button>
+  <button class="wbtn" id="nameNo" aria-label="ביטול"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15HXmdeY15XXnCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMyIgeT0iNyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSIjYTM0YzJkIi8+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSJ1cmwoI2NyZWFtKSIgc3Ryb2tlPSIjYzM4MTU5Ii8+PHJlY3QgeD0iNyIgeT0iNyIgd2lkdGg9IjIwNiIgaGVpZ2h0PSIzNyIgcng9IjEyIiBzdHJva2U9IiNmZmYwZDYiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIxMTAiIHk9IjMyIiBkaXJlY3Rpb249InJ0bCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjOTYzYjIzIj7XkdeZ15jXldecPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5NjNiMjMiPsOXPC90ZXh0Pjwvc3ZnPg==" alt=""></button></div>
+</div></div>
+
+<div class="overlay hidden" id="inviteDlg"><div class="card">
+  <button class="ibtn small x" id="inviteClose" aria-label="סגירה"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NiIgdmlld0JveD0iMCAwIDY0IDY2IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9Iteh15LXmdeo15QiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxjaXJjbGUgY3g9IjMyIiBjeT0iMzUiIHI9IjI4IiBmaWxsPSIjYTI0ODJjIi8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjgiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjODgwNTgiIHN0cm9rZS13aWR0aD0iMS41Ii8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjQuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmMmRiIi8+PGcgc3Ryb2tlPSIjOTYzYjIzIiBzdHJva2Utd2lkdGg9IjMuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIj48cGF0aCBkPSJNMjIgMjJsMjAgMjBtMC0yMC0yMCAyMCIvPjwvZz48L3N2Zz4=" alt=""></button>
+  <h2>הזמנת חברים</h2><p>כל חבר שמצטרף עם הקוד שלכם מביא לשניכם 50 נקודות</p>
+  <div class="bigcode" id="inviteCode">······</div>
+  <button class="wbtn" id="inviteShare"><img id="inviteShareImg" alt=""></button>
+  <div class="note" id="inviteCount"></div>
+</div></div>
+
+<div class="overlay hidden" id="bonusDlg"><div class="card">
+  <h2>בונוס יומי</h2><p id="bonusText"></p>
+  <div class="days" id="bonusDays"></div>
+  <button class="wbtn" id="bonusClaim"><img id="bonusClaimImg" alt=""></button>
+</div></div>
+
+<div class="count hidden" id="count"></div>
+<div class="toast hide" id="toast" role="status" aria-live="polite"></div>
+
 <div class="overlay hidden" id="buyDlg"><div class="card"><h2 id="buyTitle"></h2><div class="cprev"><img id="buyImg" alt=""></div><p id="buyText"></p><div class="stack">
   <button class="wbtn" id="buyYes" aria-label="אישור"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15DXmdep15XXqCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMyIgeT0iNyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSIjYTM0YzJkIi8+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSJ1cmwoI2dvbGQpIiBzdHJva2U9IiNjMzgxNTkiLz48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMjA2IiBoZWlnaHQ9IjM3IiByeD0iMTIiIHN0cm9rZT0iI2ZmZjBkNiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjExMCIgeT0iMzIiIGRpcmVjdGlvbj0icnRsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM5NjNiMjMiPteQ15nXqdeV16g8L3RleHQ+PHRleHQgeD0iMjQiIHk9IjMyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzk2M2IyMyI+4pyTPC90ZXh0Pjwvc3ZnPg==" alt=""></button>
   <button class="wbtn" id="buyNo" aria-label="ביטול"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15HXmdeY15XXnCI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJjcmVhbSIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZjNkOCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZmZDdhNCIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJnb2xkIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZkYzcyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZjVhNjI2Ii8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHJlY3QgeD0iMyIgeT0iNyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSIjYTM0YzJkIi8+PHJlY3QgeD0iMyIgeT0iMyIgd2lkdGg9IjIxNCIgaGVpZ2h0PSI0NSIgcng9IjE2IiBmaWxsPSJ1cmwoI2NyZWFtKSIgc3Ryb2tlPSIjYzM4MTU5Ii8+PHJlY3QgeD0iNyIgeT0iNyIgd2lkdGg9IjIwNiIgaGVpZ2h0PSIzNyIgcng9IjEyIiBzdHJva2U9IiNmZmYwZDYiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIxMTAiIHk9IjMyIiBkaXJlY3Rpb249InJ0bCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjOTYzYjIzIj7XkdeZ15jXldecPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5NjNiMjMiPsOXPC90ZXh0Pjwvc3ZnPg==" alt=""></button>
@@ -179,11 +298,14 @@ h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink)
   <button class="wbtn" id="resume" aria-label="המשך משחק"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15TXntep15og157XqdeX16ciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjMiIHk9IjciIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0iI2EzNGMyZCIvPjxyZWN0IHg9IjMiIHk9IjMiIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0idXJsKCNnb2xkKSIgc3Ryb2tlPSIjYzM4MTU5Ii8+PHJlY3QgeD0iNyIgeT0iNyIgd2lkdGg9IjIwNiIgaGVpZ2h0PSIzNyIgcng9IjEyIiBzdHJva2U9IiNmZmYwZDYiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIxMTAiIHk9IjMyIiBkaXJlY3Rpb249InJ0bCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjOTYzYjIzIj7XlNee16nXmiDXntep15fXpzwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjOTYzYjIzIj7ilrY8L3RleHQ+PC9zdmc+" alt=""></button>
   <button class="wbtn" id="replay2" aria-label="משחק חוזר"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i157XqdeX16cg15fXldeW16giPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjMiIHk9IjciIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0iI2EzNGMyZCIvPjxyZWN0IHg9IjMiIHk9IjMiIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0idXJsKCNjcmVhbSkiIHN0cm9rZT0iI2MzODE1OSIvPjxyZWN0IHg9IjciIHk9IjciIHdpZHRoPSIyMDYiIGhlaWdodD0iMzciIHJ4PSIxMiIgc3Ryb2tlPSIjZmZmMGQ2IiBmaWxsPSJub25lIi8+PHRleHQgeD0iMTEwIiB5PSIzMiIgZGlyZWN0aW9uPSJydGwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzk2M2IyMyI+157XqdeX16cg15fXldeW16g8L3RleHQ+PHRleHQgeD0iMjQiIHk9IjMyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzk2M2IyMyI+4oa7PC90ZXh0Pjwvc3ZnPg==" alt=""></button>
   <button class="wbtn" id="toMap1" aria-label="למפת השלבים"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15zXntek16og15TXqdec15HXmdedIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjMzgxNTkiLz48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMjA2IiBoZWlnaHQ9IjM3IiByeD0iMTIiIHN0cm9rZT0iI2ZmZjBkNiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjExMCIgeT0iMzIiIGRpcmVjdGlvbj0icnRsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM5NjNiMjMiPtec157XpNeqINeU16nXnNeR15nXnTwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjOTYzYjIzIj7ilqY8L3RleHQ+PC9zdmc+" alt=""></button>
+  <button class="wbtn hidden" id="exitBtn" aria-label="יציאה מהשלב"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15nXpteZ15DXlCDXnteU16nXnNeRIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjMzgxNTkiLz48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMjA2IiBoZWlnaHQ9IjM3IiByeD0iMTIiIHN0cm9rZT0iI2ZmZjBkNiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjExMCIgeT0iMzIiIGRpcmVjdGlvbj0icnRsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM5NjNiMjMiPteZ16bXmdeQ15Qg157XlNep15zXkTwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjOTYzYjIzIj7igLk8L3RleHQ+PC9zdmc+" alt=""></button>
 </div></div></div>
 
 <div class="overlay hidden" id="win"><div class="card"><h2 id="winTitle">כל הכבוד!</h2><p id="winText"></p><div class="earn hidden" id="winEarn"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="10" fill="#c27a0c"/><circle cx="12" cy="11.5" r="10" fill="#ffd34d"/><circle cx="12" cy="11.5" r="7" fill="#f5b21f"/><path d="M12 7.2l1.3 2.7 3 .4-2.2 2.1.5 3-2.6-1.4-2.6 1.4.5-3-2.2-2.1 3-.4z" fill="#fff3c4"/></svg><span id="winEarnVal"></span></div><div class="stack">
   <button class="wbtn" id="next" aria-label="לשלב הבא"><img id="nextImg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15zXqdec15Eg15TXkdeQIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjZ29sZCkiIHN0cm9rZT0iI2MzODE1OSIvPjxyZWN0IHg9IjciIHk9IjciIHdpZHRoPSIyMDYiIGhlaWdodD0iMzciIHJ4PSIxMiIgc3Ryb2tlPSIjZmZmMGQ2IiBmaWxsPSJub25lIi8+PHRleHQgeD0iMTEwIiB5PSIzMiIgZGlyZWN0aW9uPSJydGwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzk2M2IyMyI+15zXqdec15Eg15TXkdeQPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5NjNiMjMiPuKAujwvdGV4dD48L3N2Zz4=" alt=""></button>
   <button class="wbtn" id="toMap2" aria-label="למפת השלבים"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15zXntek16og15TXqdec15HXmdedIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjMzgxNTkiLz48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMjA2IiBoZWlnaHQ9IjM3IiByeD0iMTIiIHN0cm9rZT0iI2ZmZjBkNiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjExMCIgeT0iMzIiIGRpcmVjdGlvbj0icnRsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM5NjNiMjMiPtec157XpNeqINeU16nXnNeR15nXnTwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjOTYzYjIzIj7ilqY8L3RleHQ+PC9zdmc+" alt=""></button>
+  <button class="wbtn hidden" id="winA"><img id="winAImg" alt=""></button>
+  <button class="wbtn hidden" id="winB" aria-label="חזרה"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15fXlteo15QiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjMiIHk9IjciIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0iI2EzNGMyZCIvPjxyZWN0IHg9IjMiIHk9IjMiIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0idXJsKCNjcmVhbSkiIHN0cm9rZT0iI2MzODE1OSIvPjxyZWN0IHg9IjciIHk9IjciIHdpZHRoPSIyMDYiIGhlaWdodD0iMzciIHJ4PSIxMiIgc3Ryb2tlPSIjZmZmMGQ2IiBmaWxsPSJub25lIi8+PHRleHQgeD0iMTEwIiB5PSIzMiIgZGlyZWN0aW9uPSJydGwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzk2M2IyMyI+15fXlteo15Q8L3RleHQ+PHRleHQgeD0iMjQiIHk9IjMyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzk2M2IyMyI+4oC5PC90ZXh0Pjwvc3ZnPg==" alt=""></button>
 </div></div></div>
 
 <div class="overlay hidden" id="settings"><div class="card">
@@ -210,8 +332,8 @@ h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink)
 <script type="module">
 import * as THREE from 'three';
 const KIT={sound_on:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NiIgdmlld0JveD0iMCAwIDY0IDY2IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IteU16TXotec16og16bXnNeZ15wiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxjaXJjbGUgY3g9IjMyIiBjeT0iMzUiIHI9IjI4IiBmaWxsPSIjYTI0ODJjIi8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjgiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjODgwNTgiIHN0cm9rZS13aWR0aD0iMS41Ii8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjQuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmMmRiIi8+PGcgc3Ryb2tlPSIjOTYzYjIzIiBzdHJva2Utd2lkdGg9IjMuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIj48cGF0aCBkPSJNMTggMjdoOGw5LTd2MjVsLTktN2gtOHpNNDIgMjVxOSA3IDAgMTUiLz48L2c+PC9zdmc+',sound_off:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NiIgdmlld0JveD0iMCAwIDY0IDY2IiByb2xlPSJpbWciIGFyaWEtbGFiZWw9IteU16nXqten15QiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxjaXJjbGUgY3g9IjMyIiBjeT0iMzUiIHI9IjI4IiBmaWxsPSIjYTI0ODJjIi8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjgiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjODgwNTgiIHN0cm9rZS13aWR0aD0iMS41Ii8+PGNpcmNsZSBjeD0iMzIiIGN5PSIzMSIgcj0iMjQuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmMmRiIi8+PGcgc3Ryb2tlPSIjOTYzYjIzIiBzdHJva2Utd2lkdGg9IjMuNyIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBmaWxsPSJub25lIj48cGF0aCBkPSJNMTcgMjdoOGw5LTd2MjVsLTktN2gtOHpNNDIgMjhsOSAxMG0wLTEwLTkgMTAiLz48L2c+PC9zdmc+',next_level:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15zXqdec15Eg15TXkdeQIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjZ29sZCkiIHN0cm9rZT0iI2MzODE1OSIvPjxyZWN0IHg9IjciIHk9IjciIHdpZHRoPSIyMDYiIGhlaWdodD0iMzciIHJ4PSIxMiIgc3Ryb2tlPSIjZmZmMGQ2IiBmaWxsPSJub25lIi8+PHRleHQgeD0iMTEwIiB5PSIzMiIgZGlyZWN0aW9uPSJydGwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzk2M2IyMyI+15zXqdec15Eg15TXkdeQPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5NjNiMjMiPuKAujwvdGV4dD48L3N2Zz4=',next_world:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i16LXldec150g15TXkdeQIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjMzgxNTkiLz48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMjA2IiBoZWlnaHQ9IjM3IiByeD0iMTIiIHN0cm9rZT0iI2ZmZjBkNiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjExMCIgeT0iMzIiIGRpcmVjdGlvbj0icnRsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM5NjNiMjMiPtei15XXnNedINeU15HXkDwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjOTYzYjIzIj7igLo8L3RleHQ+PC9zdmc+',level_map:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15zXntek16og15TXqdec15HXmdedIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjY3JlYW0pIiBzdHJva2U9IiNjMzgxNTkiLz48cmVjdCB4PSI3IiB5PSI3IiB3aWR0aD0iMjA2IiBoZWlnaHQ9IjM3IiByeD0iMTIiIHN0cm9rZT0iI2ZmZjBkNiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjExMCIgeT0iMzIiIGRpcmVjdGlvbj0icnRsIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiM5NjNiMjMiPtec157XpNeqINeU16nXnNeR15nXnTwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjOTYzYjIzIj7ilqY8L3RleHQ+PC9zdmc+',start:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i157XqdeX16cg15fXk9epIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImNyZWFtIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmM2Q4Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjZmZkN2E0Ii8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImdvbGQiIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmRjNzIiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNWE2MjYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIzIiB5PSI3IiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9IiNhMzRjMmQiLz48cmVjdCB4PSIzIiB5PSIzIiB3aWR0aD0iMjE0IiBoZWlnaHQ9IjQ1IiByeD0iMTYiIGZpbGw9InVybCgjZ29sZCkiIHN0cm9rZT0iI2MzODE1OSIvPjxyZWN0IHg9IjciIHk9IjciIHdpZHRoPSIyMDYiIGhlaWdodD0iMzciIHJ4PSIxMiIgc3Ryb2tlPSIjZmZmMGQ2IiBmaWxsPSJub25lIi8+PHRleHQgeD0iMTEwIiB5PSIzMiIgZGlyZWN0aW9uPSJydGwiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzk2M2IyMyI+157XqdeX16cg15fXk9epPC90ZXh0Pjx0ZXh0IHg9IjI0IiB5PSIzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiM5NjNiMjMiPuKWtjwvdGV4dD48L3N2Zz4=',resume:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMjAiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCAyMjAgNTYiIHJvbGU9ImltZyIgYXJpYS1sYWJlbD0i15TXntep15og157XqdeX16ciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iY3JlYW0iIHgyPSIwJSIgeTI9IjEwMCUiPjxzdG9wIHN0b3AtY29sb3I9IiNmZmYzZDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmZmQ3YTQiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZ29sZCIgeDI9IjAlIiB5Mj0iMTAwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2ZmZGM3MiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2Y1YTYyNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjMiIHk9IjciIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0iI2EzNGMyZCIvPjxyZWN0IHg9IjMiIHk9IjMiIHdpZHRoPSIyMTQiIGhlaWdodD0iNDUiIHJ4PSIxNiIgZmlsbD0idXJsKCNnb2xkKSIgc3Ryb2tlPSIjYzM4MTU5Ii8+PHJlY3QgeD0iNyIgeT0iNyIgd2lkdGg9IjIwNiIgaGVpZ2h0PSIzNyIgcng9IjEyIiBzdHJva2U9IiNmZmYwZDYiIGZpbGw9Im5vbmUiLz48dGV4dCB4PSIxMTAiIHk9IjMyIiBkaXJlY3Rpb249InJ0bCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjOTYzYjIzIj7XlNee16nXmiDXntep15fXpzwvdGV4dD48dGV4dCB4PSIyNCIgeT0iMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjOTYzYjIzIj7ilrY8L3RleHQ+PC9zdmc+'};
-const PILL={done:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"220\" height=\"56\" viewBox=\"0 0 220 56\" role=\"img\" aria-label=\"\u05e9\u05dc\u05d1 3\"><defs><linearGradient id=\"cream\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#fff3d8\"/><stop offset=\"1\" stop-color=\"#ffd7a4\"/></linearGradient><linearGradient id=\"gold\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#ffdc72\"/><stop offset=\"1\" stop-color=\"#f5a626\"/></linearGradient></defs><rect x=\"3\" y=\"7\" width=\"214\" height=\"45\" rx=\"16\" fill=\"#a34c2d\"/><rect x=\"3\" y=\"3\" width=\"214\" height=\"45\" rx=\"16\" fill=\"url(#cream)\" stroke=\"#c38159\"/><rect x=\"7\" y=\"7\" width=\"206\" height=\"37\" rx=\"12\" stroke=\"#fff0d6\" fill=\"none\"/><text x=\"110\" y=\"32\" direction=\"rtl\" text-anchor=\"middle\" font-family=\"Arial, sans-serif\" font-size=\"18\" font-weight=\"700\" fill=\"#963b23\">\u05e9\u05dc\u05d1 3</text><text x=\"24\" y=\"32\" text-anchor=\"middle\" font-family=\"Arial,sans-serif\" font-size=\"20\" fill=\"#963b23\">\u2713</text></svg>",cur:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"220\" height=\"56\" viewBox=\"0 0 220 56\" role=\"img\" aria-label=\"\u05e9\u05dc\u05d1 4\"><defs><linearGradient id=\"cream\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#fff3d8\"/><stop offset=\"1\" stop-color=\"#ffd7a4\"/></linearGradient><linearGradient id=\"gold\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#ffdc72\"/><stop offset=\"1\" stop-color=\"#f5a626\"/></linearGradient></defs><rect x=\"3\" y=\"7\" width=\"214\" height=\"45\" rx=\"16\" fill=\"#a34c2d\"/><rect x=\"3\" y=\"3\" width=\"214\" height=\"45\" rx=\"16\" fill=\"url(#gold)\" stroke=\"#c38159\"/><rect x=\"7\" y=\"7\" width=\"206\" height=\"37\" rx=\"12\" stroke=\"#fff0d6\" fill=\"none\"/><text x=\"110\" y=\"32\" direction=\"rtl\" text-anchor=\"middle\" font-family=\"Arial, sans-serif\" font-size=\"18\" font-weight=\"700\" fill=\"#963b23\">\u05e9\u05dc\u05d1 4</text><text x=\"24\" y=\"32\" text-anchor=\"middle\" font-family=\"Arial,sans-serif\" font-size=\"20\" fill=\"#963b23\">\u25b6</text></svg>",lock:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"220\" height=\"56\" viewBox=\"0 0 220 56\" role=\"img\" aria-label=\"\u05e9\u05dc\u05d1 5\"><defs><linearGradient id=\"cream\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#fff3d8\"/><stop offset=\"1\" stop-color=\"#ffd7a4\"/></linearGradient><linearGradient id=\"gold\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#ffdc72\"/><stop offset=\"1\" stop-color=\"#f5a626\"/></linearGradient></defs><rect x=\"3\" y=\"7\" width=\"214\" height=\"45\" rx=\"16\" fill=\"#a34c2d\"/><rect x=\"3\" y=\"3\" width=\"214\" height=\"45\" rx=\"16\" fill=\"#e3c5ad\" stroke=\"#c38159\"/><rect x=\"7\" y=\"7\" width=\"206\" height=\"37\" rx=\"12\" stroke=\"#fff0d6\" fill=\"none\"/><text x=\"110\" y=\"32\" direction=\"rtl\" text-anchor=\"middle\" font-family=\"Arial, sans-serif\" font-size=\"18\" font-weight=\"700\" fill=\"#746256\">\u05e9\u05dc\u05d1 5</text><text x=\"24\" y=\"32\" text-anchor=\"middle\" font-family=\"Arial,sans-serif\" font-size=\"20\" fill=\"#746256\">\u00d7</text></svg>"};
-const LEVELS=[["#..","...",".S."],["...#",".S..","..##"],["###.","....",".S..","...."],["....",".S..","....","#..."],["#....","...S.",".....","###.."],[".....",".....","...S.","##..."],["..###","....#","....#",".#S..","....."],["#...#","#.#..",".....",".S.#.",".....","..###"],["#...#","#.#.#","..#..",".....",".S..#","....#"],["..##.#",".....#","...S..","....#.","###...","####.."],["......",".####.",".##...",".#..S.",".#....","....##"],["####.#",".....#",".S....","....#.","#...#.","#.###.","#....."],["###...","..#.#.","....#.",".S....","...###","......","....##"],["##....","#..##.","#.S...","#.....","......",".##...","......"],["......#",".#....#",".###...","...S.#.",".....#.","......."],["......#",".##.S.#",".##.#.#","..#.#.#","#...#.#","#.....#","#.##...","#......"],["##.....","##.###.",".S...#.",".....#.","..#....","###.#..","#...##.","#......"],["........","..S##...","######..","#####...","#####.#.","..###.#.","......#.","........"],["........",".######.",".##...#.","....#.#.","##......","##.#.#..","##...#..","##.....S"],["......##",".#..#.##","....#.##",".##.#.##","....#.S#","##..#...","##..#.#.","##....#.","##......"],["........",".....#..",".###.#.#","..S..#.#","#...##.#","#...##.#","#...##.#","#...##.#","#......#"],[".........",".#######.",".........","###...#..","###.#....",".......S.","........."],["####...#","#..S.#.#","#....#.#","#......#","#...#..#","#...#..#","....#..#",".#......","........"],["........#",".....##..",".....###.","...#####.","....###..",".##.....#",".....S..#","####....#","######..#","######..#"]];
+const PILL={done:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"220\" height=\"56\" viewBox=\"0 0 220 56\" role=\"img\" aria-label=\"\u05e9\u05dc\u05d1 3\"><defs><linearGradient id=\"cream\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#fff3d8\"/><stop offset=\"1\" stop-color=\"#ffd7a4\"/></linearGradient><linearGradient id=\"gold\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#ffdc72\"/><stop offset=\"1\" stop-color=\"#f5a626\"/></linearGradient></defs><rect x=\"3\" y=\"7\" width=\"214\" height=\"45\" rx=\"16\" fill=\"#a34c2d\"/><rect x=\"3\" y=\"3\" width=\"214\" height=\"45\" rx=\"16\" fill=\"url(#cream)\" stroke=\"#c38159\"/><rect x=\"7\" y=\"7\" width=\"206\" height=\"37\" rx=\"12\" stroke=\"#fff0d6\" fill=\"none\"/><text x=\"110\" y=\"32\" direction=\"rtl\" text-anchor=\"middle\" font-family=\"Arial, sans-serif\" font-size=\"18\" font-weight=\"700\" fill=\"#963b23\">\u05e9\u05dc\u05d1 3</text><text x=\"24\" y=\"32\" text-anchor=\"middle\" font-family=\"Arial,sans-serif\" font-size=\"20\" fill=\"#963b23\">\u2713</text></svg>",cur:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"220\" height=\"56\" viewBox=\"0 0 220 56\" role=\"img\" aria-label=\"\u05e9\u05dc\u05d1 4\"><defs><linearGradient id=\"cream\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#fff3d8\"/><stop offset=\"1\" stop-color=\"#ffd7a4\"/></linearGradient><linearGradient id=\"gold\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#ffdc72\"/><stop offset=\"1\" stop-color=\"#f5a626\"/></linearGradient></defs><rect x=\"3\" y=\"7\" width=\"214\" height=\"45\" rx=\"16\" fill=\"#a34c2d\"/><rect x=\"3\" y=\"3\" width=\"214\" height=\"45\" rx=\"16\" fill=\"url(#gold)\" stroke=\"#c38159\"/><rect x=\"7\" y=\"7\" width=\"206\" height=\"37\" rx=\"12\" stroke=\"#fff0d6\" fill=\"none\"/><text x=\"110\" y=\"32\" direction=\"rtl\" text-anchor=\"middle\" font-family=\"Arial, sans-serif\" font-size=\"18\" font-weight=\"700\" fill=\"#963b23\">\u05e9\u05dc\u05d1 4</text><text x=\"24\" y=\"32\" text-anchor=\"middle\" font-family=\"Arial,sans-serif\" font-size=\"20\" fill=\"#963b23\">\u25b6</text></svg>",lock:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"220\" height=\"56\" viewBox=\"0 0 220 56\" role=\"img\" aria-label=\"\u05e9\u05dc\u05d1 5\"><defs><linearGradient id=\"cream\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#fff3d8\"/><stop offset=\"1\" stop-color=\"#ffd7a4\"/></linearGradient><linearGradient id=\"gold\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#ffdc72\"/><stop offset=\"1\" stop-color=\"#f5a626\"/></linearGradient></defs><rect x=\"3\" y=\"7\" width=\"214\" height=\"45\" rx=\"16\" fill=\"#a34c2d\"/><rect x=\"3\" y=\"3\" width=\"214\" height=\"45\" rx=\"16\" fill=\"#e3c5ad\" stroke=\"#c38159\"/><rect x=\"7\" y=\"7\" width=\"206\" height=\"37\" rx=\"12\" stroke=\"#fff0d6\" fill=\"none\"/><text x=\"110\" y=\"32\" direction=\"rtl\" text-anchor=\"middle\" font-family=\"Arial, sans-serif\" font-size=\"18\" font-weight=\"700\" fill=\"#746256\">\u05e9\u05dc\u05d1 5</text><text x=\"24\" y=\"32\" text-anchor=\"middle\" font-family=\"Arial,sans-serif\" font-size=\"20\" fill=\"#746256\">\u00d7</text></svg>",gold:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"220\" height=\"56\" viewBox=\"0 0 220 56\" role=\"img\" aria-label=\"\u05de\u05e9\u05d7\u05e7 \u05d7\u05d3\u05e9\"><defs><linearGradient id=\"cream\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#fff3d8\"/><stop offset=\"1\" stop-color=\"#ffd7a4\"/></linearGradient><linearGradient id=\"gold\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#ffdc72\"/><stop offset=\"1\" stop-color=\"#f5a626\"/></linearGradient></defs><rect x=\"3\" y=\"7\" width=\"214\" height=\"45\" rx=\"16\" fill=\"#a34c2d\"/><rect x=\"3\" y=\"3\" width=\"214\" height=\"45\" rx=\"16\" fill=\"url(#gold)\" stroke=\"#c38159\"/><rect x=\"7\" y=\"7\" width=\"206\" height=\"37\" rx=\"12\" stroke=\"#fff0d6\" fill=\"none\"/><text x=\"110\" y=\"32\" direction=\"rtl\" text-anchor=\"middle\" font-family=\"Arial, sans-serif\" font-size=\"18\" font-weight=\"700\" fill=\"#963b23\">\u05de\u05e9\u05d7\u05e7 \u05d7\u05d3\u05e9</text><text x=\"24\" y=\"32\" text-anchor=\"middle\" font-family=\"Arial,sans-serif\" font-size=\"20\" fill=\"#963b23\">\u25b6</text></svg>",cream:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"220\" height=\"56\" viewBox=\"0 0 220 56\" role=\"img\" aria-label=\"\u05d7\u05d6\u05e8\u05d4\"><defs><linearGradient id=\"cream\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#fff3d8\"/><stop offset=\"1\" stop-color=\"#ffd7a4\"/></linearGradient><linearGradient id=\"gold\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#ffdc72\"/><stop offset=\"1\" stop-color=\"#f5a626\"/></linearGradient></defs><rect x=\"3\" y=\"7\" width=\"214\" height=\"45\" rx=\"16\" fill=\"#a34c2d\"/><rect x=\"3\" y=\"3\" width=\"214\" height=\"45\" rx=\"16\" fill=\"url(#cream)\" stroke=\"#c38159\"/><rect x=\"7\" y=\"7\" width=\"206\" height=\"37\" rx=\"12\" stroke=\"#fff0d6\" fill=\"none\"/><text x=\"110\" y=\"32\" direction=\"rtl\" text-anchor=\"middle\" font-family=\"Arial, sans-serif\" font-size=\"18\" font-weight=\"700\" fill=\"#963b23\">\u05d7\u05d6\u05e8\u05d4</text><text x=\"24\" y=\"32\" text-anchor=\"middle\" font-family=\"Arial,sans-serif\" font-size=\"20\" fill=\"#963b23\">\u2039</text></svg>",round:"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"64\" height=\"66\" viewBox=\"0 0 64 66\" role=\"img\" aria-label=\"\u05d1\u05d9\u05d8\u05d5\u05dc \u05de\u05d4\u05dc\u05da\"><defs><linearGradient id=\"cream\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#fff3d8\"/><stop offset=\"1\" stop-color=\"#ffd7a4\"/></linearGradient><linearGradient id=\"gold\" x2=\"0%\" y2=\"100%\"><stop stop-color=\"#ffdc72\"/><stop offset=\"1\" stop-color=\"#f5a626\"/></linearGradient></defs><circle cx=\"32\" cy=\"35\" r=\"28\" fill=\"#a2482c\"/><circle cx=\"32\" cy=\"31\" r=\"28\" fill=\"url(#cream)\" stroke=\"#c88058\" stroke-width=\"1.5\"/><circle cx=\"32\" cy=\"31\" r=\"24.5\" fill=\"none\" stroke=\"#fff2db\"/><g stroke=\"#963b23\" stroke-width=\"3.7\" stroke-linecap=\"round\" stroke-linejoin=\"round\" fill=\"none\"><path d=\"M27 31l-9-8 9-8M19 23h16a11 11 0 0 1 0 22h-8\"/></g></svg>"};
+const LEVELS=[["....","...#",".S.#","...#"],["#...","#.S.","#...","...."],["....","#...","#.S.","#..."],["###.","....",".S..","...."],["###.","#...","..S.","...."],["..###",".....",".S.#.","...#.","..##."],["....#",".#...","...#.","#....","#.S.."],["##..#","###..",".....",".S...","....."],["..###","....#",".S...","...#.","#...."],["...##",".#...",".....","#.S..","#...#"],["..###",".....","...S.",".#...","...#."],["###..","#....","...S.",".#...","....#"],["...##","...##",".#...",".#.S.","....."],["..##.",".....","...S.",".#...","...##"],["#...#","#.#..","#....","...S.",".#..."],["......",".S.##.",".#..#.","....#.","#.#...","#...##"],["..####","...###",".#....","...S..",".....#","..#..#"],["..#...","....S.",".#....",".#....",".#.###","...###"],[".....#",".###.#",".##...","....#.",".S....",".....#"],["###...","....#.",".S....","...#.#",".#.#.#",".....#"],["......",".###S.","..##..","#.....","....#.","###..."],["..#...","....S.",".###..","..##..","#..##.","##...."],["##....","...##.","..###.","......","...S..","##...."],[".....#","..S#.#","#....#","#.#...","..#.#.","......"],["###..#",".....#",".###..","......",".S....","...#.."],["....#..",".##....","..##...","#.##.S.","#.##.#.","#.#....","#...#.."],["......#",".S.....","...#.#.","##.#...","#..###.","#.###..","#.....#"],["#.#....","#.#.##.","#...##.","...#...",".#...S.",".......","#####.."],["#.....#","#.S.#.#","....#.#",".#....#",".#.....",".###...",".....##"],["...##.#","...#..#","..##...",".....#.",".S.#...","...#..#","####..#"],["#...###","#......","##...##","##.....","....##.","..S.##.","#......"],["..###..","....#..",".####..",".#.....",".....#.","#.##.S.","#......"],["#......","#......","#......","...#.S.",".#.#...","...#..#","####..#"],["#.....#","....#..",".#..##.","....##.","#......","#.S###.","#......"],["###....#","..#.##.#","..#..#.#",".....#.#",".......#",".####...","....#S#.","###....."],["#....##","#.S....","#.#....","#...#..",".......",".#.....","...####"],["...##...","......#.","####..#.","####..#.","#..#..#.","#..#....","#....S.#","#......#"],["####....","####....","........",".####...",".##.....",".##..S..",".##.....","....####"],["....####",".##.....","........",".....###","...#..##",".S.##.##",".#......",".....###"],["...#####",".#.....#",".#.###..","........","#.####..","#.......","#..S###.","#......."],["###.....","###...#.","#####...","......S.",".###....",".....###",".......#",".......#"],["#......","#.####.","#......","#......","...#...",".#.....",".....S.","####..."],[".......#",".##....#","....##.#",".......#","..###..#","#.......","####.S#.","####...."],["........#",".#....#.#","..###.#.#","#.###.#.#","..###...#",".###....#","...#.##.#",".S...##..","........."],["####...#",".....#..",".#......",".#.####.","...#....","#....S.#","#.####.#","#......#"],["##.......","#..#####.","..######.",".......#.",".....S.#.","..##.....","..##..###","...#..###","...######"],["#......#","#....#.#","#..#.#..","#.......","#...#.S.","#..##.#.","......#.",".#......","...#####"],[".........",".....##S.","..##.....",".......#.",".#####.#.",".#####.#.",".#####.#.","....##...","###.....#"],["........",".######.",".#...##.","...S.##.","#....##.","#.......","#.####..","#......#"],["........","..#..#..","#....#.#","##.....#","##..#..#","##..#..#","....#.##",".S..#.##","......##"],["###..####",".......##",".#..##.##",".#.S...##",".#.....##",".#.##..##",".#.##....",".#....##.","........."],["..........",".########.",".######...",".######.S.",".######...",".##....#..",".......#..","..........",".###......",".....#####"],["#######..",".........",".#####...","....##...","..S.##...",".......#.","...###...","...#####.","##......."],[".....#...",".###...S.",".####....",".####....",".####.#..",".##...#..",".##......",".###...#.",".....#..."],["...#.....",".#.#.###.",".#.#.....",".#.....S.","....##.#.","#....#.#.","#.##.#.#.","#.##...#.","#........"],["#........#","#.##.###.#","#.##.###..","#..#.####.","##.#.#....","##.#...S..","##........","..........",".########.",".#####....",".......###"],["##..#####","....#...#","......#..",".........",".....#...",".S.#.#...","...#.#...","####.#.##","####...##"],[".........#",".#...S...#",".#.#...#.#",".#.#.....#",".#.......#","....####.#","###.####..","....#####.",".########.",".########.",".........."],[".....#....",".###.#.##.",".###...##.",".###..S...","..#.......","#...#.....","#..##..###","#......###","#.##...###","#....#####"],[".........#",".S...#...#","...#.....#","##...##..#","...#.##..#","..##.##...","#.##....#.","#.#....##.","#.#.##.##.","#...##...."]];
 const ANIMALS=[
   {id:'dog',name:'כלב',price:0,body:'#f6ac1e',head:'#f5a81c',shade:'#c9790c',collar:'#2fb3a4'},
   {id:'cat',name:'חתול',price:60,body:'#a9b2bd',head:'#aeb7c2',shade:'#6f7985',collar:'#ff6f91'},
@@ -222,7 +344,7 @@ const ANIMALS=[
   {id:'bear',name:'דב',price:420,body:'#a8754a',head:'#ae7b50',shade:'#6d4627',collar:'#5aa9e6'},
   {id:'tiger',name:'נמר',price:520,body:'#f39a2b',head:'#f5a033',shade:'#b4650c',collar:'#e63946'},
 ];
-const WORLD_SIZE=8,WORLDS=['החצר','הגינה','הפארק'];
+const WORLD_SIZE=10,WORLDS=['החצר','הגינה','הפארק','היער','ההרים','המדבר'];
 const P={ground:'#ffd3c4',wall:'#e8735f',floor0:'#ffc2ae',floor1:'#f9ad97',ao:'#7a2412',sky:'#fff8f4',bounce:'#f39a84',collar:'#2fb3a4'};
 
 const $=id=>document.getElementById(id);
@@ -234,7 +356,7 @@ const svgUri=s=>'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(s);
 
 /* ---------- saved progress ---------- */
 const SAVE_KEY='tachash-save-v1';
-let save={done:[],music:true,fx:true,coins:0,owned:['dog'],sel:'dog'};
+let save={done:[],music:true,fx:true,coins:0,owned:['dog'],sel:'dog',player:null,bonus:{last:'',streak:0},chal:{},best:{},pendingInvite:''};
 function readLocal(){try{const v=localStorage.getItem(SAVE_KEY);if(v)save=Object.assign(save,JSON.parse(v));}catch(e){}}
 async function readCloud(){try{const r=await window.storage.get(SAVE_KEY,false);if(r&&r.value){save=Object.assign(save,JSON.parse(r.value));refreshHome();applyAnimal();}}catch(e){}}
 function persist(){const v=JSON.stringify(save);try{localStorage.setItem(SAVE_KEY,v);}catch(e){}try{window.storage&&window.storage.set(SAVE_KEY,v,false);}catch(e){}}
@@ -269,17 +391,17 @@ document.addEventListener('click',e=>{if(e.target.closest('button'))sfx('click')
 /* ---------- screens ---------- */
 let screen='home';
 function show(name){screen=name;
-  $('home').classList.toggle('hidden',name!=='home');$('map').classList.toggle('hidden',name!=='map');$('shop').classList.toggle('hidden',name!=='shop');syncCoins();$('gameUI').classList.toggle('hidden',name!=='game');
+  ['home','map','shop','board','duel'].forEach(n=>$(n).classList.toggle('hidden',name!==n));syncCoins();$('gameUI').classList.toggle('hidden',name!=='game');
   ['paused','win'].forEach(id=>$(id).classList.add('hidden'));
   if(name==='game'){fit();}}
 function syncCoins(){document.querySelectorAll('.cval').forEach(e=>e.textContent=save.coins);}
-function refreshHome(){const started=save.done.length>0;
+function refreshHome(){$('dotDaily').classList.toggle('hidden',save.chal.daily===period('daily'));$('dotWeekly').classList.toggle('hidden',save.chal.weekly===period('weekly'));const started=save.done.length>0;
   $('homeStartImg').src=started?KIT.resume:KIT.start;$('homeStart').setAttribute('aria-label',started?'המשך משחק':'משחק חדש');}
 let mapWorld=0;
 function pill(i){const n=i+1;let tpl,state;
   if(isDone(i)){tpl=PILL.done;state='שלב שהושלם';}else if(isOpen(i)){tpl=PILL.cur;state='השלב הבא';}else{tpl=PILL.lock;state='נעול';}
   return{uri:svgUri(tpl.replace(/שלב \d+/g,'שלב '+n)),label:`שלב ${n}, ${state}`,open:isOpen(i)};}
-function worldProgSvg(k){let r='';for(let i=0;i<8;i++)r+=`<rect x="${7+39*i}" y="7" width="33" height="20" rx="8" fill="${i<k?'url(#g)':'#79402e'}"/>`;
+function worldProgSvg(k){let r='';for(let i=0;i<WORLD_SIZE;i++)r+=`<rect x="${7+31*i}" y="7" width="27" height="20" rx="7" fill="${i<k?'url(#g)':'#79402e'}"/>`;
   return svgUri(`<svg xmlns="http://www.w3.org/2000/svg" width="320" height="36" viewBox="0 0 320 36"><defs><linearGradient id="g" x2="0%" y2="100%"><stop stop-color="#ffdc72"/><stop offset="1" stop-color="#f5a626"/></linearGradient></defs><rect x="2" y="2" width="316" height="30" rx="15" fill="#a8593e" stroke="#ffebc8" stroke-width="3"/>${r}</svg>`);}
 function renderMap(){
   const w=mapWorld,first=w*WORLD_SIZE,last=Math.min(LEVELS.length,first+WORLD_SIZE);
@@ -295,13 +417,14 @@ function renderMap(){
   $('nextWorld').classList.toggle('off',nw&&!isOpen((w+1)*WORLD_SIZE));}
 function openMap(world){mapWorld=world??Math.floor(firstOpen()/WORLD_SIZE);renderMap();show('map');}
 function startLevel(i){show('game');load(i);}
+const goHome=()=>{refreshHome();show('home');};
 
 $('homeStart').onclick=()=>{if(save.done.length)startLevel(firstOpen());else{pendingStart=true;$('tutorial').classList.remove('hidden');}};
 $('homeLevels').onclick=()=>openMap();
-$('homeShop').onclick=()=>openShop();
+$('tShop').onclick=()=>openShop();
 $('shopHome').onclick=()=>{refreshHome();show('home');};
 let pendingStart=false;
-$('homeTutorial').onclick=()=>{pendingStart=false;$('tutorial').classList.remove('hidden');};
+$('tHow').onclick=()=>{pendingStart=false;$('tutorial').classList.remove('hidden');};
 $('tutorialGo').onclick=()=>{$('tutorial').classList.add('hidden');startLevel(pendingStart?0:firstOpen());pendingStart=false;};
 $('closeTutorial').onclick=()=>{$('tutorial').classList.add('hidden');pendingStart=false;};
 $('mapHome').onclick=()=>{refreshHome();show('home');};
@@ -396,6 +519,215 @@ let buying=null;
 $('buyNo').onclick=()=>{$('buyDlg').classList.add('hidden');buying=null;};
 $('buyYes').onclick=()=>{const a=buying;$('buyDlg').classList.add('hidden');buying=null;if(!a||save.coins<a.price)return;
   save.coins-=a.price;save.owned.push(a.id);save.sel=a.id;persist();sfx('win');applyAnimal();syncCoins();renderShop();};
+
+
+/* ---------- server ---------- */
+const SB_URL='https://zplrfidxpetgtenhenlk.supabase.co',SB_KEY='sb_publishable_cR4JjUiuuxMGJ3Ke2FWBuQ_dcG25pvN';
+async function rpc(fn,args){
+  const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),9000);
+  try{const r=await fetch(`${SB_URL}/rest/v1/rpc/${fn}`,{method:'POST',signal:ctl.signal,headers:{apikey:SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(args)});
+    const t=await r.text();if(!r.ok){let m='server';try{m=JSON.parse(t).message||m;}catch(e){}throw new Error(m);}return t?JSON.parse(t):null;}
+  finally{clearTimeout(tm);}}
+let toastT=null;
+function toast(msg,ms=2600){const t=$('toast');t.textContent=msg;t.classList.remove('hide');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.add('hide'),ms);}
+const OFFLINE='אין חיבור לשרת כרגע. בדקו את האינטרנט ונסו שוב.';
+function addCoins(n,msg){save.coins+=n;persist();bumpCoins();sfx('coin');if(msg)toast(msg);}
+
+/* kit-style buttons built from the kit's own shapes */
+function kitPill(base,text,icon){return svgUri(PILL[base].replace(/(<text[^>]*font-size="18"[^>]*>)[^<]*(<\/text>)/,`$1${text}$2`).replace(/(<text[^>]*font-size="20"[^>]*>)[^<]*(<\/text>)/,`$1${icon}$2`).replace(/aria-label="[^"]*"/,`aria-label="${text}"`));}
+function kitRound(icon){return svgUri(PILL.round.replace(/<g stroke[\s\S]*<\/g>/,`<g stroke="#963b23" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none">${icon}</g>`));}
+const ICONS={
+  daily:'<rect x="19" y="19" width="26" height="24" rx="4"/><path d="M19 27h26M25 15v7M39 15v7"/><path d="M28 36l3 3 6-7"/>',
+  weekly:'<path d="M23 17h18v8a9 9 0 0 1-18 0z"/><path d="M23 20h-4a4 4 0 0 0 4 7M41 20h4a4 4 0 0 1-4 7M32 34v6M26 44h12"/>',
+  board:'<path d="M17 45V34h9v11M26 45V24h11v21M37 45V38h9v7M14 45h35"/><path d="M31.5 15l1.4 2.8 3 .4-2.2 2.1.5 3-2.7-1.4-2.7 1.4.5-3-2.2-2.1 3-.4z" fill="#963b23" stroke-width="1"/>',
+  shop:'<path d="M19 26h26l-2.5 18h-21z"/><path d="M26 26v-3a6 6 0 0 1 12 0v3"/>',
+  invite:'<circle cx="27" cy="24" r="6"/><path d="M16 44a11 11 0 0 1 22 0"/><path d="M43 21v12M37 27h12"/>',
+  how:'<path d="M26 23a6.5 6.5 0 1 1 9.5 5.8c-2.2 1.2-3.5 2.4-3.5 4.7v1"/><circle cx="32" cy="41" r="1.4" fill="#963b23"/>',
+};
+function initKitArt(){
+  $('icDaily').src=kitRound(ICONS.daily);$('icWeekly').src=kitRound(ICONS.weekly);$('icBoard').src=kitRound(ICONS.board);
+  $('icShop').src=kitRound(ICONS.shop);$('icInvite').src=kitRound(ICONS.invite);$('icHow').src=kitRound(ICONS.how);
+  $('homeDuelImg').src=kitPill('gold','דו-קרב','»');
+  $('duelCreateImg').src=kitPill('gold','יצירת חדר','+');$('duelJoinImg').src=kitPill('cream','הצטרפות לחדר','›');
+  $('duelShareImg').src=kitPill('gold','שליחת הזמנה','↗');$('inviteShareImg').src=kitPill('gold','שיתוף ההזמנה','↗');
+  $('bonusClaimImg').src=kitPill('gold','איסוף הבונוס','★');}
+
+/* ---------- player profile ---------- */
+function askName(){return new Promise(res=>{const d=$('nameDlg');$('nameInput').value=save.player?.name||'';d.classList.remove('hidden');setTimeout(()=>$('nameInput').focus(),50);
+  const done=v=>{d.classList.add('hidden');$('nameOk').onclick=$('nameNo').onclick=null;res(v);};
+  $('nameOk').onclick=()=>{const v=$('nameInput').value.trim();if(!v){$('nameInput').focus();return;}done(v.slice(0,16));};
+  $('nameNo').onclick=()=>done(null);
+  $('nameInput').onkeydown=e=>{if(e.key==='Enter')$('nameOk').click();};});}
+async function ensurePlayer(){
+  if(save.player?.id)return save.player;
+  const name=await askName();if(!name)return null;
+  try{const r=await rpc('maze_register',{p_name:name,p_animal:save.sel,p_invite:save.pendingInvite||null});
+    save.player={id:r.id,secret:r.secret,name,invite_code:r.invite_code};save.pendingInvite='';persist();
+    if(r.invited)addCoins(50,'הצטרפתם בהזמנה של חבר: +50 נקודות');
+    return save.player;}
+  catch(e){toast(OFFLINE);return null;}}
+let syncing=false;
+async function syncNow(){const pl=save.player;if(!pl?.id||syncing)return;syncing=true;
+  try{const r=await rpc('maze_sync',{p_id:pl.id,p_secret:pl.secret,p_name:pl.name,p_animal:save.sel,p_levels_done:save.done.length});
+    pl.invite_code=r.invite_code;pl.invites=r.invites_total;persist();
+    if(r.new_invites>0)addCoins(50*r.new_invites,r.new_invites===1?'חבר הצטרף בזכותכם: +50 נקודות':`${r.new_invites} חברים הצטרפו בזכותכם: +${50*r.new_invites} נקודות`);}
+  catch(e){}finally{syncing=false;}}
+
+/* ---------- dates, seeded mazes ---------- */
+function isoWeek(d){const t=new Date(Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate()));const day=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-day);
+  const y0=new Date(Date.UTC(t.getUTCFullYear(),0,1));return `${t.getUTCFullYear()}-W${String(Math.ceil(((t-y0)/864e5+1)/7)).padStart(2,'0')}`;}
+function period(kind){const d=new Date();return kind==='daily'?d.toISOString().slice(0,10):isoWeek(d);}
+const localDay=(o=0)=>{const d=new Date(Date.now()+o*864e5);return `${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;};
+function rngFrom(str){let h=1779033703^str.length;for(let i=0;i<str.length;i++){h=Math.imul(h^str.charCodeAt(i),3432918353);h=h<<13|h>>>19;}
+  let a=h>>>0;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function makeMaze(seed,w,h,fill){const rnd=rngFrom(seed),ri=n=>Math.floor(rnd()*n);let target=Math.floor(w*h*fill);
+  for(let attempt=0;attempt<6000;attempt++){
+    if(attempt&&attempt%600===0)target--;
+    const st=[ri(w),ri(h)],vis=new Set([K(...st)]);let pos=st,last=-1;const moves=[];
+    for(let step=0;step<400&&vis.size<target;step++){const opts=[];
+      for(let d=0;d<4;d++){if(last>=0&&(d===last||d===(last+2)%4))continue;let [x,y]=pos;const cs=[];
+        for(;;){const nx=x+D[d][0],ny=y+D[d][1];if(nx<0||ny<0||nx>=w||ny>=h||vis.has(K(nx,ny)))break;x=nx;y=ny;cs.push([x,y]);}
+        if(cs.length)opts.push([d,cs]);}
+      if(!opts.length)break;const [d,cs]=opts[ri(opts.length)],seg=cs.slice(0,1+ri(cs.length));
+      seg.forEach(c=>vis.add(K(...c)));pos=seg[seg.length-1];last=d;moves.push(d);}
+    if(vis.size<target)continue;
+    // replay the moves exactly as the game would, to be sure it is solvable
+    const v2=new Set([K(...st)]);let p2=st,ok=true;
+    for(const d of moves){let [x,y]=p2,n=0;for(;;){const nx=x+D[d][0],ny=y+D[d][1],k=K(nx,ny);if(!vis.has(k)||v2.has(k))break;x=nx;y=ny;v2.add(k);n++;}if(!n){ok=false;break;}p2=[x,y];}
+    if(!ok||v2.size!==vis.size)continue;
+    const xs=[...vis].map(k=>+k.split(',')[0]),ys=[...vis].map(k=>+k.split(',')[1]),x0=Math.min(...xs),y0=Math.min(...ys);
+    const rows=[];for(let y=y0;y<=Math.max(...ys);y++){let r='';for(let x=x0;x<=Math.max(...xs);x++)r+=(x===st[0]&&y===st[1])?'S':vis.has(K(x,y))?'.':'#';rows.push(r);}
+    return rows;}
+  return LEVELS[0];}
+const fmtTime=ms=>{const s=Math.max(0,ms)/1000,m=Math.floor(s/60);return `${m}:${(s%60).toFixed(1).padStart(4,'0')}`;};
+
+/* ---------- daily bonus ---------- */
+const BONUS=[10,15,20,25,30,40,60];
+function checkBonus(){const b=save.bonus;if(b.last===localDay())return;
+  const streak=b.last===localDay(-1)?b.streak%7+1:1;
+  $('bonusText').textContent=streak>1?`יום ${streak} ברצף! חוזרים כל יום והבונוס גדל.`:'חוזרים כל יום והבונוס גדל, עד 60 נקודות ביום השביעי.';
+  $('bonusDays').innerHTML=BONUS.map((v,i)=>`<div class="day ${i+1<streak?'got':i+1===streak?'today':''}">יום ${i+1}<b>${v}</b></div>`).join('');
+  $('bonusDlg').classList.remove('hidden');
+  $('bonusClaim').onclick=()=>{save.bonus={last:localDay(),streak};$('bonusDlg').classList.add('hidden');addCoins(BONUS[streak-1],`בונוס יומי: +${BONUS[streak-1]} נקודות`);};}
+
+/* ---------- daily and weekly challenges ---------- */
+let chalGrid=null;
+const CHAL={daily:{name:'אתגר יומי',reward:30,w:6,h:7,fill:0.72},weekly:{name:'אתגר שבועי',reward:100,w:9,h:9,fill:0.66}};
+function startChallenge(kind,restart){const c=CHAL[kind],per=period(kind);chalKind=kind;
+  chalGrid=makeMaze(`${kind}-${per}`,c.w,c.h,c.fill);show('game');setMode(kind);setupGrid(chalGrid);
+  if(!restart||!chalStart)chalStart=Date.now();lastTitle='';
+  $('hint').textContent=save.chal[kind]===per?'כבר פתרתם היום. אפשר לנסות לשפר את הזמן':'פתרו כמה שיותר מהר. הזמן נמדד מהרגע הזה';}
+$('tDaily').onclick=()=>startChallenge('daily');$('tWeekly').onclick=()=>startChallenge('weekly');
+async function challengeWon(){const kind=chalKind,per=period(kind),ms=Date.now()-chalStart,c=CHAL[kind],first=save.chal[kind]!==per;
+  save.chal[kind]=per;const bk=`${kind}:${per}`,better=!save.best[bk]||ms<save.best[bk];if(better)save.best[bk]=ms;persist();
+  winButtons('challenge');$('winAImg').src=kitPill('gold','טבלת מובילים','▦');$('winA').setAttribute('aria-label','טבלת מובילים');
+  $('winA').onclick=()=>openBoard(kind);$('winB').onclick=goHome;
+  $('winTitle').textContent=`${c.name} הושלם!`;$('winText').textContent=`הזמן שלכם: ${fmtTime(ms)}${better&&!first?' · שיא אישי חדש!':''}`;
+  if(first){$('winEarnVal').textContent=`+${c.reward}`;$('winEarn').classList.remove('hidden');save.coins+=c.reward;persist();}
+  setTimeout(()=>{$('win').classList.remove('hidden');if(first){sfx('coin');bumpCoins();}},900);
+  const pl=await ensurePlayer();if(!pl){$('winText').textContent+=' · התוצאה לא נשלחה לטבלה';return;}
+  try{const r=await rpc('maze_submit',{p_id:pl.id,p_secret:pl.secret,p_kind:kind,p_period:per,p_time_ms:ms,p_moves:hist.length});
+    $('winText').textContent+=` · המקום שלכם בטבלה: ${r.rank}`;}
+  catch(e){$('winText').textContent+=' · אין חיבור, התוצאה לא נשלחה';}
+  syncNow();}
+
+/* ---------- leaderboard ---------- */
+let boardKind='daily';
+const animalOf=id=>ANIMALS.find(a=>a.id===id)||ANIMALS[0];
+const faceCache={};const faceOf=id=>faceCache[id]||(faceCache[id]=faceUri(animalOf(id)));
+function openBoard(kind){boardKind=kind||boardKind;show('board');renderBoard();ensurePlayer().then(()=>syncNow().then(renderBoard));}
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{boardKind=b.dataset.k;renderBoard();});
+$('tBoard').onclick=()=>openBoard();$('boardHome').onclick=goHome;
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function renderBoard(){const k=boardKind;
+  document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.k===k));
+  $('boardPeriod').textContent=k==='daily'?'הזמנים הכי מהירים באתגר היומי של היום':k==='weekly'?'הזמנים הכי מהירים באתגר השבועי':'מי פתר הכי הרבה שלבים';
+  const list=$('boardList');list.innerHTML='<div class="empty">טוען…</div>';
+  const playBtn=$('boardPlay');playBtn.classList.toggle('hidden',k==='all');
+  if(k!=='all'){$('boardPlayImg').src=kitPill('gold',k==='daily'?'לאתגר היומי':'לאתגר השבועי','▶');playBtn.setAttribute('aria-label',k==='daily'?'לאתגר היומי':'לאתגר השבועי');playBtn.onclick=()=>startChallenge(k);}
+  try{const r=await rpc('maze_board',{p_kind:k,p_period:k==='all'?'':period(k),p_id:save.player?.id||null});if(k!==boardKind)return;
+    const rows=r.rows||[];if(!rows.length){list.innerHTML=`<div class="empty">${k==='all'?'עוד אין שחקנים בטבלה.':'עוד אין תוצאות. היו הראשונים!'}</div>`;return;}
+    const val=x=>k==='all'?`${x.value} שלבים`:fmtTime(x.value);
+    const row=x=>`<div class="brow${x.me?' me':''}"><div class="rk ${x.rank<=3?'g'+x.rank:''}">${x.rank}</div><img src="${faceOf(x.animal)}" alt=""><div class="nm">${esc(x.name)}${x.me?' (אתם)':''}</div><div class="val">${val(x)}</div></div>`;
+    list.innerHTML=rows.map(row).join('')+(r.me&&!rows.some(x=>x.me)?'<div class="empty" style="padding:4px">⋯</div>'+row(r.me):'');}
+  catch(e){list.innerHTML=`<div class="empty">${OFFLINE}</div>`;}}
+
+/* ---------- invite friends ---------- */
+const baseUrl=()=>location.href.split(/[?#]/)[0];
+async function shareText(text,url){try{if(navigator.share){await navigator.share({text,url});return;}}catch(e){if(e.name==='AbortError')return;}
+  try{await navigator.clipboard.writeText(`${text} ${url}`);toast('ההזמנה הועתקה. הדביקו אותה לחבר');}catch(e){toast(url,6000);}}
+$('tInvite').onclick=async()=>{const pl=await ensurePlayer();if(!pl)return;await syncNow();
+  $('inviteCode').textContent=pl.invite_code||'······';$('inviteCount').textContent=pl.invites?`חברים שהצטרפו בזכותכם: ${pl.invites}`:'';
+  $('inviteDlg').classList.remove('hidden');};
+$('inviteClose').onclick=()=>$('inviteDlg').classList.add('hidden');
+$('inviteShare').onclick=()=>{const pl=save.player;shareText(`בואו לשחק איתי במבוך! עם הקוד ${pl.invite_code} שנינו מקבלים 50 נקודות`,`${baseUrl()}?invite=${pl.invite_code}`);};
+
+/* ---------- duel ---------- */
+let duel=null,duelRole=null,duelTimer=null,clockOff=0,pushBusy=false,pushAgain=false,duelDone=false,countShown=-1;
+const duelLive=()=>duel&&duel.status==='playing'&&Date.now()+clockOff>=Date.parse(duel.starts_at);
+function openDuel(){show('duel');$('duelMenu').classList.remove('hidden');$('duelWait').classList.add('hidden');}
+$('homeDuel').onclick=openDuel;$('duelHome').onclick=()=>{if(duel&&duel.status==='waiting')leaveDuel(false);goHome();};
+$('duelCode').oninput=e=>{e.target.value=e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,'');};
+function stopPoll(){clearInterval(duelTimer);duelTimer=null;}
+function startPoll(){stopPoll();duelTimer=setInterval(pollDuel,800);}
+function applyState(st){if(!st)return;duel=st;clockOff=Date.parse(st.now)-Date.now();}
+$('duelCreate').onclick=async()=>{const pl=await ensurePlayer();if(!pl)return;
+  try{const grid=makeMaze(`duel-${Date.now()}-${Math.random()}`,7,7,0.7),total=grid.join('').replace(/#/g,'').length;
+    applyState(await rpc('maze_duel_create',{p_id:pl.id,p_secret:pl.secret,p_level:grid,p_total:total}));duelRole='host';duelDone=false;
+    $('duelShowCode').textContent=duel.code;$('duelMenu').classList.add('hidden');$('duelWait').classList.remove('hidden');startPoll();}
+  catch(e){toast(OFFLINE);}};
+$('duelShare').onclick=()=>shareText(`בואו לדו-קרב במבוך! קוד החדר: ${duel.code}`,`${baseUrl()}?duel=${duel.code}`);
+$('duelCancel').onclick=()=>{leaveDuel(false);openDuel();};
+async function joinDuel(code){const pl=await ensurePlayer();if(!pl)return;code=(code||'').toUpperCase().trim();
+  if(code.length!==4){toast('קוד החדר הוא 4 תווים');return;}
+  try{applyState(await rpc('maze_duel_join',{p_id:pl.id,p_secret:pl.secret,p_code:code}));duelRole=duel.host===pl.id?'host':'guest';duelDone=false;
+    if(duel.status==='playing')beginDuel();else if(duel.status==='waiting'){$('duelShowCode').textContent=duel.code;show('duel');$('duelMenu').classList.add('hidden');$('duelWait').classList.remove('hidden');startPoll();}
+    else toast('הדו-קרב הזה כבר הסתיים');}
+  catch(e){toast(e.message==='not_found'?'לא מצאנו חדר עם הקוד הזה':e.message==='full'?'בחדר הזה כבר יש שני שחקנים':OFFLINE);}}
+$('duelJoin').onclick=()=>joinDuel($('duelCode').value);
+function beginDuel(){show('game');setMode('duel');setupGrid(duel.level);countShown=-1;
+  const opp=duelRole==='host'?{n:duel.guest_name,a:duel.guest_animal}:{n:duel.host_name,a:duel.host_animal};
+  $('oppName').textContent=opp.n||'יריב';$('oppFace').src=faceOf(opp.a);$('title').textContent=`דו-קרב מול ${opp.n||'יריב'}`;$('hint').textContent='';startPoll();}
+async function pollDuel(){if(!duel)return;
+  try{applyState(await rpc('maze_duel_state',{p_code:duel.code}));}catch(e){return;}
+  if(!duel){stopPoll();return;}
+  if(duel.status==='playing'&&screen!=='game')beginDuel();
+  if(screen==='game'&&mode==='duel'){
+    const opp=duelRole==='host'?duel.guest_progress:duel.host_progress,w=Math.max(20,306*opp/duel.total);
+    $('oppFill').setAttribute('width',w);$('oppFill').setAttribute('x',313-w);
+    if(duel.status==='done'&&!duelDone)showDuelResult();}}
+function countdownTick(){if(mode!=='duel'||!duel||duel.status!=='playing'||screen!=='game')return;
+  const left=Math.ceil((Date.parse(duel.starts_at)-(Date.now()+clockOff))/1000),c=$('count');
+  if(left>0&&left!==countShown){countShown=left;c.textContent=left;c.classList.remove('hidden','pop');void c.offsetWidth;c.classList.add('pop');sfx('click');}
+  else if(left<=0&&countShown>0){countShown=0;c.textContent='צאו!';c.classList.remove('pop');void c.offsetWidth;c.classList.add('pop');sfx('hint');setTimeout(()=>c.classList.add('hidden'),800);}}
+setInterval(countdownTick,100);
+async function pushProgress(){if(!duel||!save.player)return;if(pushBusy){pushAgain=true;return;}pushBusy=true;
+  try{do{pushAgain=false;applyState(await rpc('maze_duel_progress',{p_id:save.player.id,p_secret:save.player.secret,p_code:duel.code,p_progress:path.length}));}while(pushAgain);}
+  catch(e){}finally{pushBusy=false;}
+  if(duel.status==='done'&&!duelDone)showDuelResult();}
+function duelFinished(){if(duel.status==='done'&&!duelDone)showDuelResult();}
+function showDuelResult(){duelDone=true;stopPoll();$('count').classList.add('hidden');
+  const me=save.player.id===duel.winner;won=true;
+  winButtons('duel');$('winAImg').src=kitPill('gold','דו-קרב נוסף','»');$('winA').setAttribute('aria-label','דו-קרב נוסף');
+  $('winA').onclick=()=>{duel=null;openDuel();};$('winB').onclick=()=>{duel=null;goHome();};
+  const oppDone=(duelRole==='host'?duel.guest_progress:duel.host_progress)>=duel.total;
+  if(me){$('winTitle').textContent='ניצחתם!';$('winText').textContent=oppDone||path.length>=total?'מילאתם את המבוך לפני היריב.':'היריב יצא מהדו-קרב.';
+    $('winEarnVal').textContent='+25';$('winEarn').classList.remove('hidden');save.coins+=25;persist();buzz([30,40,30]);sfx('win');confetti();}
+  else{$('winTitle').textContent='הפעם היריב ניצח';$('winText').textContent=`מילאתם ${path.length} מתוך ${total} משבצות. רוצים עוד סיבוב?`;sfx('stuck');}
+  setTimeout(()=>{$('win').classList.remove('hidden');if(me){sfx('coin');bumpCoins();}},me?900:400);}
+async function leaveDuel(toHome){const d=duel;stopPoll();duel=null;$('count').classList.add('hidden');
+  if(d&&save.player)try{await rpc('maze_duel_leave',{p_id:save.player.id,p_secret:save.player.secret,p_code:d.code});}catch(e){}
+  if(toHome)goHome();}
+
+/* ---------- start-up: links and daily bonus ---------- */
+function initSocial(){initKitArt();const q=new URLSearchParams(location.search);
+  if(q.get('invite')&&!save.player)save.pendingInvite=q.get('invite').toUpperCase().slice(0,8);
+  startDuelCode=(q.get('duel')||'').toUpperCase().slice(0,4);}
+let startDuelCode='';
+function afterStart(){syncNow();
+  if(startDuelCode){openDuel();$('duelCode').value=startDuelCode;joinDuel(startDuelCode);}
+  else setTimeout(checkBonus,500);
+  if(location.search)history.replaceState(null,'',baseUrl());}
 
 /* ---------- renderer ---------- */
 const cv=$('c'),fx=$('fx'),fctx=fx.getContext('2d');
@@ -505,29 +837,38 @@ addEventListener('resize',fit);
 
 /* ---------- game ---------- */
 const levelName=i=>`עולם ${Math.floor(i/WORLD_SIZE)+1} · שלב ${i%WORLD_SIZE+1}`;
-function load(i){
-  lvl=i;G=LEVELS[i];cols=G[0].length;rows=G.length;cells=new Set();let s;
+let mode='level',chalKind=null,chalStart=0,lastTitle='';
+function setMode(m){mode=m;
+  $('hintBtn').classList.toggle('hidden',m!=='level');$('toMap1').classList.toggle('hidden',m!=='level');$('exitBtn').classList.toggle('hidden',m==='level');
+  $('replay2').classList.toggle('hidden',m==='duel');$('oppRow').classList.toggle('hidden',m!=='duel');}
+function load(i){setMode('level');lvl=i;setupGrid(LEVELS[i]);
+  $('title').textContent=levelName(i);$('hint').textContent=i===0?'החליקו את האצבע כדי לרוץ במבוך':'';}
+function setupGrid(grid){
+  G=grid;cols=G[0].length;rows=G.length;cells=new Set();let s;
   G.forEach((row,y)=>[...row].forEach((ch,x)=>{if(ch!=='#')cells.add(K(x,y));if(ch==='S')s=[x,y];}));
   holes=enclosedHoles();total=cells.size;path=[s];pathSet=new Set([K(...s)]);hist=[];anim=null;queue=null;won=false;bits=[];hintInfo=null;usedHint=false;usedUndo=false;
-  $('title').textContent=levelName(i);$('hint').textContent=i===0?'החליקו את האצבע כדי לרוץ במבוך':'';
-  $('undo').classList.remove('pulse');buildLevel();fit();progress();}
+  $('hint').textContent='';$('undo').classList.remove('pulse');buildLevel();fit();progress();}
 function progress(){const f=path.length/total,w=f>0?Math.max(20,306*f):0,el=$('fill');el.setAttribute('width',w);el.setAttribute('x',313-w);}
 const head=()=>path[path.length-1];
 function slideCells(d){let [x,y]=head();const out=[];for(;;){const nx=x+D[d][0],ny=y+D[d][1],k=K(nx,ny);if(!cells.has(k)||pathSet.has(k))break;x=nx;y=ny;out.push([x,y]);}return out;}
-const blocked=()=>screen!=='game'||!$('paused').classList.contains('hidden')||!$('win').classList.contains('hidden');
+const blocked=()=>screen!=='game'||(mode==='duel'&&!duelLive())||!$('paused').classList.contains('hidden')||!$('win').classList.contains('hidden');
 function move(d){if(won||blocked())return;if(anim){queue=d;return;}
   const c2=slideCells(d);if(!c2.length){bump={d,t:T()};buzz(8);sfx('bump');return;}
   hist.push(path.length);anim={cells:c2,from:head(),t0:T(),per:0.06,shown:0};sfx('move');
-  $('undo').classList.remove('pulse');if(lvl===0)$('hint').textContent='';}
-function finishMove(){anim=null;buzz(12);
+  $('undo').classList.remove('pulse');$('hint').textContent='';}
+function finishMove(){anim=null;buzz(12);if(mode==='duel')pushProgress();
   if(path.length===total){won=true;celebrate();return;}
   if(D.every((_,d)=>!slideCells(d).length)){$('hint').textContent='נתקעתם! בטלו מהלך או התחילו מחדש';$('undo').classList.add('pulse');sfx('stuck');}
   if(queue!==null){const q=queue;queue=null;move(q);}}
-function undo(){if(anim||!hist.length||won)return;usedUndo=true;path=path.slice(0,hist.pop());pathSet=new Set(path.map(p=>K(...p)));progress();$('undo').classList.remove('pulse');$('hint').textContent='';}
+function undo(){if(anim||!hist.length||won)return;usedUndo=true;path=path.slice(0,hist.pop());pathSet=new Set(path.map(p=>K(...p)));progress();if(mode==='duel')pushProgress();$('undo').classList.remove('pulse');$('hint').textContent='';}
 let bits=[];
-function celebrate(){buzz([30,40,30]);sfx('win');const w=innerWidth,h=innerHeight;
-  for(let i=0;i<70;i++)bits.push({x:w/2,y:h*0.45,vx:(Math.random()-0.5)*9,vy:-Math.random()*11-3,s:6+Math.random()*7,c:['#f6ac1e','#ffffff','#2fb3a4','#e0694c','#ffc744'][i%5],r:Math.random()*6,t:T()});
-  const first=!isDone(lvl),earned=first?10+(usedHint?0:5)+(usedUndo?0:5):2;
+function confetti(){const w=innerWidth,h=innerHeight;for(let i=0;i<70;i++)bits.push({x:w/2,y:h*0.45,vx:(Math.random()-0.5)*9,vy:-Math.random()*11-3,s:6+Math.random()*7,c:['#f6ac1e','#ffffff','#2fb3a4','#e0694c','#ffc744'][i%5],r:Math.random()*6,t:T()});}
+function winButtons(kind){$('next').classList.toggle('hidden',kind!=='level');$('toMap2').classList.toggle('hidden',kind!=='level');
+  $('winA').classList.toggle('hidden',kind==='level');$('winB').classList.toggle('hidden',kind==='level');$('winEarn').classList.add('hidden');}
+function bumpCoins(){syncCoins();document.querySelectorAll('.coins').forEach(c=>{c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump');});}
+function celebrate(){if(mode==='duel')return duelFinished();buzz([30,40,30]);sfx('win');confetti();
+  if(mode!=='level')return challengeWon();
+  winButtons('level');const first=!isDone(lvl),earned=first?10+(usedHint?0:5)+(usedUndo?0:5):2;
   if(first)save.done.push(lvl);save.coins+=earned;persist();
   const why=!first?'על שלב שכבר נפתר מקבלים 2 נקודות.':(!usedHint&&!usedUndo)?'כולל בונוס על משחק בלי רמזים ובלי ביטולים.':!usedHint?'כולל בונוס על משחק בלי רמזים.':!usedUndo?'כולל בונוס על משחק בלי ביטולים.':'';
   const last=lvl===LEVELS.length-1,worldEnd=(lvl+1)%WORLD_SIZE===0;
@@ -539,7 +880,7 @@ function celebrate(){buzz([30,40,30]);sfx('win');const w=innerWidth,h=innerHeigh
       $('nextImg').src=KIT.next_level;$('next').setAttribute('aria-label','לשלב הבא');$('next').classList.remove('hidden');}
     $('winEarnVal').textContent=`+${earned}`;$('winEarn').classList.remove('hidden');$('winEarn').title=why;
     if(why)$('winText').textContent+='. '+why;
-    $('win').classList.remove('hidden');sfx('coin');syncCoins();document.querySelectorAll('.coins').forEach(c=>{c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump');});},900);}
+    $('win').classList.remove('hidden');sfx('coin');bumpCoins();syncNow();},900);}
 function buzz(p){try{navigator.vibrate&&navigator.vibrate(p);}catch(e){}}
 
 let sw=null;
@@ -550,10 +891,11 @@ cv.addEventListener('pointerup',()=>{sw=null;});
 addEventListener('keydown',e=>{if(screen!=='game')return;const m={ArrowUp:0,ArrowRight:1,ArrowDown:2,ArrowLeft:3}[e.key];if(m!==undefined){e.preventDefault();move(m);}if(e.key==='Backspace')undo();});
 $('pause').onclick=()=>{if(!won)$('paused').classList.remove('hidden');};
 $('resume').onclick=()=>$('paused').classList.add('hidden');
-$('replay2').onclick=()=>{$('paused').classList.add('hidden');load(lvl);};
+$('replay2').onclick=()=>{$('paused').classList.add('hidden');if(mode==='level')load(lvl);else startChallenge(chalKind,true);};
+$('exitBtn').onclick=()=>{$('paused').classList.add('hidden');if(mode==='duel')leaveDuel(true);else goHome();};
 $('toMap1').onclick=()=>openMap(Math.floor(lvl/WORLD_SIZE));
 $('toMap2').onclick=()=>openMap(Math.floor(lvl/WORLD_SIZE));
-$('undo').onclick=undo;$('hintBtn').onclick=showHint;$('restart').onclick=()=>load(lvl);
+$('undo').onclick=undo;$('hintBtn').onclick=showHint;$('restart').onclick=()=>{if(mode==='level')load(lvl);else if(mode==='duel'){if(duelLive()&&!won){setupGrid(duel.level);pushProgress();}}else{setupGrid(chalGrid);}};
 $('next').onclick=()=>{$('win').classList.add('hidden');if(lvl<LEVELS.length-1)load(lvl+1);};
 
 let hintInfo=null;
@@ -590,9 +932,10 @@ function loop(){
     else{const a=k===0?anim.from:anim.cells[k-1],b=anim.cells[k],f=e-k;hx=a[0]+(b[0]-a[0])*f;hy=a[1]+(b[1]-a[1])*f;}
   }else{const h=head();hx=h[0];hy=h[1];}
   updateDog(anim?path:path.slice(0,-1),hx,hy,t);
+  if((mode==='daily'||mode==='weekly')&&!won){const tt=`${mode==='daily'?'אתגר יומי':'אתגר שבועי'} · ${fmtTime(Date.now()-chalStart)}`;if(tt!==lastTitle){lastTitle=tt;$('title').textContent=tt;}}
   renderer.render(scene,camera);drawBits(t);drawHint(t);}
 
-readLocal();applyAnimal();refreshHome();syncCoins();readCloud();loop();
+readLocal();initSocial();applyAnimal();refreshHome();syncCoins();readCloud();loop();afterStart();
 </script>
 </body>
 </html>
