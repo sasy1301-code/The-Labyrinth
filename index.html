@@ -53,6 +53,13 @@ h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink)
 .wname{font-size:26px;font-weight:900;color:var(--ink)}
 .wsub{font-size:14px;font-weight:600;color:var(--soft);margin-top:2px}
 .maphead .coins{transform:scale(.85)}
+.wchips{flex:none;box-sizing:border-box;width:100%;max-width:420px;display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;padding:4px 4px 8px;margin:2px 0 4px;scrollbar-width:none;touch-action:pan-x}
+.wchips::-webkit-scrollbar{display:none}
+.wchip{flex:none;width:44px;height:52px;border-radius:14px;border:1.5px solid #c38159;background:linear-gradient(#fff3d8,#ffd7a4);box-shadow:0 3px 0 #a34c2d;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;font-size:17px;color:#963b23;cursor:pointer;line-height:1.05;padding:0}
+.wchip small{font-size:10px;font-weight:800;opacity:.8}
+.wchip.sel{background:linear-gradient(#ffdc72,#f5a626);box-shadow:0 0 0 2px #fff inset,0 3px 0 #a34c2d}
+.wchip.lock{background:#e9d3bd;color:#9a7a66;box-shadow:0 3px 0 #c9a17f}
 .wprog{width:min(72vw,300px);margin:6px 0 16px}
 .levels{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
 .levels .wbtn{width:min(62vw,230px)}
@@ -220,6 +227,7 @@ h1{margin:22px 0 0;font-size:68px;line-height:1;font-weight:900;color:var(--ink)
     <div class="ttl"><div class="wname" id="worldName"></div><div class="wsub" id="worldSub"></div></div>
     <div class="coins"><img class="coinimg" src="data:image/webp;base64,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" alt=""><span class="cval">0</span></div>
   </div>
+  <div class="wchips" id="worldChips" role="tablist" aria-label="עולמות"></div>
   <img class="wprog" id="worldProg" alt="">
   <div class="levels" id="levelList"></div>
   <div class="worldnav">
@@ -423,7 +431,13 @@ function worldProgSvg(k){let r='';for(let i=0;i<WORLD_SIZE;i++)r+=`<rect x="${7+
 function renderMap(){
   const w=mapWorld,first=w*WORLD_SIZE,last=Math.min(LEVELS.length,first+WORLD_SIZE);
   let k=0;for(let i=first;i<last;i++)if(isDone(i))k++;
-  $('worldName').textContent=`עולם ${w+1} · ${WORLDS[w]}`;$('worldSub').textContent=`${k} מתוך ${last-first} שלבים`;
+  $('worldName').textContent=`עולם ${w+1} · ${WORLDS[w]}`;$('worldSub').textContent=`שלבים ${first+1}–${last} מתוך ${LEVELS.length} · הושלמו ${k}`;
+  const chips=$('worldChips');chips.innerHTML='';
+  for(let i=0;i<WORLDS.length;i++){const f=i*WORLD_SIZE,open=isOpen(f);let d=0;for(let j=f;j<Math.min(LEVELS.length,f+WORLD_SIZE);j++)if(isDone(j))d++;
+    const c=document.createElement('button');c.className='wchip'+(i===w?' sel':'')+(open?'':' lock');c.setAttribute('role','tab');c.setAttribute('aria-selected',i===w);
+    c.setAttribute('aria-label',`עולם ${i+1}, ${WORLDS[i]}${open?`, ${d} מתוך ${WORLD_SIZE}`:', נעול'}`);
+    c.innerHTML=`${i+1}<small>${open?(d===WORLD_SIZE?'✓':d+'/'+WORLD_SIZE):'🔒'}</small>`;c.onclick=()=>{mapWorld=i;renderMap();};chips.appendChild(c);}
+  requestAnimationFrame(()=>chips.children[w]?.scrollIntoView({inline:'center',block:'nearest'}));
   $('worldProg').src=worldProgSvg(k);$('worldProg').alt=`הושלמו ${k} מתוך ${last-first} שלבים`;
   const list=$('levelList');list.innerHTML='';
   for(let i=first;i<last;i++){const p=pill(i),b=document.createElement('button');b.className='wbtn';b.setAttribute('aria-label',p.label);
@@ -431,7 +445,7 @@ function renderMap(){
     list.appendChild(b);}
   $('prevWorld').classList.toggle('hidden',w===0);
   const nw=w+1<WORLDS.length;$('nextWorld').classList.toggle('hidden',!nw);
-  $('nextWorld').classList.toggle('off',nw&&!isOpen((w+1)*WORLD_SIZE));}
+}
 function openMap(world){mapWorld=world??Math.floor(firstOpen()/WORLD_SIZE);renderMap();show('map');}
 function startLevel(i){show('game');load(i);}
 const goHome=()=>{refreshHome();show('home');};
