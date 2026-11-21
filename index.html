@@ -809,7 +809,7 @@ $('buyYes').onclick=()=>{const a=buying;$('buyDlg').classList.add('hidden');buyi
 
 
 /* ---------- server ---------- */
-const SB_URL='https://zplrfidxpetgtenhenlk.supabase.co',SB_KEY='sb_publishable_cR4JjUiuuxMGJ3Ke2FWBuQ_dcG25pvN';
+const SB_URL='https://xzvobqexicgmvooapxco.supabase.co',SB_KEY='sb_publishable_wZgsd16Lh1SpCFIdBw33Uw__latHvsR';
 async function rpc(fn,args){
   const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),9000);
   try{const r=await fetch(`${SB_URL}/rest/v1/rpc/${fn}`,{method:'POST',signal:ctl.signal,headers:{apikey:SB_KEY,'Content-Type':'application/json'},body:JSON.stringify(args)});
@@ -1033,7 +1033,7 @@ $('loginForm').onsubmit=async e=>{e.preventDefault();const email=$('loginMailInp
   try{let s;
     try{s=await authCall('/token?grant_type=password',{email,password});}
     catch(err){if(err.message!=='invalid_credentials')throw err;
-      try{s=await authCall('/signup',{email,password});}
+      try{s=await authCall(`/signup?redirect_to=${encodeURIComponent(baseUrl())}`,{email,password});}
       catch(e2){if(e2.message==='user_already_exists'||e2.message==='email_exists'){showLoginBusy(false);$('loginErr').textContent='הסיסמה לא נכונה למייל הזה';return;}throw e2;}}
     if(!s.access_token){showLoginBusy(false);$('loginErr').textContent='שלחנו לכם מייל לאישור. אשרו אותו ונסו שוב.';return;}
     await finishLogin(s.access_token,'email',email);}
@@ -1051,8 +1051,8 @@ function doLogout(){const keep={music:save.music,fx:save.fx};
 function readAuthRedirect(){const h=new URLSearchParams(location.hash.slice(1));const tok=h.get('access_token');
   if(h.get('error')){history.replaceState(null,'',baseUrl());toast('ההתחברות עם Google בוטלה');return false;}
   if(!tok)return false;history.replaceState(null,'',baseUrl());
-  let email='';try{email=JSON.parse(atob(tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))).email||'';}catch(e){}
-  finishLogin(tok,'google',email);return true;}
+  let email='',prov='google';try{const j=JSON.parse(decodeURIComponent(escape(atob(tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')))));email=j.email||'';prov=j.app_metadata?.provider||prov;}catch(e){}
+  finishLogin(tok,prov,email);return true;}
 
 /* ---------- friends: list, search, presence and duel invites ---------- */
 const WAIT_TXT='שלחו לחבר את הקוד או את ההזמנה. הדו-קרב יתחיל ברגע שהוא יצטרף.';
