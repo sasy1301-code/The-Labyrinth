@@ -1491,7 +1491,7 @@ function load(i){setMode('level');lvl=i;setupGrid(LEVELS[i]);
 function setupGrid(grid){
   G=grid;cols=G[0].length;rows=G.length;cells=new Set();let s;
   G.forEach((row,y)=>[...row].forEach((ch,x)=>{if(ch!=='#')cells.add(K(x,y));if(ch==='S')s=[x,y];}));
-  holes=enclosedHoles();total=cells.size;path=[s];pathSet=new Set([K(...s)]);hist=[];anim=null;queue=null;won=false;bits=[];hintInfo=null;usedHint=false;usedUndo=false;if(grid!==hintGrid){hintGrid=grid;hintCount=0;}resetTimer();
+  holes=enclosedHoles();total=cells.size;path=[s];pathSet=new Set([K(...s)]);hist=[];anim=null;queue=null;won=false;bits=[];hintInfo=null;usedHint=false;usedUndo=false;if(grid!==hintGrid){hintGrid=grid;hintCount=0;}resetTimer();setHintAfter();
   $('hint').textContent='';$('undo').classList.remove('pulse');buildLevel();fit();progress();}
 function progress(){refreshHintBtn();const f=path.length/total,w=f>0?Math.max(20,306*f):0,el=$('fill');el.setAttribute('width',w);el.setAttribute('x',313-w);}
 const head=()=>path[path.length-1];
@@ -1579,7 +1579,9 @@ $('timeRetry').onclick=()=>{$('timeUp').classList.add('hidden');load(lvl);};
 $('timeMap').onclick=()=>{$('timeUp').classList.add('hidden');timeUp=false;openMap(Math.floor(lvl/WORLD_SIZE));};
 
 /* hints: none before the first move, one free per level, one more for coins, max 2 */
-const HINT_MAX=2,HINT_COST=25,HINT_AFTER=3;let hintCount=0,hintGrid=null;
+const HINT_MAX=2,HINT_COST=25;let hintCount=0,hintGrid=null,HINT_AFTER=3;
+/* harder mazes open the hint sooner: short mazes after 3 moves, medium after 2, long (14+ slides) after 1 */
+function setHintAfter(){if(mode!=='level'){HINT_AFTER=3;return;}const s=solveFrom(),n=s?s.length:0;HINT_AFTER=n<=6?3:n<=13?2:1;}
 function refreshHintBtn(){const b=$('hintBtn'),bd=$('hintBadge');if(!b||!hist)return;
   const left=HINT_MAX-hintCount,early=hist.length<HINT_AFTER;
   b.classList.toggle('dim',early||left<=0);
@@ -1588,7 +1590,7 @@ function refreshHintBtn(){const b=$('hintBtn'),bd=$('hintBadge');if(!b||!hist)re
   b.setAttribute('aria-label',left<=0?'רמז, לא נשארו רמזים בשלב הזה':hintCount===0?'רמז, רמז אחד חינם':`רמז נוסף ב-${HINT_COST} מטבעות`);}
 function showHint(){
   if(anim||won)return;
-  if(hist.length<HINT_AFTER){const n=HINT_AFTER-hist.length;toast(n===1?'הרמז נפתח אחרי עוד מהלך אחד':`הרמז נפתח אחרי ${n} מהלכים נוספים. נסו קודם בעצמכם!`);sfx('bump');return;}
+  if(hist.length<HINT_AFTER){const n=HINT_AFTER-hist.length;toast(n===1?'הרמז נפתח אחרי מהלך אחד. נסו קודם בעצמכם!':`הרמז נפתח אחרי ${n} מהלכים נוספים. נסו קודם בעצמכם!`);sfx('bump');return;}
   if(hintCount>=HINT_MAX){toast(`השתמשתם ב-${HINT_MAX} הרמזים של השלב הזה`);sfx('bump');return;}
   const sol=solveFrom();
   if(!sol){$('hint').textContent='מכאן אין פתרון. בטלו מהלך או התחילו מחדש';$('undo').classList.add('pulse');buzz([20,40,20]);sfx('stuck');return;}
