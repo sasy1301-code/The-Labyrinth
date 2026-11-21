@@ -769,7 +769,7 @@ function show(name){if(name===screen||!document.body)return showNow(name);
 function showNow(name){screen=name;
   ['home','map','shop','board','duel','friends'].forEach(n=>$(n).classList.toggle('hidden',name!==n));navSync(name);syncCoins();$('gameUI').classList.toggle('hidden',name!=='game');
   ['paused','win','timeUp'].forEach(id=>$(id).classList.add('hidden'));
-  if(name==='game'){fit();}if(name==='map')layoutMap();}
+  if(name==='game'){fit();}if(name==='map')layoutMap();if(name==='home'){hwDrag=0;placeTrack(false);}}
 function syncCoins(){if(coinHold)return;document.querySelectorAll('.cval').forEach(e=>e.textContent=save.coins);}
 function refreshHome(){homeWorld=curWorld();drawHomeWorld();$('dotDaily').classList.toggle('hidden',save.chal.daily===period('daily'));const started=save.done.length>0;
   $('homeStart').setAttribute('aria-label',started?'המשך משחק':'משחק חדש');}
@@ -1195,8 +1195,8 @@ function buildHomeTrack(){const tr=$('hwTrack');if(!tr||hwBuilt)return;hwBuilt=t
   tr.innerHTML=WORLD_ART.map((src,i)=>`<div class="hwslide"><img class="hmaze" src="${src}" alt="" draggable="false" decoding="async"></div>`).join('');}
 function placeTrack(animate){const tr=$('hwTrack');if(!tr)return;const box=tr.parentElement,w=box.clientWidth||1;
   tr.style.transition=animate?'transform .42s cubic-bezier(.22,.9,.25,1)':'none';
-  const pos=homeWorld*w+hwDrag;tr.style.transform=`translate3d(${pos}px,0,0)`;
-  const f=hwDrag/w;
+  tr.style.transform=`translate3d(calc(${homeWorld*100}% + ${hwDrag}px),0,0)`;
+  const f=box.clientWidth?hwDrag/w:0;
   [...tr.children].forEach((sl,i)=>{const d=Math.abs(i-(homeWorld+f));const k=Math.min(1,d);
     sl.style.transition=tr.style.transition;sl.style.transform=`scale(${1-0.22*k}) rotate(${(i-(homeWorld+f))*-4}deg)`;sl.style.opacity=String(1-0.55*Math.min(1,d));
     sl.classList.toggle('locked',!isOpen(i*WORLD_SIZE));});}
