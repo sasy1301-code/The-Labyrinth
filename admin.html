@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>ניהול התחש</title>
+<link rel="icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf4ee;--surface:#ffffff;--surface2:#f6ece4;--ink:#2d1a12;--ink2:#6b4a3c;--muted:#9a7d70;--line:#ecdcd0;--accent:#e8735f;--accent-ink:#b8432f;--good:#1f9a52;--warn:#c27a10;--bad:#c2341b;--bar:#e8735f;--bar2:#3f8fb3;--shadow:0 1px 2px rgba(60,30,20,.06),0 6px 18px rgba(60,30,20,.06)}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#1b1412;--surface:#261c19;--surface2:#30241f;--ink:#f6ebe4;--ink2:#d2bcb1;--muted:#a08a80;--line:#3d2f29;--accent:#f08a76;--accent-ink:#ffb3a3;--bar:#f08a76;--bar2:#6db4d6;--shadow:0 1px 2px rgba(0,0,0,.3)}}
+:root[data-theme=dark]{--bg:#1b1412;--surface:#261c19;--surface2:#30241f;--ink:#f6ebe4;--ink2:#d2bcb1;--muted:#a08a80;--line:#3d2f29;--accent:#f08a76;--accent-ink:#ffb3a3;--bar:#f08a76;--bar2:#6db4d6;--shadow:0 1px 2px rgba(0,0,0,.3)}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 Rubik,system-ui,sans-serif;-webkit-text-size-adjust:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+.hidden{display:none!important}
+.wrap{max-width:1180px;margin:0 auto;padding:16px}
+header.top{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:12px;padding-top:10px;padding-bottom:10px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px}
+.brand img{width:30px;height:30px;border-radius:8px}
+.grow{flex:1}
+.who{color:var(--ink2);font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:40vw}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:500;min-height:38px}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.danger{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 35%,var(--line))}
+.btn:disabled{opacity:.5;cursor:default}
+.btn:focus-visible,.tab:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,tr:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;margin:14px 0 6px;scrollbar-width:none}
+.tab{border:0;background:none;padding:9px 14px;border-radius:999px;cursor:pointer;color:var(--ink2);font-weight:500;white-space:nowrap}
+.tab[aria-selected=true]{background:var(--ink);color:var(--bg)}
+.grid{display:grid;gap:12px}
+.cards{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+.stat .lbl{color:var(--ink2);font-size:13px}
+.stat .val{font-size:28px;font-weight:700;margin-top:2px;font-variant-numeric:tabular-nums}
+.stat .sub{color:var(--muted);font-size:12px}
+.stat.live .val::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--good);margin-inline-end:8px;vertical-align:middle;box-shadow:0 0 0 4px color-mix(in srgb,var(--good) 20%,transparent)}
+h2{font-size:17px;margin:22px 0 10px}
+h3{font-size:15px;margin:0 0 8px}
+.charts{grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr))}
+.chart{position:relative}
+.chart svg{display:block;width:100%;height:180px;overflow:visible}
+.chart .tip{position:absolute;pointer-events:none;background:var(--ink);color:var(--bg);font-size:12px;padding:6px 9px;border-radius:8px;white-space:nowrap;transform:translate(50%,-110%);opacity:0;transition:opacity .12s}
+.axis{fill:var(--muted);font-size:10px;unicode-bidi:plaintext}
+.gridline{stroke:var(--line);stroke-width:1}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.toolbar input[type=search]{flex:1;min-width:180px}
+input[type=search],input[type=text],input[type=number],input[type=email],input[type=password],select,textarea{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 12px;min-height:40px;width:100%}
+.toolbar select{width:auto}
+.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th{font-weight:600;color:var(--ink2);font-size:12px;background:var(--surface2);position:sticky;top:0}
+tbody tr{cursor:pointer}
+tbody tr:hover{background:var(--surface2)}
+td.num,th.num{text-align:left;font-variant-numeric:tabular-nums}
+.pname{display:flex;align-items:center;gap:8px;font-weight:600}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex:none}
+.dot.on{background:var(--good)}
+.chip{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--surface2);color:var(--ink2)}
+.chip.google{background:color-mix(in srgb,#4285f4 16%,transparent);color:#2e6ad1}
+.chip.email{background:color-mix(in srgb,var(--accent) 16%,transparent);color:var(--accent-ink)}
+.chip.blocked{background:color-mix(in srgb,var(--bad) 16%,transparent);color:var(--bad)}
+.muted{color:var(--muted)}
+.lvbar{height:10px;border-radius:4px;background:var(--bar);min-width:2px}
+.lvbar.b2{background:var(--bar2)}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(20,10,5,.35);z-index:20}
+.drawer{position:fixed;top:0;bottom:0;left:0;width:min(520px,100vw);background:var(--bg);z-index:21;overflow-y:auto;box-shadow:0 0 40px rgba(0,0,0,.25);padding:18px 18px 40px}
+.drawer .head{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.drawer .head h2{margin:0;flex:1}
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 14px}
+.kv div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.kv b{display:block;font-size:18px;font-variant-numeric:tabular-nums}
+.kv span{font-size:12px;color:var(--ink2)}
+.form{display:grid;gap:8px}
+.row2{display:grid;grid-template-columns:1fr 2fr;gap:8px}
+.list{font-size:13px}
+.list li{padding:6px 0;border-bottom:1px dashed var(--line);display:flex;gap:8px;justify-content:space-between}
+ul.list{list-style:none;margin:0;padding:0}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;z-index:40;font-weight:500;box-shadow:var(--shadow)}
+/* login */
+.login{min-height:100dvh;display:grid;place-items:center;padding:20px}
+.login .card{max-width:380px;width:100%;text-align:center;padding:28px 24px}
+.login img{width:72px;height:72px;border-radius:18px;margin-bottom:8px}
+.login h1{font-size:22px;margin:4px 0 4px}
+.login p{color:var(--ink2);margin:0 0 18px}
+.gbtn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:46px;border-radius:12px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-weight:600}
+.gbtn svg{width:20px;height:20px}
+.sep{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px;margin:14px 0}
+.sep::before,.sep::after{content:"";flex:1;height:1px;background:var(--line)}
+.err{color:var(--bad);font-size:13px;min-height:18px;margin-top:8px}
+@media (max-width:600px){.kv{grid-template-columns:repeat(2,1fr)}.hide-sm{display:none}.stat .val{font-size:24px}}
+</style>
+</head>
+<body>
+<!-- login -->
+<section class="login hidden" id="loginView">
+  <div class="card">
+    <img src="favicon.png" alt="">
+    <h1>ניהול התחש</h1>
+    <p>כניסה למנהלים בלבד</p>
+    <button class="gbtn" id="gLogin"><svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>כניסה עם Google</button>
+    <div class="sep">או</div>
+    <form class="form" id="mailForm">
+      <input type="email" id="mEmail" placeholder="מייל" dir="ltr" autocomplete="email" required aria-label="מייל">
+      <input type="password" id="mPass" placeholder="סיסמה" dir="ltr" autocomplete="current-password" required aria-label="סיסמה">
+      <button class="btn primary" type="submit">כניסה</button>
+    </form>
+    <div class="err" id="loginErr" role="alert"></div>
+  </div>
+</section>
+
+<!-- app -->
+<div id="app" class="hidden">
+  <header class="top"><div class="wrap">
+    <div class="brand"><img src="favicon.png" alt="">ניהול התחש</div>
+    <div class="grow"></div>
+    <span class="who" id="who"></span>
+    <button class="btn" id="refresh" aria-label="רענון">רענון</button>
+    <button class="btn" id="logout">יציאה</button>
+  </div></header>
+  <main class="wrap">
+    <nav class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true" data-t="overview">סקירה</button>
+      <button class="tab" role="tab" aria-selected="false" data-t="players">שחקנים</button>
+      <button class="tab" role="tab" aria-selected="false" data-t="levels">שלבים</button>
+      <button class="tab" role="tab" aria-selected="false" data-t="gifts">שליחת נקודות</button>
+    </nav>
+
+    <section id="t-overview">
+      <div class="grid cards" id="cards"></div>
+      <h2>14 הימים האחרונים</h2>
+      <div class="grid charts">
+        <div class="card chart"><h3>שחקנים פעילים ביום</h3><svg id="chActive" role="img" aria-label="שחקנים פעילים ביום"></svg><div class="tip"></div></div>
+        <div class="card chart"><h3>שחקנים חדשים ביום</h3><svg id="chNew" role="img" aria-label="שחקנים חדשים ביום"></svg><div class="tip"></div></div>
+        <div class="card chart"><h3>דקות משחק ביום</h3><svg id="chMin" role="img" aria-label="דקות משחק ביום"></svg><div class="tip"></div></div>
+        <div class="card chart"><h3>שלבים שנפתרו ביום</h3><svg id="chWins" role="img" aria-label="שלבים שנפתרו ביום"></svg><div class="tip"></div></div>
+      </div>
+      <h2>מחוברים עכשיו</h2>
+      <div class="tablewrap"><table><thead><tr><th>שחקן</th><th class="num">שלבים</th><th class="num">נקודות</th><th>מכשיר</th></tr></thead><tbody id="onlineBody"></tbody></table></div>
+    </section>
+
+    <section id="t-players" class="hidden">
+      <div class="toolbar">
+        <input type="search" id="pq" placeholder="חיפוש לפי שם או מייל" aria-label="חיפוש שחקן">
+        <select id="psort" aria-label="מיון">
+          <option value="last_seen">נראו לאחרונה</option>
+          <option value="created">הצטרפו לאחרונה</option>
+          <option value="levels">הכי הרבה שלבים</option>
+          <option value="coins">הכי הרבה נקודות</option>
+          <option value="play">הכי הרבה זמן משחק</option>
+        </select>
+      </div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>שחקן</th><th>חשבון</th><th class="num">שלבים</th><th class="num">נקודות</th><th class="num">זמן משחק</th><th class="num hide-sm">כניסות</th><th>נראה לאחרונה</th><th class="hide-sm">הצטרף</th></tr></thead>
+        <tbody id="pBody"></tbody></table></div>
+      <div class="toolbar" style="justify-content:center;margin-top:10px"><button class="btn" id="pMore">עוד שחקנים</button></div>
+    </section>
+
+    <section id="t-levels" class="hidden">
+      <p class="muted">כמה שחקנים הגיעו לכל שלב, כמה פתרו אותו, כמה פעמים נגמר בו הזמן, והזמן הממוצע לפתרון. נתוני פתרון וזמן נאספים מהיום שהמערכת עלתה.</p>
+      <div class="tablewrap"><table>
+        <thead><tr><th class="num">שלב</th><th>עולם</th><th class="num">הגיעו</th><th style="width:30%">פתרו</th><th class="num">נגמר הזמן</th><th class="num">זמן ממוצע</th><th class="num hide-sm">רמזים בממוצע</th></tr></thead>
+        <tbody id="lBody"></tbody></table></div>
+    </section>
+
+    <section id="t-gifts" class="hidden">
+      <div class="card" style="max-width:560px">
+        <h3>שליחת נקודות לכל השחקנים</h3>
+        <p class="muted" style="margin-top:0">כל שחקן יקבל את הנקודות עם המטבעות המעופפים בפעם הבאה שהוא פותח את המשחק. לשליחה לשחקן אחד, פתחו אותו בלשונית "שחקנים".</p>
+        <form class="form" id="allGift">
+          <div class="row2"><input type="number" id="agAmt" min="1" max="100000" placeholder="כמות" required aria-label="כמות נקודות"><input type="text" id="agMsg" maxlength="140" placeholder="הודעה לשחקנים (לא חובה)" aria-label="הודעה"></div>
+          <button class="btn primary" type="submit" id="agBtn">שליחה לכולם</button>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- player drawer -->
+<div class="scrim hidden" id="scrim"></div>
+<aside class="drawer hidden" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dName">
+  <div class="head"><h2 id="dName"></h2><button class="btn" id="dClose" aria-label="סגירה">סגירה</button></div>
+  <div id="dMeta" class="muted"></div>
+  <div class="kv" id="dKv"></div>
+  <div class="card" style="margin-bottom:12px">
+    <h3>שליחת נקודות</h3>
+    <form class="form" id="pGift">
+      <div class="row2"><input type="number" id="pgAmt" min="-100000" max="100000" placeholder="כמות" required aria-label="כמות נקודות"><input type="text" id="pgMsg" maxlength="140" placeholder="הודעה לשחקן (לא חובה)" aria-label="הודעה"></div>
+      <button class="btn primary" type="submit">שליחה</button>
+    </form>
+  </div>
+  <div class="card" style="margin-bottom:12px">
+    <h3>פרטים</h3>
+    <form class="form" id="pEdit">
+      <input type="text" id="peName" maxlength="16" aria-label="שם השחקן">
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" type="submit">שמירת שם</button><button class="btn" type="button" id="peBlock"></button><button class="btn danger" type="button" id="peDel">מחיקת השחקן</button></div>
+    </form>
+  </div>
+  <h3>כניסות אחרונות</h3><ul class="list" id="dVisits"></ul>
+  <h3 style="margin-top:14px">פעולות אחרונות</h3><ul class="list" id="dEvents"></ul>
+  <h3 style="margin-top:14px">נקודות שנשלחו</h3><ul class="list" id="dGrants"></ul>
+</aside>
+<div class="toast hidden" id="toast" role="status"></div>
+
+<script>
+const SB='https://xzvobqexicgmvooapxco.supabase.co',KEY='sb_publishable_wZgsd16Lh1SpCFIdBw33Uw__latHvsR',SK='tachash-admin-session';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let sess=null;try{sess=JSON.parse(localStorage.getItem(SK)||'null');}catch(e){}
+function saveSess(s){sess=s;try{s?localStorage.setItem(SK,JSON.stringify(s)):localStorage.removeItem(SK);}catch(e){}}
+function toast(m){const t=$('toast');t.textContent=m;t.classList.remove('hidden');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.add('hidden'),2600);}
+async function authPost(path,body){const r=await fetch(SB+'/auth/v1'+path,{method:'POST',headers:{apikey:KEY,'Content-Type':'application/json'},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error_code||j.msg||'auth');return j;}
+async function token(){if(!sess)throw new Error('no_session');
+  if(Date.now()/1000>(sess.expires_at||0)-60){const j=await authPost('/token?grant_type=refresh_token',{refresh_token:sess.refresh_token});saveSess({access_token:j.access_token,refresh_token:j.refresh_token,expires_at:j.expires_at||Math.floor(Date.now()/1000)+(j.expires_in||3600)});}
+  return sess.access_token;}
+async function rpc(fn,args={}){const r=await fetch(`${SB}/rest/v1/rpc/${fn}`,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+await token(),'Content-Type':'application/json'},body:JSON.stringify(args)});
+  const tx=await r.text();if(!r.ok){let m='server';try{m=JSON.parse(tx).message||m;}catch(e){}throw new Error(m);}return tx?JSON.parse(tx):null;}
+
+/* ---------- login ---------- */
+function readHash(){const h=new URLSearchParams(location.hash.slice(1));if(h.get('access_token')){saveSess({access_token:h.get('access_token'),refresh_token:h.get('refresh_token'),expires_at:+h.get('expires_at')||Math.floor(Date.now()/1000)+(+h.get('expires_in')||3600)});history.replaceState(null,'',location.pathname);}}
+$('gLogin').onclick=()=>{try{localStorage.setItem('tachash-admin-login','1');}catch(e){}
+  const game=location.href.replace(/admin\.html.*$/,'');location.href=`${SB}/auth/v1/authorize?provider=google&redirect_to=${encodeURIComponent(game)}`;};
+$('mailForm').onsubmit=async e=>{e.preventDefault();$('loginErr').textContent='';
+  try{const j=await authPost('/token?grant_type=password',{email:$('mEmail').value.trim(),password:$('mPass').value});saveSess({access_token:j.access_token,refresh_token:j.refresh_token,expires_at:j.expires_at});boot();}
+  catch(err){$('loginErr').textContent='המייל או הסיסמה לא נכונים';}};
+$('logout').onclick=()=>{saveSess(null);location.reload();};
+
+async function boot(){readHash();
+  if(!sess){$('loginView').classList.remove('hidden');$('app').classList.add('hidden');return;}
+  try{const w=await rpc('maze_admin_whoami');
+    if(!w.admin){$('loginView').classList.remove('hidden');$('loginErr').textContent=`לחשבון ${w.email||''} אין הרשאת ניהול`;saveSess(null);return;}
+    $('who').textContent=w.email||'';$('loginView').classList.add('hidden');$('app').classList.remove('hidden');loadTab(cur);}
+  catch(e){saveSess(null);$('loginView').classList.remove('hidden');$('loginErr').textContent='צריך להתחבר שוב';}}
+
+/* ---------- formatting ---------- */
+const nf=new Intl.NumberFormat('he-IL');
+const dur=s=>{s=Math.round(s||0);if(s<60)return`${s} שנ'`;const m=Math.floor(s/60);if(m<60)return`${m} דק'`;const h=Math.floor(m/60);return`${h} שע' ${m%60} דק'`;};
+const ago=t=>{if(!t)return'—';const s=(Date.now()-new Date(t))/1000;if(s<60)return'עכשיו';if(s<3600)return`לפני ${Math.floor(s/60)} דק'`;if(s<86400)return`לפני ${Math.floor(s/3600)} שע'`;const d=Math.floor(s/86400);return d<30?`לפני ${d} ימים`:new Date(t).toLocaleDateString('he-IL');};
+const dt=t=>t?new Date(t).toLocaleString('he-IL',{day:'numeric',month:'numeric',hour:'2-digit',minute:'2-digit'}):'—';
+const ACC={guest:['אורח',''],google:['Google','google'],email:['מייל','email']};
+const WORLDS=['הגינה','היער','המדבר','ארץ הממתקים','החוף','הרי השלג','הר הגעש','מערת הקריסטלים','ממלכת העננים','החלל'];
+const ANIMALS={dog:'כלב',cat:'חתול',fox:'שועל',bear:'דוב',panda:'פנדה',frog:'צפרדע',bunny:'ארנב',tiger:'נמר'};
+
+/* ---------- tabs ---------- */
+let cur='overview';
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{cur=b.dataset.t;document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected',String(x===b)));
+  document.querySelectorAll('main>section').forEach(s=>s.classList.toggle('hidden',s.id!=='t-'+cur));loadTab(cur);});
+$('refresh').onclick=()=>loadTab(cur);
+function loadTab(t){({overview:loadOverview,players:()=>loadPlayers(true),levels:loadLevels,gifts:()=>{}})[t]();}
+
+/* ---------- overview ---------- */
+async function loadOverview(){
+  try{const [o,d,on]=await Promise.all([rpc('maze_admin_overview'),rpc('maze_admin_daily',{p_days:14}),rpc('maze_admin_players',{p_q:'',p_sort:'last_seen',p_limit:60,p_offset:0})]);
+    const C=[['מחוברים עכשיו',o.online,'','live'],['פעילים היום',o.active_today,`${o.active_7d} ב-7 ימים`],['שחקנים',o.players,`${o.accounts} עם חשבון`],['חדשים היום',o.new_today],
+      ['כניסות היום',o.sessions_today],['משך כניסה ממוצע',dur(o.avg_session_s),'7 ימים אחרונים'],['שעות משחק',o.play_hours_7d,'7 ימים אחרונים'],['שלבים שנפתרו היום',o.wins_today],['דו-קרבות היום',o.duels_today],['נקודות אצל שחקנים',nf.format(o.coins_total),o.gifts_open?`${nf.format(o.gifts_open)} ממתינות למסירה`:'']];
+    $('cards').innerHTML=C.map(([l,v,s,c])=>`<div class="card stat ${c||''}"><div class="lbl">${l}</div><div class="val">${typeof v==='number'?nf.format(v):esc(v)}</div>${s?`<div class="sub">${esc(s)}</div>`:''}</div>`).join('');
+    const rows=d||[];bars('chActive',rows.map(r=>[r.day,r.active]),'פעילים');bars('chNew',rows.map(r=>[r.day,r.new_players]),'חדשים',true);bars('chMin',rows.map(r=>[r.day,r.minutes]),'דקות');bars('chWins',rows.map(r=>[r.day,r.wins]),'שלבים',true);
+    const ol=(on||[]).filter(p=>p.online);
+    $('onlineBody').innerHTML=ol.length?ol.map(p=>`<tr tabindex="0" data-id="${p.id}"><td><span class="pname"><i class="dot on"></i>${esc(p.name)}</span></td><td class="num">${p.levels_done}</td><td class="num">${nf.format(p.coins)}</td><td>${esc(p.platform||'—')}</td></tr>`).join(''):`<tr><td colspan="4" class="empty">אין כרגע שחקנים מחוברים</td></tr>`;
+    bindRows($('onlineBody'),ol);}
+  catch(e){toast('הטעינה נכשלה: '+e.message);}}
+function bars(id,data,unit,alt){const svg=$(id),W=svg.clientWidth||340,H=180,pl=38,pb=20,pt=8,max=Math.max(1,...data.map(d=>d[1]));
+  const n=data.length,bw=(W-pl)/n,g=2;const nice=Math.ceil(max/4)*4||4;
+  let s='';for(let i=0;i<=4;i++){const y=pt+(H-pb-pt)*(1-i/4);s+=`<line class="gridline" x1="${pl}" x2="${W}" y1="${y}" y2="${y}"/><text class="axis" x="${pl-6}" y="${y+3}" text-anchor="end" direction="ltr">${Math.round(nice*i/4)}</text>`;}
+  data.forEach(([day,v],i)=>{const h=(H-pb-pt)*v/nice,x=W-(i+1)*bw+g/2,y=H-pb-h;const w=Math.max(2,bw-g*2);
+    s+=`<path d="M${x},${H-pb} V${y+Math.min(4,h)} q0,-4 4,-4 h${Math.max(0,w-8)} q4,0 4,4 V${H-pb} Z" fill="var(${alt?'--bar2':'--bar'})" ${h<1?'opacity=".25"':''}/>`;
+    s+=`<rect x="${x-g}" y="${pt}" width="${bw}" height="${H-pb-pt}" fill="transparent" data-i="${i}"/>`;
+    if(i%2===0)s+=`<text class="axis" x="${x+w/2}" y="${H-5}" text-anchor="middle">${new Date(day).getDate()}/${new Date(day).getMonth()+1}</text>`;});
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML=s;
+  const tip=svg.parentElement.querySelector('.tip');
+  svg.onmousemove=svg.ontouchstart=e=>{const t=e.target.closest('[data-i]');if(!t){tip.style.opacity=0;return;}const [day,v]=data[+t.dataset.i];
+    tip.textContent=`${new Date(day).toLocaleDateString('he-IL',{weekday:'short',day:'numeric',month:'numeric'})} · ${nf.format(v)} ${unit}`;
+    const r=t.getBoundingClientRect(),pr=svg.parentElement.getBoundingClientRect();tip.style.left=(r.left-pr.left+r.width/2-tip.offsetWidth/2)+'px';tip.style.right='auto';tip.style.transform='translateY(-110%)';tip.style.top=(svg.offsetTop+20)+'px';tip.style.opacity=1;};
+  svg.onmouseleave=()=>tip.style.opacity=0;}
+
+/* ---------- players ---------- */
+let pRows=[],pOff=0,pTimer=null;
+async function loadPlayers(reset){if(reset){pRows=[];pOff=0;}
+  try{const r=await rpc('maze_admin_players',{p_q:$('pq').value,p_sort:$('psort').value,p_limit:100,p_offset:pOff});pRows=pRows.concat(r||[]);pOff+=100;
+    $('pMore').classList.toggle('hidden',(r||[]).length<100);
+    $('pBody').innerHTML=pRows.length?pRows.map(p=>{const a=ACC[p.account]||[p.account,''];return`<tr tabindex="0" data-id="${p.id}"><td><span class="pname"><i class="dot ${p.online?'on':''}"></i>${esc(p.name)}${p.blocked?' <span class="chip blocked">חסום</span>':''}</span></td><td><span class="chip ${a[1]}">${a[0]}</span>${p.email?` <span class="muted">${esc(p.email)}</span>`:''}</td><td class="num">${p.levels_done}</td><td class="num">${nf.format(p.coins)}</td><td class="num">${dur(p.play_s)}</td><td class="num hide-sm">${p.sessions}</td><td>${p.online?'<b style="color:var(--good)">מחובר</b>':ago(p.last_seen)}</td><td class="hide-sm">${new Date(p.created_at).toLocaleDateString('he-IL')}</td></tr>`;}).join(''):`<tr><td colspan="8" class="empty">לא נמצאו שחקנים</td></tr>`;
+    bindRows($('pBody'),pRows);}
+  catch(e){toast('הטעינה נכשלה: '+e.message);}}
+$('pq').oninput=()=>{clearTimeout(pTimer);pTimer=setTimeout(()=>loadPlayers(true),300);};
+$('psort').onchange=()=>loadPlayers(true);$('pMore').onclick=()=>loadPlayers(false);
+function bindRows(tb,rows){tb.querySelectorAll('tr[data-id]').forEach(tr=>{const p=rows.find(x=>x.id===tr.dataset.id);tr.onclick=()=>openPlayer(p);tr.onkeydown=e=>{if(e.key==='Enter')openPlayer(p);};});}
+
+/* ---------- player drawer ---------- */
+let curP=null;
+async function openPlayer(p){curP=p;$('dName').textContent=p.name;const a=ACC[p.account]||[p.account];
+  $('dMeta').innerHTML=`${p.online?'<b style="color:var(--good)">מחובר עכשיו</b>':'נראה '+ago(p.last_seen)} · ${a[0]}${p.email?' · '+esc(p.email):''} · ${ANIMALS[p.animal]||esc(p.animal)} · הצטרף ${new Date(p.created_at).toLocaleDateString('he-IL')}${p.platform?' · '+esc(p.platform):''}`;
+  $('peName').value=p.name;$('peBlock').textContent=p.blocked?'ביטול חסימה':'חסימת השחקן';$('pgAmt').value='';$('pgMsg').value='';
+  $('dKv').innerHTML='';$('dVisits').innerHTML=$('dEvents').innerHTML=$('dGrants').innerHTML='<li class="muted">טוען…</li>';
+  $('scrim').classList.remove('hidden');$('drawer').classList.remove('hidden');$('dClose').focus();
+  try{const d=await rpc('maze_admin_player',{p_player:p.id});
+    $('dKv').innerHTML=[['שלבים',p.levels_done],['נקודות',nf.format(p.coins)],['זמן משחק',dur(p.play_s)],['כניסות',p.sessions],['חברים',p.friends],['דו-קרבות',`${d.duel_wins}/${d.duels}`]].map(([k,v])=>`<div><b>${v}</b><span>${k}</span></div>`).join('');
+    $('dVisits').innerHTML=d.visits.length?d.visits.map(v=>`<li><span>${dt(v.started_at)}</span><span>${dur(v.secs)}</span><span class="muted">${v.levels_end>v.levels_start?`+${v.levels_end-v.levels_start} שלבים`:''}</span></li>`).join(''):'<li class="muted">אין עדיין נתונים</li>';
+    const EK={win:'פתר שלב',timeup:'נגמר הזמן בשלב',hint:'רמז בשלב',quit:'יצא משלב'};
+    $('dEvents').innerHTML=d.events.length?d.events.map(e=>`<li><span>${EK[e.kind]||e.kind} ${e.level??''}</span><span class="muted">${e.ms?dur(e.ms/1000):''}${e.hints?` · ${e.hints} רמזים`:''}</span><span class="muted">${dt(e.at)}</span></li>`).join(''):'<li class="muted">אין עדיין נתונים</li>';
+    $('dGrants').innerHTML=d.grants.length?d.grants.map(g=>`<li><span><b>${g.amount>0?'+':''}${nf.format(g.amount)}</b> ${esc(g.message||'')}</span><span class="muted">${g.claimed_at?'נמסר '+dt(g.claimed_at):'ממתין'}</span></li>`).join(''):'<li class="muted">לא נשלחו נקודות</li>';}
+  catch(e){toast('הטעינה נכשלה: '+e.message);}}
+function closeDrawer(){$('scrim').classList.add('hidden');$('drawer').classList.add('hidden');}
+$('dClose').onclick=closeDrawer;$('scrim').onclick=closeDrawer;addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer();});
+$('pGift').onsubmit=async e=>{e.preventDefault();const amt=parseInt($('pgAmt').value,10);if(!amt)return;
+  try{await rpc('maze_admin_grant',{p_player:curP.id,p_amount:amt,p_message:$('pgMsg').value});toast(`נשלחו ${nf.format(amt)} נקודות ל${curP.name}`);openPlayer(curP);}catch(err){toast('השליחה נכשלה: '+err.message);}};
+$('pEdit').onsubmit=async e=>{e.preventDefault();try{await rpc('maze_admin_update',{p_player:curP.id,p_name:$('peName').value,p_blocked:null});curP.name=$('peName').value;$('dName').textContent=curP.name;toast('השם עודכן');if(cur==='players')loadPlayers(true);}catch(err){toast('השמירה נכשלה');}};
+$('peBlock').onclick=async()=>{try{await rpc('maze_admin_update',{p_player:curP.id,p_name:null,p_blocked:!curP.blocked});curP.blocked=!curP.blocked;$('peBlock').textContent=curP.blocked?'ביטול חסימה':'חסימת השחקן';toast(curP.blocked?'השחקן נחסם: הוא לא יופיע בטבלאות ולא יקבל נקודות':'החסימה בוטלה');if(cur==='players')loadPlayers(true);}catch(err){toast('הפעולה נכשלה');}};
+$('peDel').onclick=async()=>{if(!confirm(`למחוק את ${curP.name} לצמיתות? כל הנתונים שלו יימחקו ואי אפשר לבטל.`))return;
+  try{await rpc('maze_admin_delete',{p_player:curP.id});closeDrawer();toast('השחקן נמחק');loadTab(cur);}catch(err){toast('המחיקה נכשלה');}};
+
+/* ---------- levels ---------- */
+async function loadLevels(){try{const L=await rpc('maze_admin_levels')||[];const mx=Math.max(1,...L.map(l=>l.reached));
+  $('lBody').innerHTML=L.map(l=>`<tr><td class="num"><b>${l.level}</b></td><td>${WORLDS[Math.floor((l.level-1)/10)]}</td><td class="num">${l.reached}</td><td><div style="display:flex;align-items:center;gap:8px"><div class="lvbar" style="width:${Math.round(l.winners/mx*100)}%"></div><span class="muted">${l.winners}</span></div></td><td class="num">${l.timeups||'—'}</td><td class="num">${l.avg_s!=null?dur(l.avg_s):'—'}</td><td class="num hide-sm">${l.avg_hints??'—'}</td></tr>`).join('');}
+  catch(e){toast('הטעינה נכשלה: '+e.message);}}
+
+/* ---------- gifts to everyone ---------- */
+$('allGift').onsubmit=async e=>{e.preventDefault();const amt=parseInt($('agAmt').value,10);if(!amt||amt<1)return;
+  if(!confirm(`לשלוח ${nf.format(amt)} נקודות לכל השחקנים?`))return;$('agBtn').disabled=true;
+  try{const n=await rpc('maze_admin_grant',{p_player:null,p_amount:amt,p_message:$('agMsg').value});toast(`נשלח ל-${nf.format(n)} שחקנים`);$('agAmt').value='';$('agMsg').value='';}
+  catch(err){toast('השליחה נכשלה: '+err.message);}finally{$('agBtn').disabled=false;}};
+
+setInterval(()=>{if(!document.hidden&&cur==='overview'&&!$('app').classList.contains('hidden'))loadOverview();},30000);
+boot();
+</script>
+</body>
+</html>
